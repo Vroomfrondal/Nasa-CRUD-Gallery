@@ -6,6 +6,17 @@
   --navy_blue: #141721;
   --modal_blackout: rgba(0, 0, 0, 0.7);
 }
+::-webkit-scrollbar {
+  background-color: #202324;
+  color: #aba499;
+  width: 0.6rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #454a4d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #575e62;
+}
 
 * {
   font-family: 'Raleway', sans-serif;
@@ -32,6 +43,19 @@ iframe {
   object-fit: cover;
   border-radius: 0.125rem;
   border: 1px solid var(--cream);
+}
+
+/* Header Image */
+.banner {
+  position: absolute;
+  background-image: url('../../public/media/earth-background.jpg');
+  background-position: bottom;
+  background-size: cover;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 11rem;
+  width: auto;
 }
 
 /* Grid container styling starts */
@@ -159,7 +183,16 @@ iframe {
   bottom: 0px;
 }
 
-/* Component Styling */
+.mask {
+  -webkit-mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
+}
+
+.transform_center {
+  transform: translate(50%, 50%);
+}
+
+/* Custom Component Styling */
 .Title {
   display: flex;
   justify-content: center;
