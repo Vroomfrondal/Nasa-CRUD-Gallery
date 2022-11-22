@@ -48,7 +48,7 @@ function useNavBar() {
 
             <button>
               <a
-                href="https://github.com/Vroomfrondal/Photo-Gallery-React-Tailwind"
+                href="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery"
                 target="_blank"
                 rel="noreferrer"
                 className="source"
