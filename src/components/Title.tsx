@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/index.css'
 
 type TitleProps = {
   title: string

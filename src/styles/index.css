@@ -24,6 +24,7 @@ body {
   padding-bottom: 0.75rem;
   padding-top: 9rem;
   animation: slideInLeft 1s;
+  font-weight: 300;
 }
 
 .Loading {
