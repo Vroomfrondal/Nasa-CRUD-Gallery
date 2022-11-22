@@ -223,6 +223,10 @@ iframe {
   transform: translate(50%, 50%);
 }
 
+[hidden] {
+  display: none;
+}
+
 /* Custom Component Styling */
 .Title {
   display: flex;
