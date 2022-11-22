@@ -2,6 +2,7 @@
 :root {
   --cream: #ffffff;
   --bg_black: #121212;
+  --pure_black: #000000;
   --navy_blue: #141721;
   --modal_blackout: rgba(0, 0, 0, 0.7);
 }
@@ -15,7 +16,7 @@ body {
   margin: 0;
   padding: 0;
   font-weight: normal;
-  background-color: var(--bg_black);
+  background-color: var(--pure_black);
   color: var(--cream);
 }
 
@@ -78,6 +79,7 @@ iframe {
   position: absolute;
   margin: 0.5rem;
   font-size: 2.25rem;
+  font-weight: 300;
   line-height: 2.5rem;
   animation: dateBounce 1.5s ease 1;
   left: 0px;
@@ -150,7 +152,7 @@ iframe {
   justify-content: center;
   font-size: 2.25rem;
   line-height: 2.5rem;
-  padding-bottom: 0.75rem;
+  /* padding-bottom: 0.75rem; */
   padding-top: 9rem;
   animation: slideInLeft 1s;
   font-weight: 300;
@@ -161,6 +163,7 @@ iframe {
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+  font-weight: 300;
   line-height: 2rem;
   padding-top: 0.5rem;
 }
