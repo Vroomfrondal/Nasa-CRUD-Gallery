@@ -56,8 +56,8 @@ iframe {
   right: 0px;
   height: 11rem;
   width: auto;
-  mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
 }
 
 /* Grid container styling starts */
@@ -224,7 +224,8 @@ iframe {
 }
 
 [hidden] {
-  display: none;
+  /* Block is overriding display none */
+  display: none !important;
 }
 
 /* Custom Component Styling */
