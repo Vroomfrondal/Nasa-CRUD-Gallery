@@ -1,0 +1,10 @@
+:root {
+  --cream: '#FFFFFF';
+  --bg_black: '#121212';
+  --navy_blue: '#141721';
+  --modal_blackout: 'rgba(0, 0, 0, .7)';
+}
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
