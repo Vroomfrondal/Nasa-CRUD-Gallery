@@ -137,6 +137,19 @@ iframe {
   /* Container/Grid Styling Ends */
 }
 
+/* Desktop Viewport (large) */
+@media (min-width: 880px) {
+  .container {
+    max-width: 880px;
+  }
+}
+
+@media (min-width: 1020px) {
+  .container {
+    max-width: 1020px;
+  }
+}
+
 /* Utility Classes */
 .bottom-8 {
   bottom: 2rem /* 32px */;
