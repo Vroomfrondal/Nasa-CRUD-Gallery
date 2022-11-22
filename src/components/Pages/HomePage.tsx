@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import useFetchImages from '../../hooks/useFetchImages'
+import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
 import Loading from '../Loading'
 import Card from '../Card'
@@ -82,7 +83,7 @@ function HomePage() {
         })}
       </section>
 
-      {/* <ScrollToTopButton /> */}
+      <ScrollToTopButton />
       {isLoading ? <Loading /> : null}
     </>
   )
