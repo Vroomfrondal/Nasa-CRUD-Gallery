@@ -44,11 +44,9 @@ function Favorites() {
           })}
         </section>
       ) : (
-        <div className="no_likes text-cream text-center sm:text-sm md:text-lg">
+        <div>
           <span>Browse the </span>
-          <a href="/" className="text-blue-200 hover:text-blue-600 relative">
-            home page
-          </a>
+          <a href="/">home page</a>
           <span> and like some images first!</span>
         </div>
       )}
