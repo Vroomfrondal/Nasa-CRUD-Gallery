@@ -60,7 +60,49 @@ iframe {
   -webkit-mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
 }
 
-/* Grid container styling starts */
+/* Nav Bar Starts */
+.hamburger_container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  width: 100%;
+  font-weight: 600;
+}
+
+.hamburger {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition-duration: 500ms;
+  transform: rotate(180deg);
+}
+
+.hamburger:hover {
+  background-color: var(--cream);
+  opacity: 100%;
+}
+
+.nav_bar {
+  top: 0px;
+  height: 100%;
+}
+
+.line {
+  display: block;
+  width: 1rem;
+  height: 0.25rem;
+  margin: 0.25rem;
+  border-radius: 0.375rem;
+  background-color: var(--cream);
+}
+/* Nav Bar Ends */
+
+/* Grid Container to house infinite-scroll gallery (grows with media queries) */
 .container {
   display: grid;
   grid-auto-rows: 20rem;
@@ -69,7 +111,48 @@ iframe {
   margin-right: auto;
 }
 
-/* Card's content styling. Hidden until hover */
+/* Component Styling Starts */
+.Title {
+  display: flex;
+  justify-content: center;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  /* padding-bottom: 0.75rem; */
+  padding-top: 7rem;
+  animation: slideInLeft 1s;
+  font-weight: 300;
+}
+
+.Loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 2rem;
+  padding-top: 0.5rem;
+}
+
+.ScrollToTop {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--cream);
+  border-radius: 1000px;
+  transition-duration: 300ms;
+  bottom: 1rem;
+  right: 0.5rem;
+  z-index: 10;
+  color: var(--cream);
+  background-color: transparent;
+}
+
+.ScrollToTop:hover {
+  border: 1px solid lightblue;
+}
+
+/* Card's content begins. Hidden until hover */
 .card {
   position: relative;
   display: flex;
@@ -115,7 +198,7 @@ iframe {
   position: absolute;
   margin: 0.5rem;
   right: 0px;
-  bottom: 0px;
+  bottom: 5px;
   cursor: pointer;
 }
 
@@ -126,20 +209,21 @@ iframe {
 .card:hover {
   z-index: 10;
 }
-/* Grid container styling ends */
+/* Card content ends */
+/* Component styling ends */
 
-/* Favorites Page Styling */
-.no_likes {
+/* Favorites Page starts  */
+.no_likes_message {
   text-align: center;
 }
 
-.no_likes a {
+.no_likes_message a {
   position: relative;
-  color: rgb(191 219 254);
+  color: #bfdbfe;
 }
 
-.no_likes a:hover {
-  color: rgb(37 99 235);
+.no_likes_message a:hover {
+  color: #2563eb;
 }
 
 /* Media Queries Start */
@@ -147,6 +231,15 @@ iframe {
 @media (min-width: 320px) {
   .container {
     max-width: 320px;
+  }
+
+  .hamburger_container {
+    height: 100%;
+  }
+
+  .nav_bar {
+    position: fixed;
+    width: 12rem;
   }
 
   .no_likes {
@@ -165,6 +258,22 @@ iframe {
   img,
   iframe {
     height: 100%;
+  }
+
+  .hamburger_container {
+    height: fit-content;
+  }
+
+  .hamburger {
+    opacity: 0;
+    display: none;
+  }
+
+  .nav_bar {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   .container {
@@ -207,6 +316,11 @@ iframe {
   .container {
     max-width: 1020px;
   }
+
+  .hamburger_container {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 /* Media Queries End */
 
@@ -223,50 +337,29 @@ iframe {
   transform: translate(50%, 50%);
 }
 
-[hidden] {
+[hidden],
+.hidden {
   /* Block is overriding display none */
   display: none !important;
 }
 
-/* Custom Component Styling */
-.Title {
-  display: flex;
-  justify-content: center;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  /* padding-bottom: 0.75rem; */
-  padding-top: 9rem;
-  animation: slideInLeft 1s;
-  font-weight: 300;
+.opacity-0 {
+  opacity: 0;
 }
 
-.Loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 2rem;
-  padding-top: 0.5rem;
+.block {
+  display: block;
 }
 
-.ScrollToTop {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--cream);
-  border-radius: 1000px;
-  transition-duration: 300ms;
-  bottom: 1rem;
-  right: 0.5rem;
-  z-index: 10;
-  color: var(--cream);
-  background-color: transparent;
+.w-1 {
+  width: 1rem;
 }
 
-.ScrollToTop:hover {
-  border: 1px solid lightblue;
+.w-2 {
+  width: 1.25rem;
+}
+.w-3 {
+  width: 1.5rem;
 }
 
 /* Animations */
