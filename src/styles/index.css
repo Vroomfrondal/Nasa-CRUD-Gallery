@@ -4,6 +4,7 @@
   --bg_black: #121212;
   --pure_black: #000000;
   --navy_blue: #141721;
+  --hover_opaque: rgba(255, 255, 255, 0.3);
   --modal_blackout: rgba(0, 0, 0, 0.7);
 }
 ::-webkit-scrollbar {
@@ -79,7 +80,6 @@ iframe {
   top: 0px;
   width: 100%;
   font-weight: 600;
-  /* New properties */
   background-color: transparent;
   border: none;
 }
@@ -95,8 +95,7 @@ iframe {
 }
 
 .hamburger:hover {
-  background-color: var(--cream);
-  /* add opacity */
+  background-color: var(--hover_opaque);
 }
 
 .nav_bar {
@@ -134,7 +133,7 @@ iframe {
 }
 
 .close_container:hover {
-  background-color: var(--cream);
+  background-color: var(--hover_opaque);
 }
 
 .close_nav_button {
@@ -165,7 +164,7 @@ nav button {
 }
 
 nav button:hover {
-  background-color: var(--cream);
+  background-color: var(--hover_opaque);
 }
 
 .source {
