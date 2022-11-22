@@ -44,7 +44,7 @@ function Favorites() {
           })}
         </section>
       ) : (
-        <div>
+        <div className="no_likes_message">
           <span>Browse the </span>
           <a href="/">home page</a>
           <span> and like some images first!</span>
