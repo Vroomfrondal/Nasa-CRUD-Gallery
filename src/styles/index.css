@@ -28,8 +28,11 @@ hr {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  font-family: inherit;
+  line-height: inherit;
   background-color: var(--pure_black);
   color: var(--cream);
+  -webkit-font-smoothing: antialiased;
 }
 
 html {
@@ -99,9 +102,9 @@ iframe {
 .nav_bar {
   top: 0px;
   height: 100%;
-  font-weight: 600;
   animation: slideInNav 0.4s ease-out;
   transition-duration: 150ms;
+  font-weight: 600;
   color: var(--cream);
 }
 
@@ -157,6 +160,8 @@ nav button {
   background-color: transparent;
   color: var(--cream);
   border: none;
+  font-size: medium;
+  font-weight: 400;
 }
 
 nav button:hover {
@@ -291,10 +296,9 @@ nav button:hover {
 .card:hover {
   z-index: 10;
 }
-/* Card content ends */
-/* Component styling ends */
+/* Component & Card styling ends */
 
-/* Favorites Page starts  */
+/* Favorites page starts  */
 .no_likes_message {
   text-align: center;
 }
@@ -308,7 +312,7 @@ nav button:hover {
   color: #2563eb;
 }
 
-/* Media Queries Start */
+/* Media queries start */
 /* Mobile */
 @media (min-width: 320px) {
   .container {
@@ -333,6 +337,7 @@ nav button:hover {
 
   .links {
     flex-direction: column;
+    border-top: 1px solid var(--cream);
   }
 
   .mobile_emblem {
@@ -372,6 +377,7 @@ nav button:hover {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    animation: slideInNav 1s ease-out;
   }
 
   .active_nav_bar {
@@ -386,12 +392,13 @@ nav button:hover {
 
   .links {
     flex-direction: row;
+    border: none;
   }
 
   .links button {
     width: 8rem;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: medium;
+    font-weight: 500;
   }
 
   .close_container {
@@ -508,6 +515,12 @@ nav button:hover {
   }
 }
 
+@keyframes slideInNav {
+  0% {
+    transform: translate(100%, 0%);
+  }
+}
+
 @keyframes dateBounce {
   0% {
     transform: scale(1, 1) translateY(0);
@@ -536,11 +549,5 @@ nav button:hover {
   100% {
     transform: scale(1, 1) translateY(0);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
-@keyframes slideInNav {
-  0% {
-    transform: translate(100%, 0%);
   }
 }

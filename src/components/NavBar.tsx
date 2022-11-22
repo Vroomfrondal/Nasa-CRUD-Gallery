@@ -37,7 +37,7 @@ function useNavBar() {
             <span className="close_nav_button">X</span>
           </button>
 
-          <hr className={`${showNavLinks ? null : 'hidden'}`} />
+          <hr className={` hidden ${showNavLinks ? 'block' : ''}`} />
 
           <div className="links">
             <button className="home" onClick={() => setActivePage('Home')}>
