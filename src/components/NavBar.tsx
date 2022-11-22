@@ -25,19 +25,19 @@ function useNavBar() {
           </div>
         </button>
 
-        <nav className={`nav_bar ${showNavLinks ? 'nav_bar:active' : 'hidden'}`}>
+        <nav className={`nav_bar ${showNavLinks ? 'active_nav_bar' : null}`}>
           <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
-            <span className="emblem">T</span>
+            <span className={`emblem ${showNavLinks ? 'hidden' : 'block'}`}>T</span>
           </a>
 
           <button
-            className={`close_container ${showNavLinks ? 'block' : 'hidden'}`}
+            className={`close_container ${showNavLinks ? 'contents' : 'hidden'}`}
             onClick={() => setShowNavLinks((status) => !status)}
           >
             <span className="close_nav_button">X</span>
           </button>
 
-          <hr></hr>
+          <hr className={`${showNavLinks ? null : 'hidden'}`} />
 
           <div className="links">
             <button className="home" onClick={() => setActivePage('Home')}>
@@ -48,14 +48,16 @@ function useNavBar() {
               Favorites
             </button>
 
-            <a
-              href="https://github.com/Vroomfrondal/Photo-Gallery-React-Tailwind"
-              target="_blank"
-              rel="noreferrer"
-              className="source"
-            >
-              Source
-            </a>
+            <button>
+              <a
+                href="https://github.com/Vroomfrondal/Photo-Gallery-React-Tailwind"
+                target="_blank"
+                rel="noreferrer"
+                className="source"
+              >
+                Source
+              </a>
+            </button>
 
             <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
               <span className={`mobile_emblem ${showNavLinks ? 'block' : 'hidden'}`}>T</span>
