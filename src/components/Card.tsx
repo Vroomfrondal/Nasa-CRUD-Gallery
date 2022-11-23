@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import CardModal from '../components/CardModal'
 
 type CardProps = {
   alt?: string
@@ -47,6 +48,18 @@ function Card({
           </span>
         </section>
       </div>
+
+      <CardModal
+        src={src}
+        highDefSrc={highDefSrc}
+        copyright={copyright}
+        date={date}
+        title={title ? title : 'No Title Provided'}
+        explanation={explanation}
+        open={modalStatus}
+        likeAction={likeAction}
+        onClose={() => setModalStatus(false)}
+      />
     </>
   )
 }

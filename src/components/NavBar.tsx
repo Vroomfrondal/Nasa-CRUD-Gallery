@@ -25,7 +25,7 @@ function useNavBar() {
           </div>
         </button>
 
-        <nav className={`nav_bar ${showNavLinks ? 'active_nav_bar' : null}`}>
+        <nav className={`nav_bar ${showNavLinks ? 'active_nav_bar' : ''}`}>
           <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
             <span className={`emblem ${showNavLinks ? 'hidden' : 'block'}`}>T</span>
           </a>
