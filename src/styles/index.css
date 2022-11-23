@@ -283,9 +283,11 @@ nav button:hover {
   position: absolute;
   margin: 0.5rem;
   right: 0px;
-  bottom: 2px;
+  bottom: 4px;
   cursor: pointer;
   font-weight: 500;
+  height: 1.3rem;
+  border: none;
 }
 
 .like_button:hover {
@@ -605,6 +607,10 @@ nav button:hover {
 .hidden {
   /* Block is overriding display none */
   display: none !important;
+}
+
+.noborder {
+  border: none;
 }
 
 .opacity-0 {
