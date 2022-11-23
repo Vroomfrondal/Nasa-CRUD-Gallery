@@ -283,8 +283,9 @@ nav button:hover {
   position: absolute;
   margin: 0.5rem;
   right: 0px;
-  bottom: 5px;
+  bottom: 2px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .like_button:hover {
@@ -332,23 +333,23 @@ nav button:hover {
   position: absolute;
   z-index: 10;
   right: 0.75rem;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.75rem;
   cursor: pointer;
 }
 
-.cm_image {
+.cm_image_container {
   position: relative;
   height: 9rem;
   flex-grow: 1;
 }
 
-.cm_imge:hover {
+.cm_image_container:hover {
   overflow: hidden;
 }
 
-.cm_image img {
+.cm_img {
   height: 100%;
   opacity: 70%;
   border-bottom-right-radius: 0.5rem;
@@ -359,16 +360,24 @@ nav button:hover {
   border: none;
 }
 
-.cm_image:hover img:hover {
+.cm_img:hover {
   transform: scale(1.1, 1.1);
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
 .cm_title {
   position: absolute;
-  bottom: 0.25rem;
+  top: 7rem;
+  bottom: 0rem;
+  left: 0rem;
+  right: 0rem;
   width: 100%;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cm_author {
@@ -406,10 +415,11 @@ nav button:hover {
 .cm_explanation {
   margin: 1.25rem;
   height: 10rem;
-  text-indent: 1.25rem;
+  flex-grow: 1;
   overflow: auto;
   text-align: center;
-  flex-grow: 1;
+  text-indent: 1.25rem;
+  line-height: 1.5rem;
 }
 /* Card Modal Styling Ends */
 
@@ -525,7 +535,7 @@ nav button:hover {
     left: 0px;
   }
 
-  .card_title {
+  .cm_title {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }

@@ -35,9 +35,9 @@ function CardModal({
             X
           </span>
 
-          <div className="cm_image">
+          <div className="cm_image_container">
             <a href={highDefSrc} target="_blank" rel="noreferrer">
-              <img src={src} className="cm_image img" />
+              <img src={src} className="cm_img" />
             </a>
             <span className="cm_title">{title}</span>
             <span className="cm_author">{copyright}</span>
