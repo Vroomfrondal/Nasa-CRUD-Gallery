@@ -30,27 +30,27 @@ function CardModal({
       <div onClick={onClose} className="blackout_container"></div>
 
       <div className="modal_container">
-        <div className="card_content">
+        <div className="cm_content">
           <span onClick={onClose} className="close_modal_button">
             X
           </span>
 
-          <div className="card_image">
+          <div className="cm_image">
             <a href={highDefSrc} target="_blank" rel="noreferrer">
-              <img src={src} className="card_image img" />
+              <img src={src} className="cm_image img" />
             </a>
-            <span className="card_title">{title}</span>
-            <span className="card_author">{copyright}</span>
+            <span className="cm_title">{title}</span>
+            <span className="cm_author">{copyright}</span>
             <span className="like_button" onClick={likeAction}>
               {'<3'}
             </span>
           </div>
 
-          <div className="card-body">
-            <span className="card-date">{new Date(date!).toDateString().slice(4)}</span>
+          <div className="cm_body">
+            <span className="cm_date">{new Date(date!).toDateString().slice(4)}</span>
 
-            <span className="card-salutations">A message from the astronomer,</span>
-            <p className="card-explanation">{explanation}</p>
+            <span className="cm_salutations">A message from the astronomer,</span>
+            <p className="cm_explanation">{explanation}</p>
           </div>
         </div>
       </div>
