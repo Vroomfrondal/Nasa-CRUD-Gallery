@@ -42,9 +42,8 @@ function Card({
         <section className="card_body">
           <span className="date bottom-8">{dayInLetters}</span>
           <span className="date bottom-0">{dayInNumbersAndYear}</span>
-
           <span className="like_button" onClick={likeAction}>
-            {'<3'}
+            <img className="noborder" src="media/heart-icon.png"></img>
           </span>
         </section>
       </div>
