@@ -42,7 +42,7 @@ function CardModal({
             <span className="cm_title">{title}</span>
             <span className="cm_author">{copyright}</span>
             <span className="like_button" onClick={likeAction}>
-              {'<3'}
+              <img className="noborder" src="media/unliked-heart-icon.png"></img>
             </span>
           </div>
 

@@ -9,9 +9,9 @@ function Favorites() {
   )
 
   // Retrieving from Local Storage on load
-  useEffect(() => {
-    setLikedImages(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
-  }, [])
+  // useEffect(() => {
+  //   setLikedImages(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
+  // }, [])
 
   // Removing from local storage
   useEffect(() => {
