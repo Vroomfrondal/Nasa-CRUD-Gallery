@@ -114,11 +114,23 @@ iframe {
 }
 
 .emblem {
-  padding-left: 0.5rem;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  text-decoration: none;
-  color: var(--cream);
+  height: 1.5rem;
+  padding-left: 0.2rem;
+  padding-top: 0.2rem;
+  width: fit-content;
+  border: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile_emblem {
+  position: absolute;
+  width: fit-content;
+  height: 1.5rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .close_container {
@@ -151,7 +163,7 @@ iframe {
 }
 
 nav button {
-  padding: 0.5rem;
+  padding: 0.7rem;
   height: fit-content;
   cursor: pointer;
   transition-duration: 700ms;
@@ -168,14 +180,6 @@ nav button:hover {
 
 .source {
   text-align: center;
-}
-
-.mobile_emblem {
-  position: absolute;
-  padding-left: 0.5rem;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  width: fit-content;
 }
 
 .line {
@@ -287,6 +291,7 @@ nav button:hover {
   cursor: pointer;
   font-weight: 500;
   height: 1.3rem;
+  width: 1.3rem;
   border: none;
 }
 
