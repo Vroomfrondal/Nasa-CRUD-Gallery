@@ -27,7 +27,6 @@ function useNavBar() {
 
         <nav className={`nav_bar ${showNavLinks ? 'active_nav_bar' : ''}`}>
           <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
-            {/* <span className={`emblem ${showNavLinks ? 'hidden' : 'block'}`}>T</span> */}
             <img className={`emblem ${showNavLinks ? 'hidden' : 'block'}`} src="media/TopherEmblem.png" />
           </a>
 
@@ -59,7 +58,6 @@ function useNavBar() {
             </button>
 
             <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
-              {/* <span className={`mobile_emblem ${showNavLinks ? 'block' : 'hidden'}`}>T</span> */}
               <img className={`mobile_emblem ${showNavLinks ? 'block' : 'hidden'}`} src="media/TopherEmblem.png" />
             </a>
           </div>

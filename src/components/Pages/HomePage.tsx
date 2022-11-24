@@ -54,8 +54,9 @@ function HomePage() {
                 likeAction={() => {
                   const duplicateLike = likedImages.some((item) => item.date === image.date)
 
-                  if (duplicateLike) return
-                  setLikedImages((images) => [...images, image])
+                  // Unlike if liked
+                  if (duplicateLike) setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])
+                  else setLikedImages((images) => [...images, image])
                 }}
               />
             )
@@ -75,8 +76,9 @@ function HomePage() {
               likeAction={() => {
                 const duplicateLike = likedImages.some((item) => item.date === image.date)
 
-                if (duplicateLike) return
-                setLikedImages((images) => [...images, image])
+                // Unlike if liked
+                if (duplicateLike) setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])
+                else setLikedImages((images) => [...images, image])
               }}
             />
           )
