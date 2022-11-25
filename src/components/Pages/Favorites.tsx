@@ -8,12 +8,7 @@ function Favorites() {
     JSON.parse(localStorage.getItem('nasa-liked-images') || '[]')
   )
 
-  // Retrieving from Local Storage on load
-  // useEffect(() => {
-  //   setLikedImages(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
-  // }, [])
-
-  // Removing from local storage
+  // Updating db after liking/unliking an image
   useEffect(() => {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
   }, [likedImages])
@@ -36,6 +31,7 @@ function Favorites() {
                 highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
                 explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
                 copyright={image['copyright'] ? image['copyright'] : 'NASA'}
+                likedImage={likedImages.some((item) => item.date === image.date)}
                 likeAction={() => {
                   setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])
                 }}

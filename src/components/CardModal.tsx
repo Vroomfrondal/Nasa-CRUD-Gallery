@@ -6,6 +6,7 @@ type CardModalTypes = {
   title: string
   explanation?: string
   copyright: string
+  likedImage: boolean
   date?: string
   open: boolean
   likeAction?: () => void
@@ -18,6 +19,7 @@ function CardModal({
   title,
   explanation,
   copyright,
+  likedImage,
   date,
   open,
   likeAction,
@@ -42,7 +44,10 @@ function CardModal({
             <span className="cm_title">{title}</span>
             <span className="cm_author">{copyright}</span>
             <span className="like_button" onClick={likeAction}>
-              <img className="noborder" src="media/unliked-heart-icon.png"></img>
+              <img
+                className="noborder"
+                src={`${likedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
+              ></img>
             </span>
           </div>
 
