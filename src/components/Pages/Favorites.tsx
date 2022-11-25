@@ -32,9 +32,7 @@ function Favorites() {
                 explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
                 copyright={image['copyright'] ? image['copyright'] : 'NASA'}
                 likedImage={likedImages.some((item) => item.date === image.date)}
-                likeAction={() => {
-                  setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])
-                }}
+                likeAction={() => setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])}
               />
             )
           })}
