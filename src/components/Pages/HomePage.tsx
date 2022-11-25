@@ -27,7 +27,7 @@ function HomePage() {
     [!isLoading]
   )
 
-  // Adding Liked Images
+  // Updating db after liking/unliking an image
   useEffect(() => {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
   }, [likedImages])
@@ -51,6 +51,7 @@ function HomePage() {
                 highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
                 explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
                 copyright={image['copyright'] ? image['copyright'] : 'NASA'}
+                likedImage={likedImages.some((item) => item.date === image.date)}
                 likeAction={() => {
                   const duplicateLike = likedImages.some((item) => item.date === image.date)
 
@@ -73,6 +74,7 @@ function HomePage() {
               highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
               explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
               copyright={image['copyright'] ? image['copyright'] : 'NASA'}
+              likedImage={likedImages.some((item) => item.date === image.date)}
               likeAction={() => {
                 const duplicateLike = likedImages.some((item) => item.date === image.date)
 

@@ -10,6 +10,7 @@ type CardProps = {
   highDefSrc?: string
   explanation?: string
   copyright: string
+  likedImage: boolean
   innerRef?: (node: HTMLDivElement) => void
   likeAction?: () => void
 }
@@ -23,21 +24,11 @@ function Card({
   highDefSrc,
   explanation,
   copyright,
+  likedImage,
   innerRef,
   likeAction,
 }: CardProps) {
   const [modalStatus, setModalStatus] = useState(false)
-
-  // const [likedImageSrc, setLikedImageSrc] = useState('media/unliked-heart-icon.png')
-  // const [likedImages, setLikedImages] = useState<ImageTypes[]>(
-  //   JSON.parse(localStorage.getItem('nasa-liked-images') || '[]')
-  // )
-  // useEffect(() => {
-  //   const likedImages = JSON.parse(localStorage.getItem('nasa-liked-images') || '[]')
-  //   const isLikedImage = likedImages.some((item: ImageTypes) => item.date === date)
-
-  //   if (isLikedImage) setLikedImageSrc('media/liked-heart-icon.png')
-  // })
 
   const dayInLetters = date ? `${new Date(date).toDateString().slice(0, 3)},` : 'No Date'
   const dayInNumbersAndYear = date ? new Date(date).toDateString().slice(7) : 'No Date'
@@ -54,7 +45,10 @@ function Card({
           <span className="date bottom-8">{dayInLetters}</span>
           <span className="date bottom-0">{dayInNumbersAndYear}</span>
           <span className="like_button" onClick={likeAction}>
-            <img className="noborder" src="media/unliked-heart-icon.png"></img>
+            <img
+              className="noborder"
+              src={`${likedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
+            ></img>
           </span>
         </section>
       </div>
@@ -63,6 +57,7 @@ function Card({
         src={src}
         highDefSrc={highDefSrc}
         copyright={copyright}
+        likedImage={likedImage}
         date={date}
         title={title ? title : 'No Title Provided'}
         explanation={explanation}
