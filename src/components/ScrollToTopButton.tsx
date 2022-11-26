@@ -4,6 +4,7 @@ import '../styles/ScrollToTopButton.css'
 function ScrollToTopButton() {
   const [visible, setVisible] = useState(false)
 
+  // Closing nav bar if user scrolls
   useEffect(() => {
     window.addEventListener('scroll', toggleVisible)
     return () => window.removeEventListener('scroll', toggleVisible)

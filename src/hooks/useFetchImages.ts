@@ -10,6 +10,7 @@ const useFetchImages = (needMoreImages: boolean) => {
   const [startDate, setStartDate] = useState(unixToDate(getUnixNow - 518400)) // start w/ last 7 days of data
   const [endDate, setEndDate] = useState(unixToDate(getUnixNow))
 
+  // Updating time frames once week of images has been called
   useEffect(() => {
     setEndDate(() => {
       const startDateAsUnix = dateToUnix(startDate)
@@ -17,6 +18,7 @@ const useFetchImages = (needMoreImages: boolean) => {
 
       return dayBeforePrevStart
     })
+
     setStartDate((prevStart) => {
       const prevStartAsUnix = dateToUnix(prevStart)
       const sevenDaysFromStart = unixToDate(prevStartAsUnix - 518400)
@@ -25,6 +27,7 @@ const useFetchImages = (needMoreImages: boolean) => {
     })
   }, [increment, isLoading])
 
+  // Api Call
   useEffect(() => {
     if (!needMoreImages) return
 

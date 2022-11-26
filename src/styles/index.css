@@ -1,4 +1,4 @@
-/* Variables, Global Styles,  */
+/* Variables, Global Styles  */
 :root {
   --cream: #ffffff;
   --bg_black: #121212;
@@ -69,7 +69,7 @@ iframe {
   -webkit-mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
 }
 
-/* Grid for infinite-scroll gallery (grows with media queries) */
+/* Grid for infinite-scroll */
 .container {
   display: grid;
   grid-auto-rows: 20rem;
