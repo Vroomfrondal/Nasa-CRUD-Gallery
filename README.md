@@ -1,6 +1,6 @@
 # Nasa-CRUD-Gallery
 
-A fully-responsive photo gallery with an infinite scroll feature of professional NASA astronomy images.
+A fully-responsive, infinite-scrolling NASA astronomy photo gallery with liking/disliking, and all CRUD operations.
 
 ## Technologies
 
