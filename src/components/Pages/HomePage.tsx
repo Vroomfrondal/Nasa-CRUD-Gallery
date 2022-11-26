@@ -32,58 +32,40 @@ function HomePage() {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
   }, [likedImages])
 
+  const generateCard = (image: ImageTypes, index: number, ref?: any) => {
+    return (
+      <Card
+        key={index}
+        innerRef={ref}
+        alt={image['url'] ? image['title'] : 'Image could not load'}
+        media_type={image['media_type']}
+        title={image['title'] ? image['title'] : 'No Title Provided'}
+        date={image.date ? image.date : 'No Date Provided'}
+        src={image['url'] ? image['url'] : 'media/error-image.jpg'}
+        highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
+        explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
+        copyright={image['copyright'] ? image['copyright'] : 'NASA'}
+        likedImage={likedImages.some((item) => item.date === image.date)}
+        likeAction={() => {
+          const duplicateLike = likedImages.some((item) => item.date === image.date)
+
+          // Unlike if liked
+          if (duplicateLike) setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])
+          else setLikedImages((images) => [...images, image])
+        }}
+      />
+    )
+  }
+
   return (
     <>
       <Title title="Beyond Our Earth" />
 
       <section className="container">
         {images.map((image: ImageTypes, index: number) => {
-          if (images.length === index + 3) {
-            return (
-              <Card
-                key={index}
-                innerRef={lastImageElementRef}
-                alt={image['url'] ? image['title'] : 'Image could not load'}
-                media_type={image['media_type']}
-                title={image['title'] ? image['title'] : 'No Title Provided'}
-                date={image.date ? image.date : 'No Date Provided'}
-                src={image['url'] ? image['url'] : 'media/error-image.jpg'}
-                highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
-                explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
-                copyright={image['copyright'] ? image['copyright'] : 'NASA'}
-                likedImage={likedImages.some((item) => item.date === image.date)}
-                likeAction={() => {
-                  const duplicateLike = likedImages.some((item) => item.date === image.date)
+          if (images.length === index + 3) return generateCard(image, index, lastImageElementRef)
 
-                  // Unlike if liked
-                  if (duplicateLike) setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])
-                  else setLikedImages((images) => [...images, image])
-                }}
-              />
-            )
-          }
-
-          return (
-            <Card
-              key={index}
-              alt={image['url'] ? image['title'] : 'Error-placeholder'}
-              media_type={image['media_type']}
-              title={image['title'] ? image['title'] : 'Nasa'}
-              date={image.date ? image.date : 'No date provided'}
-              src={image['url'] ? image['url'] : 'media/error-image.jpg'}
-              highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
-              explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
-              copyright={image['copyright'] ? image['copyright'] : 'NASA'}
-              likedImage={likedImages.some((item) => item.date === image.date)}
-              likeAction={() => {
-                const duplicateLike = likedImages.some((item) => item.date === image.date)
-
-                // Unlike if liked
-                if (duplicateLike) setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])
-                else setLikedImages((images) => [...images, image])
-              }}
-            />
-          )
+          return generateCard(image, index)
         })}
       </section>
 
