@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import '../styles/NavBar.css'
 
 function useNavBar() {
   const [activePage, setActivePage] = useState('Home')

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
+import '../../styles/Favorites.css'
 
 function Favorites() {
   const [likedImages, setLikedImages] = useState<ImageTypes[]>(
