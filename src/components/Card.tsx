@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import CardModal from '../components/CardModal'
+import '../styles/Card.css'
 
 type CardProps = {
   alt?: string

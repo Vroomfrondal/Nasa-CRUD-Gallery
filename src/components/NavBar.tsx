@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import '../styles/NavBar.css'
 
 function useNavBar() {
   const [activePage, setActivePage] = useState('Home')
   const [showNavLinks, setShowNavLinks] = useState(false)
 
-  // close nav menu on item-click
+  // close nav menu on item-click or scroll
   useEffect(() => {
     window.addEventListener('scroll', () => setShowNavLinks(false))
     setShowNavLinks(false)

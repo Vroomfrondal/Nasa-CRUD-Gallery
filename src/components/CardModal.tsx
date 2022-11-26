@@ -1,7 +1,8 @@
 import React, { MouseEventHandler } from 'react'
+import '../styles/CardModal.css'
 
 type CardModalTypes = {
-  src: any
+  src: string
   highDefSrc?: string
   title: string
   explanation?: string

@@ -1,0 +1,118 @@
+/* <Card/> Styling */
+.card {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--bg_black);
+  animation: appear 3s ease-out;
+  transition-duration: 300ms;
+}
+
+.card:hover .card_body {
+  display: contents; /* block causes squished elements */
+}
+
+/* Darken out background on card hover */
+.card:hover img,
+.card:hover iframe {
+  display: block;
+  cursor: pointer;
+  opacity: 0.6;
+  transition-duration: 300ms;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.card_body {
+  display: none;
+  height: 100%;
+  width: 100%;
+}
+
+.date {
+  position: absolute;
+  margin: 0.5rem;
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 2.5rem;
+  animation: dateBounce 1.5s ease 1;
+  left: 0px;
+}
+
+.like_button {
+  position: absolute;
+  margin: 0.5rem;
+  right: 0px;
+  bottom: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  height: 1.3rem;
+  width: 1.3rem;
+  border: none;
+}
+
+.like_button:hover {
+  opacity: 0.75;
+}
+
+.card:hover {
+  z-index: 10;
+}
+
+/* Media Viewports & Animations */
+/* Tablet / Medium */
+@media (min-width: 738px) {
+  .card:first-child {
+    grid-column: span 2 / span 2;
+    grid-row: span 1 / span 1;
+  }
+
+  .card:nth-child(8n) {
+    grid-row: span 2 / span 2;
+  }
+
+  .card:hover {
+    transform: scale(1.1, 1.1);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes dateBounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-75px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-5px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
