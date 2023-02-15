@@ -17,9 +17,9 @@ type CardProps = {
 }
 
 function Card({
-  alt,
+  alt = '',
   media_type,
-  title,
+  title = 'No Title Provided.',
   date,
   src,
   highDefSrc,
@@ -33,15 +33,16 @@ function Card({
 
   const dayInLetters = date ? `${new Date(date).toDateString().slice(0, 3)},` : 'No Date'
   const dayInNumbersAndYear = date ? new Date(date).toDateString().slice(7) : 'No Date'
-  let media = <img src={src} alt={alt} onClick={() => setModalStatus(true)}></img>
-
-  if (media_type === 'video')
-    media = <iframe src={src} title={title ? title : alt} onClick={() => setModalStatus(true)}></iframe>
 
   return (
     <>
       <div ref={innerRef} className="card">
-        {media}
+        {media_type === 'video' ? (
+          <iframe src={src} title={title || alt} onClick={() => setModalStatus(true)}></iframe>
+        ) : (
+          <img src={src} alt={alt} onClick={() => setModalStatus(true)}></img>
+        )}
+
         <section className="card_body">
           <span className="date bottom-8">{dayInLetters}</span>
           <span className="date bottom-0">{dayInNumbersAndYear}</span>

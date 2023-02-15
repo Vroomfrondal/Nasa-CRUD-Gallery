@@ -37,14 +37,14 @@ function HomePage() {
       <Card
         key={index}
         innerRef={ref}
-        alt={image['url'] ? image['title'] : 'Image could not load'}
-        media_type={image['media_type']}
-        title={image['title'] ? image['title'] : 'No Title Provided'}
+        alt={image.url ? image.title : 'Image could not load'}
+        media_type={image.media_type}
+        title={image.title ? image.title : 'No Title Provided'}
         date={image.date ? image.date : 'No Date Provided'}
-        src={image['url'] ? image['url'] : 'media/error-image.jpg'}
-        highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
-        explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
-        copyright={image['copyright'] ? image['copyright'] : 'NASA'}
+        src={image.url ? image.url : 'media/error-image.jpg'}
+        highDefSrc={image.hdurl ? image.hdurl : image.url}
+        explanation={image.explanation ? image.explanation : 'No description provided'}
+        copyright={image.copyright ? image.copyright : 'NASA'}
         likedImage={likedImages.some((item) => item.date === image.date)}
         likeAction={() => {
           const duplicateLike = likedImages.some((item) => item.date === image.date)

@@ -20,20 +20,20 @@ function Favorites() {
 
       {likedImages.length ? (
         <section className="container">
-          {likedImages.map((image: ImageTypes, index: number) => {
+          {likedImages.map((image, index) => {
             return (
               <Card
                 key={index}
-                alt={image['url'] ? image['title'] : 'Error-placeholder'}
-                media_type={image['media_type']}
-                title={image['title'] ? image['title'] : 'Nasa'}
+                alt={image.url ? image.title : 'Error-placeholder'}
+                media_type={image.media_type}
+                title={image.title ? image.title : 'Nasa'}
                 date={image.date ? image.date : 'No Date Provided'}
-                src={image['url'] ? image['url'] : 'media/error-image.jpg'}
-                highDefSrc={image['hdurl'] ? image['hdurl'] : image['url']}
-                explanation={image['explanation'] ? image['explanation'] : 'No description provided'}
-                copyright={image['copyright'] ? image['copyright'] : 'NASA'}
+                src={image.url ? image.url : 'media/error-image.jpg'}
+                highDefSrc={image.hdurl ? image.hdurl : image.url}
+                explanation={image.explanation ? image.explanation : 'No description provided'}
+                copyright={image.copyright ? image.copyright : 'NASA'}
                 likedImage={likedImages.some((item) => item.date === image.date)}
-                likeAction={() => setLikedImages((images) => [...images.filter((item) => item.date !== image.date)])}
+                likeAction={() => setLikedImages((images) => images.filter((item) => item.date !== image.date))}
               />
             )
           })}

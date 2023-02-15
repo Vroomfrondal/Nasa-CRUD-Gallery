@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <div className="banner"></div>
+      <div className="banner" />
 
       <activePageContext.Provider value={activePage}>
         <NavBar setActivePage={setActivePage} />
