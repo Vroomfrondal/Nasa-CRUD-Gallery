@@ -3,11 +3,11 @@ import CardModal from '../components/CardModal'
 import '../styles/Card.css'
 
 type CardProps = {
-  alt?: string
+  image: ImageTypes
   likedImage: boolean
+  alt?: string
   innerRef?: () => void
   likeAction?: () => void
-  image: ImageTypes
 }
 
 function Card({ alt = '', image, likedImage, innerRef, likeAction }: CardProps) {
@@ -40,13 +40,15 @@ function Card({ alt = '', image, likedImage, innerRef, likeAction }: CardProps) 
       </div>
 
       <CardModal
-        src={src!} // ! remove null
-        highDefSrc={highDefSrc}
-        copyright={copyright!} // ! remove null
+        image={{
+          url: src || 'media/error-image.jpg',
+          hdurl: highDefSrc || src,
+          copyright: copyright || 'NASA',
+          date: date || 'No Date Provided',
+          title: title || 'NASA',
+          explanation: explanation || 'No description provided',
+        }}
         likedImage={likedImage}
-        date={date}
-        title={title ? title : 'No Title Provided'}
-        explanation={explanation}
         open={modalStatus}
         likeAction={likeAction}
         onClose={() => setModalStatus(false)}

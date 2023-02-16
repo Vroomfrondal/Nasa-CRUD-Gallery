@@ -21,21 +21,21 @@ function Favorites() {
       {likedImages.length ? (
         <section className="container">
           {likedImages.map((image, index) => {
-            const { date, title, media_type, copyright, explanation, hdurl: highDefSrc, url: src } = image
+            const { media_type, title, date, url: src, hdurl: highDefSrc, explanation, copyright } = image
 
             return (
               <Card
                 key={index}
-                alt={image.url ? image.title : 'Error-placeholder'}
                 image={{
                   media_type: media_type,
-                  title: title ? title : 'NASA',
-                  date: date ? date : 'No Date Provided',
-                  url: src ? src : 'media/error-image.jpg',
-                  hdurl: highDefSrc ? highDefSrc : src,
-                  explanation: explanation ? explanation : 'No description provided',
-                  copyright: copyright ? copyright : 'Nasa',
+                  title: title || 'NASA',
+                  date: date || 'No Date Provided',
+                  url: src || 'media/error-image.jpg',
+                  hdurl: highDefSrc || src,
+                  explanation: explanation || 'No description provided',
+                  copyright: copyright || 'Nasa',
                 }}
+                alt={image.url ? image.title : 'Error-placeholder'}
                 likedImage={likedImages.some((item) => item.date === image.date)}
                 likeAction={() => setLikedImages((images) => images.filter((item) => item.date !== image.date))}
               />
