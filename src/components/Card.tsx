@@ -4,32 +4,16 @@ import '../styles/Card.css'
 
 type CardProps = {
   alt?: string
-  media_type?: string
-  title?: string
-  date?: string
-  src: string
-  highDefSrc?: string
-  explanation?: string
-  copyright: string
   likedImage: boolean
-  innerRef?: (node: HTMLDivElement) => void
+  innerRef?: () => void
   likeAction?: () => void
+  image: ImageTypes
 }
 
-function Card({
-  alt = '',
-  media_type,
-  title = 'No Title Provided.',
-  date,
-  src,
-  highDefSrc,
-  explanation,
-  copyright,
-  likedImage,
-  innerRef,
-  likeAction,
-}: CardProps) {
+function Card({ alt = '', image, likedImage, innerRef, likeAction }: CardProps) {
   const [modalStatus, setModalStatus] = useState(false)
+
+  const { date, title, media_type, copyright, explanation, hdurl: highDefSrc, url: src } = image
 
   const dayInLetters = date ? `${new Date(date).toDateString().slice(0, 3)},` : 'No Date'
   const dayInNumbersAndYear = date ? new Date(date).toDateString().slice(7) : 'No Date'
@@ -56,9 +40,9 @@ function Card({
       </div>
 
       <CardModal
-        src={src}
+        src={src!} // ! remove null
         highDefSrc={highDefSrc}
-        copyright={copyright}
+        copyright={copyright!} // ! remove null
         likedImage={likedImage}
         date={date}
         title={title ? title : 'No Title Provided'}
