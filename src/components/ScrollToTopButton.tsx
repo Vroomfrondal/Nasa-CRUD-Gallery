@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../styles/ScrollToTopButton.css'
 
 function ScrollToTopButton() {
-  const [visible, setVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   // Closing nav bar if user scrolls
   useEffect(() => {
@@ -12,15 +12,15 @@ function ScrollToTopButton() {
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop
-    if (scrolled > 150) setVisible(true)
-    else if (scrolled <= 0) setVisible(false)
+    if (scrolled > 150) setIsVisible(true)
+    else if (scrolled <= 0) setIsVisible(false)
   }
 
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
       className="ScrollToTop"
-      hidden={visible ? false : true}
+      hidden={isVisible ? false : true}
     >
       ^
     </button>

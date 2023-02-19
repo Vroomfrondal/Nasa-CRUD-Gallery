@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { ImageTypes } from '../../typings'
 import useFetchImages from '../../hooks/useFetchImages'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
@@ -48,13 +49,13 @@ function HomePage() {
           copyright: copyright || 'Nasa',
         }}
         innerRef={ref}
-        alt={image.url ? image.title : 'Image could not load'}
-        likedImage={likedImages.some((item) => item.date === image.date)}
-        likeAction={() => {
-          const duplicateLike = likedImages.some((item) => item.date === image.date)
+        alt={src ? title : 'Image could not load'}
+        isLikedImage={likedImages.some((item) => item.date === date)}
+        onLike={() => {
+          const duplicateLike = likedImages.some((item) => item.date === date)
 
           // Unlike if liked
-          if (duplicateLike) setLikedImages((images) => images.filter((item) => item.date !== image.date))
+          if (duplicateLike) setLikedImages((images) => images.filter((item) => item.date !== date))
           else setLikedImages((images) => [...images, image])
         }}
       />

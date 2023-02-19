@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { ImageTypes } from '../typings'
 import unixToDate from '../utilities/date-lib/unixToDate'
 import dateToUnix from '../utilities/date-lib/dateToUnix'
 import getUnixNow from '../utilities/date-lib/getUnixNow'

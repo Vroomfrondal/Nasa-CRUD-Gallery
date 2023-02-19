@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { ImageTypes } from '../../typings'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
@@ -35,9 +36,9 @@ function Favorites() {
                   explanation: explanation || 'No description provided',
                   copyright: copyright || 'Nasa',
                 }}
-                alt={image.url ? image.title : 'Error-placeholder'}
-                likedImage={likedImages.some((item) => item.date === image.date)}
-                likeAction={() => setLikedImages((images) => images.filter((item) => item.date !== image.date))}
+                alt={src ? title : 'Error-placeholder'}
+                isLikedImage={likedImages.some((item) => item.date === date)}
+                onLike={() => setLikedImages((images) => images.filter((item) => item.date !== date))}
               />
             )
           })}

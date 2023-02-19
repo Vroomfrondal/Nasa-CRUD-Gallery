@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext, SetStateAction, Dispatch } from
 import { activePageContext } from './App'
 import '../styles/NavBar.css'
 
-type NavBarPropTypes = {
+type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
 }
 
-function NavBar({ setActivePage }: NavBarPropTypes) {
+function NavBar({ setActivePage }: NavBarActions) {
   const [showNavLinks, setShowNavLinks] = useState(false)
   const activePage = useContext(activePageContext)
 

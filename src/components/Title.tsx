@@ -1,11 +1,11 @@
 import React from 'react'
 import '../styles/Title.css'
 
-type TitleProps = {
+type Title = {
   title: string
 }
 
-function Title({ title }: TitleProps) {
+function Title({ title }: Title) {
   return <h1 className="Title">{title}</h1>
 }
 

@@ -1,4 +1,4 @@
-interface ImageTypes {
+type ImageTypes = {
   copyright?: string
   date?: string
   explanation?: string
@@ -8,3 +8,5 @@ interface ImageTypes {
   title?: string
   url?: string
 }
+
+export { ImageTypes }

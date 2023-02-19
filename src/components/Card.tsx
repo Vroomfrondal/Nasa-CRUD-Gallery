@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
+import { ImageTypes } from '../typings'
 import CardModal from '../components/CardModal'
 import '../styles/Card.css'
 
 type CardProps = {
   image: ImageTypes
-  likedImage: boolean
+  isLikedImage: boolean
   alt?: string
   innerRef?: () => void
-  likeAction?: () => void
+  onLike?: () => void
 }
 
-function Card({ alt = '', image, likedImage, innerRef, likeAction }: CardProps) {
+function Card({ alt = '', image, isLikedImage, innerRef, onLike }: CardProps) {
   const [modalStatus, setModalStatus] = useState(false)
 
   const { date, title, media_type, copyright, explanation, hdurl: highDefSrc, url: src } = image
@@ -30,10 +31,10 @@ function Card({ alt = '', image, likedImage, innerRef, likeAction }: CardProps) 
         <section className="card_body">
           <span className="date bottom-8">{dayInLetters}</span>
           <span className="date bottom-0">{dayInNumbersAndYear}</span>
-          <span className="like_button" onClick={likeAction}>
+          <span className="like_button" onClick={onLike}>
             <img
               className="noborder"
-              src={`${likedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
+              src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
             ></img>
           </span>
         </section>
@@ -48,9 +49,9 @@ function Card({ alt = '', image, likedImage, innerRef, likeAction }: CardProps) 
           title: title || 'NASA',
           explanation: explanation || 'No description provided',
         }}
-        likedImage={likedImage}
-        open={modalStatus}
-        likeAction={likeAction}
+        isLikedImage={isLikedImage}
+        isOpen={modalStatus}
+        onLike={onLike}
         onClose={() => setModalStatus(false)}
       />
     </>

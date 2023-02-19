@@ -1,16 +1,17 @@
 import React, { MouseEventHandler } from 'react'
+import { ImageTypes } from '../typings'
 import '../styles/CardModal.css'
 
 type CardModalTypes = {
   image: ImageTypes
-  likedImage: boolean
-  open: boolean
-  likeAction?: () => void
+  isLikedImage: boolean
+  isOpen: boolean
   onClose: MouseEventHandler<HTMLElement>
+  onLike?: () => void
 }
 
-function CardModal({ image, likedImage, open, likeAction, onClose }: CardModalTypes) {
-  if (!open) return null
+function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalTypes) {
+  if (!isOpen) return null
 
   const { date, title, copyright, explanation, hdurl: highDefSrc, url: src } = image
 
@@ -30,10 +31,10 @@ function CardModal({ image, likedImage, open, likeAction, onClose }: CardModalTy
             </a>
             <span className="cm_title">{title}</span>
             <span className="cm_author">{copyright}</span>
-            <span className="like_button" onClick={likeAction}>
+            <span className="like_button" onClick={onLike}>
               <img
                 className="noborder"
-                src={`${likedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
+                src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
               ></img>
             </span>
           </div>
