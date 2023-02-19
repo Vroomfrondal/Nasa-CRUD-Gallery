@@ -1,4 +1,4 @@
-type ImageTypes = {
+type Image = {
   copyright?: string
   date?: string
   explanation?: string
@@ -9,4 +9,4 @@ type ImageTypes = {
   url?: string
 }
 
-export { ImageTypes }
+export { Image }

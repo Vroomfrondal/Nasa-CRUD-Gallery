@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { ImageTypes } from '../../typings'
+import { Image } from '../../typings'
 import useFetchImages from '../../hooks/useFetchImages'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
@@ -7,9 +7,7 @@ import Loading from '../Loading'
 import Card from '../Card'
 
 function HomePage() {
-  const [likedImages, setLikedImages] = useState<ImageTypes[]>(
-    JSON.parse(localStorage.getItem('nasa-liked-images') || '[]')
-  )
+  const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
   const [needMoreImages, setNeedMoreImages] = useState(true)
   const { images, isLoading } = useFetchImages(needMoreImages)
 
@@ -33,7 +31,7 @@ function HomePage() {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
   }, [likedImages])
 
-  const generateCard = (image: ImageTypes, index: number, ref?: any) => {
+  const generateCard = (image: Image, index: number, ref?: any) => {
     const { media_type, title, date, url: src, hdurl: highDefSrc, explanation, copyright } = image
 
     return (

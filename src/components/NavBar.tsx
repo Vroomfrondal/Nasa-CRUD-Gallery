@@ -1,27 +1,22 @@
-import React, { useState, useEffect, useContext, SetStateAction, Dispatch } from 'react'
+import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
 import '../styles/NavBar.css'
+import useShutNavBar from '../hooks/useCloseNavBar'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
 }
 
 function NavBar({ setActivePage }: NavBarActions) {
-  const [showNavLinks, setShowNavLinks] = useState(false)
   const activePage = useContext(activePageContext)
-
-  // close nav menu on item-click or scroll
-  useEffect(() => {
-    window.addEventListener('scroll', () => setShowNavLinks(false))
-    setShowNavLinks(false)
-  }, [activePage])
+  const { isShowingLinks, setIsShowingLinks } = useShutNavBar(activePage)
 
   return (
     <>
-      <button className="hamburger_container" onClick={() => (showNavLinks ? setShowNavLinks(false) : null)}>
+      <button className="hamburger_container" onClick={() => (isShowingLinks ? setIsShowingLinks(false) : null)}>
         <div
-          onClick={() => setShowNavLinks((status) => !status)}
-          className={`hamburger ${showNavLinks ? 'hidden opacity-0' : 'block'}`}
+          onClick={() => setIsShowingLinks((status) => !status)}
+          className={`hamburger ${isShowingLinks ? 'hidden opacity-0' : 'block'}`}
         >
           <span className="line w-1"></span>
           <span className="line w-2"></span>
@@ -29,14 +24,14 @@ function NavBar({ setActivePage }: NavBarActions) {
         </div>
       </button>
 
-      <nav className={`nav_bar ${showNavLinks ? 'active_nav_bar' : ''}`}>
+      <nav className={`nav_bar ${isShowingLinks ? 'active_nav_bar' : ''}`}>
         <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
-          <img className={`emblem ${showNavLinks ? 'hidden' : 'block'}`} src="media/TopherEmblem.png" />
+          <img className={`emblem ${isShowingLinks ? 'hidden' : 'block'}`} src="media/TopherEmblem.png" />
         </a>
 
         <button
-          className={`close_container ${showNavLinks ? 'contents' : 'hidden'}`}
-          onClick={() => setShowNavLinks((status) => !status)}
+          className={`close_container ${isShowingLinks ? 'contents' : 'hidden'}`}
+          onClick={() => setIsShowingLinks((status) => !status)}
         >
           <span className="close_nav_button">X</span>
         </button>
@@ -62,7 +57,7 @@ function NavBar({ setActivePage }: NavBarActions) {
           </button>
 
           <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
-            <img className={`mobile_emblem ${showNavLinks ? 'block' : 'hidden'}`} src="media/TopherEmblem.png" />
+            <img className={`mobile_emblem ${isShowingLinks ? 'block' : 'hidden'}`} src="media/TopherEmblem.png" />
           </a>
         </div>
       </nav>

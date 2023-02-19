@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { ImageTypes } from '../../typings'
+import { Image } from '../../typings'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
 import '../../styles/Favorites.css'
 
 function Favorites() {
-  const [likedImages, setLikedImages] = useState<ImageTypes[]>(
-    JSON.parse(localStorage.getItem('nasa-liked-images') || '[]')
-  )
+  const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
 
   // Updating db after liking/unliking an image
   useEffect(() => {
