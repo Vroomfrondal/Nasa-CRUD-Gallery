@@ -24,15 +24,15 @@ function Favorites() {
 
             return (
               <Card
-                key={index}
+                key={src || index}
                 image={{
                   media_type: media_type,
-                  title: title || 'NASA',
-                  date: date || 'No Date Provided',
-                  url: src || 'media/error-image.jpg',
-                  hdurl: highDefSrc || src,
-                  explanation: explanation || 'No description provided',
-                  copyright: copyright || 'Nasa',
+                  title: title,
+                  date: date,
+                  url: src,
+                  hdurl: highDefSrc,
+                  explanation: explanation,
+                  copyright: copyright,
                 }}
                 alt={src ? title : 'Error-placeholder'}
                 isLikedImage={likedImages.some((item) => item.date === date)}

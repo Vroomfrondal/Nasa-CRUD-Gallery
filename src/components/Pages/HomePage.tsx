@@ -12,10 +12,11 @@ function HomePage() {
   const { images, isLoading } = useFetchImages(needMoreImages)
 
   // Observing Last Element on Page to create infinite scroll
-  const observer: React.MutableRefObject<any> = useRef()
+  const observer: React.MutableRefObject<IntersectionObserver | null> = useRef(null)
   const lastImageElementRef = useCallback(
     (element: HTMLDivElement) => {
-      if (observer.current) observer.current.disconnect()
+      observer.current?.disconnect()
+
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) setNeedMoreImages(true)
       })
@@ -39,12 +40,12 @@ function HomePage() {
         key={index}
         image={{
           media_type: media_type,
-          title: title || 'NASA',
-          date: date || 'No Date Provided',
-          url: src || 'media/error-image.jpg',
-          hdurl: highDefSrc || src,
-          explanation: explanation || 'No description provided',
-          copyright: copyright || 'Nasa',
+          title: title,
+          date: date,
+          url: src,
+          hdurl: highDefSrc,
+          explanation: explanation,
+          copyright: copyright,
         }}
         innerRef={ref}
         alt={src ? title : 'Image could not load'}

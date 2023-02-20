@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useCloseNavBar = (activePage: string) => {
+const useIsNavBarOpenState = (activePage: 'Home' | 'Favorites') => {
   const [isShowingLinks, setIsShowingLinks] = useState(false)
 
   // Close Nav Menu on Scroll
@@ -17,4 +17,4 @@ const useCloseNavBar = (activePage: string) => {
   return { isShowingLinks, setIsShowingLinks }
 }
 
-export default useCloseNavBar
+export default useIsNavBarOpenState

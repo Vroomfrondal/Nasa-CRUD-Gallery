@@ -20,7 +20,7 @@ function ScrollToTopButton() {
     <button
       onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
       className="ScrollToTop"
-      hidden={isVisible ? false : true}
+      hidden={!isVisible}
     >
       ^
     </button>

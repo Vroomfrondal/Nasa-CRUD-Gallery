@@ -1,7 +1,7 @@
 import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
 import '../styles/NavBar.css'
-import useShutNavBar from '../hooks/useCloseNavBar'
+import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
@@ -9,7 +9,7 @@ type NavBarActions = {
 
 function NavBar({ setActivePage }: NavBarActions) {
   const activePage = useContext(activePageContext)
-  const { isShowingLinks, setIsShowingLinks } = useShutNavBar(activePage)
+  const { isShowingLinks, setIsShowingLinks } = useIsNavBarOpenState(activePage)
 
   return (
     <>
