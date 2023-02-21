@@ -14,7 +14,7 @@ const useIsNavBarOpenState = (activePage: 'Home' | 'Favorites') => {
     setIsShowingLinks(false)
   }, [activePage])
 
-  return { isShowingLinks, setIsShowingLinks }
+  return [isShowingLinks, setIsShowingLinks] as [boolean, React.Dispatch<React.SetStateAction<boolean>>]
 }
 
 export default useIsNavBarOpenState

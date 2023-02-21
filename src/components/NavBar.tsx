@@ -9,7 +9,7 @@ type NavBarActions = {
 
 function NavBar({ setActivePage }: NavBarActions) {
   const activePage = useContext(activePageContext)
-  const { isShowingLinks, setIsShowingLinks } = useIsNavBarOpenState(activePage)
+  const [isShowingLinks, setIsShowingLinks] = useIsNavBarOpenState(activePage)
 
   return (
     <>
