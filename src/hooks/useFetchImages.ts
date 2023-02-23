@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import { ImageTypes } from '../typings'
+import { Image } from '../typings'
 import unixToDate from '../utilities/date-lib/unixToDate'
 import dateToUnix from '../utilities/date-lib/dateToUnix'
-import getUnixNow from '../utilities/date-lib/getUnixNow'
+import unixNow from '../utilities/date-lib/unixNow'
 
 const useFetchImages = (needMoreImages: boolean) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [images, setImages] = useState<ImageTypes[]>([])
+  const [images, setImages] = useState<Image[]>([])
   const [increment, setIncrement] = useState(1)
-  const [startDate, setStartDate] = useState(unixToDate(getUnixNow - 518400)) // start w/ last 7 days of data
-  const [endDate, setEndDate] = useState(unixToDate(getUnixNow))
+  const [startDate, setStartDate] = useState(unixToDate(unixNow - 518400)) // start w/ last 7 days of data
+  const [endDate, setEndDate] = useState(unixToDate(unixNow))
 
   // Updating time frames once week of images has been called
   useEffect(() => {
@@ -40,7 +40,7 @@ const useFetchImages = (needMoreImages: boolean) => {
       const request = await fetch(URL)
       if (request.status === 200) {
         // reversing so today's image shows first
-        const data: ImageTypes[] = await request.json().then(async (data) => await data.reverse())
+        const data = await request.json().then((data: Image[]) => data.reverse())
 
         setImages((prevImages) => [...prevImages, ...data])
         setIsLoading(false)

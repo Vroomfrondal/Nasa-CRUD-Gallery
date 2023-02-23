@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { ImageTypes } from '../../typings'
+import { Image } from '../../typings'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
 import '../../styles/Favorites.css'
 
 function Favorites() {
-  const [likedImages, setLikedImages] = useState<ImageTypes[]>(
-    JSON.parse(localStorage.getItem('nasa-liked-images') || '[]')
-  )
+  const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
 
   // Updating db after liking/unliking an image
   useEffect(() => {
@@ -26,15 +24,15 @@ function Favorites() {
 
             return (
               <Card
-                key={index}
+                key={src || index}
                 image={{
                   media_type: media_type,
-                  title: title || 'NASA',
-                  date: date || 'No Date Provided',
-                  url: src || 'media/error-image.jpg',
-                  hdurl: highDefSrc || src,
-                  explanation: explanation || 'No description provided',
-                  copyright: copyright || 'Nasa',
+                  title: title,
+                  date: date,
+                  url: src,
+                  hdurl: highDefSrc,
+                  explanation: explanation,
+                  copyright: copyright,
                 }}
                 alt={src ? title : 'Error-placeholder'}
                 isLikedImage={likedImages.some((item) => item.date === date)}

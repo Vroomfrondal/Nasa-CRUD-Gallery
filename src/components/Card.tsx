@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { ImageTypes } from '../typings'
+import { Image } from '../typings'
 import CardModal from '../components/CardModal'
 import '../styles/Card.css'
 
 type CardProps = {
-  image: ImageTypes
+  image: Image
   isLikedImage: boolean
   alt?: string
   innerRef?: () => void

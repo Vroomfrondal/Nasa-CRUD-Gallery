@@ -1,16 +1,16 @@
 import React, { MouseEventHandler } from 'react'
-import { ImageTypes } from '../typings'
+import { Image } from '../typings'
 import '../styles/CardModal.css'
 
-type CardModalTypes = {
-  image: ImageTypes
+type CardModalData = {
+  image: Image
   isLikedImage: boolean
   isOpen: boolean
   onClose: MouseEventHandler<HTMLElement>
   onLike?: () => void
 }
 
-function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalTypes) {
+function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalData) {
   if (!isOpen) return null
 
   const { date, title, copyright, explanation, hdurl: highDefSrc, url: src } = image

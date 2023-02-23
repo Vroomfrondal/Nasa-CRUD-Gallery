@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { ImageTypes } from '../../typings'
+import { Image } from '../../typings'
 import useFetchImages from '../../hooks/useFetchImages'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
@@ -7,17 +7,16 @@ import Loading from '../Loading'
 import Card from '../Card'
 
 function HomePage() {
-  const [likedImages, setLikedImages] = useState<ImageTypes[]>(
-    JSON.parse(localStorage.getItem('nasa-liked-images') || '[]')
-  )
+  const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
   const [needMoreImages, setNeedMoreImages] = useState(true)
   const { images, isLoading } = useFetchImages(needMoreImages)
 
   // Observing Last Element on Page to create infinite scroll
-  const observer: React.MutableRefObject<any> = useRef()
+  const observer: React.MutableRefObject<IntersectionObserver | null> = useRef(null)
   const lastImageElementRef = useCallback(
     (element: HTMLDivElement) => {
-      if (observer.current) observer.current.disconnect()
+      observer.current?.disconnect()
+
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) setNeedMoreImages(true)
       })
@@ -33,7 +32,7 @@ function HomePage() {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
   }, [likedImages])
 
-  const generateCard = (image: ImageTypes, index: number, ref?: any) => {
+  const generateCard = (image: Image, index: number, ref?: any) => {
     const { media_type, title, date, url: src, hdurl: highDefSrc, explanation, copyright } = image
 
     return (
@@ -41,12 +40,12 @@ function HomePage() {
         key={index}
         image={{
           media_type: media_type,
-          title: title || 'NASA',
-          date: date || 'No Date Provided',
-          url: src || 'media/error-image.jpg',
-          hdurl: highDefSrc || src,
-          explanation: explanation || 'No description provided',
-          copyright: copyright || 'Nasa',
+          title: title,
+          date: date,
+          url: src,
+          hdurl: highDefSrc,
+          explanation: explanation,
+          copyright: copyright,
         }}
         innerRef={ref}
         alt={src ? title : 'Image could not load'}
