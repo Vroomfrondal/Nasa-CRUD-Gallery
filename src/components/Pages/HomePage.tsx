@@ -12,7 +12,7 @@ function HomePage() {
   const { images, isLoading } = useFetchImages(needMoreImages)
 
   // Observing Last Element on Page to create infinite scroll
-  const observer: React.MutableRefObject<IntersectionObserver | null> = useRef(null)
+  const observer = useRef<IntersectionObserver>()
   const lastImageElementRef = useCallback(
     (element: HTMLDivElement) => {
       observer.current?.disconnect()
@@ -67,9 +67,9 @@ function HomePage() {
 
       <section className="container">
         {images.map((image, index) => {
-          if (images.length === index + 3) return generateCard(image, index, lastImageElementRef)
-
-          return generateCard(image, index)
+          return images.length === index + 3
+            ? generateCard(image, index, lastImageElementRef)
+            : generateCard(image, index)
         })}
       </section>
 
