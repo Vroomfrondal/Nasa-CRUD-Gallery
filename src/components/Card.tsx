@@ -15,7 +15,6 @@ function Card({ alt = '', image, isLikedImage, innerRef, onLike }: CardProps) {
   const [modalStatus, setModalStatus] = useState(false)
 
   const { date, title, media_type, copyright, explanation, hdurl: highDefSrc, url: src } = image
-
   const dayInLetters = date ? `${new Date(date).toDateString().slice(0, 3)},` : 'No Date'
   const dayInNumbersAndYear = date ? new Date(date).toDateString().slice(7) : 'No Date'
 
@@ -23,9 +22,9 @@ function Card({ alt = '', image, isLikedImage, innerRef, onLike }: CardProps) {
     <>
       <div ref={innerRef} className="card">
         {media_type === 'video' ? (
-          <iframe src={src} title={title || alt} onClick={() => setModalStatus(true)}></iframe>
+          <iframe src={src} title={title || alt} onClick={() => setModalStatus(true)} />
         ) : (
-          <img src={src} alt={alt} onClick={() => setModalStatus(true)}></img>
+          <img src={src} alt={alt} onClick={() => setModalStatus(true)} />
         )}
 
         <section className="card_body">
