@@ -17,7 +17,7 @@ function HomePage() {
       observer.current?.disconnect()
 
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) setNeedMoreImages(true)
+        if (!isLoading && entries[0].isIntersecting) setNeedMoreImages(true)
       })
 
       if (element) observer.current.observe(element)
@@ -36,7 +36,7 @@ function HomePage() {
 
     return (
       <Card
-        key={index}
+        key={src || index}
         image={{
           media_type: media_type,
           title: title,
