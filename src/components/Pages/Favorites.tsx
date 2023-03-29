@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Image } from '../../typings'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'

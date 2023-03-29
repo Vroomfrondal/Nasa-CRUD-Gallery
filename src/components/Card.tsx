@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Image } from '../typings'
 import CardModal from '../components/CardModal'
 import '../styles/Card.css'
 

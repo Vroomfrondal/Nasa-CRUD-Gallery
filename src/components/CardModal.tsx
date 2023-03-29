@@ -1,5 +1,4 @@
 import React, { MouseEventHandler } from 'react'
-import { Image } from '../typings'
 import '../styles/CardModal.css'
 
 type CardModalData = {

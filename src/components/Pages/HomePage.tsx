@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { Image } from '../../typings'
 import useFetchImages from '../../hooks/useFetchImages'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
