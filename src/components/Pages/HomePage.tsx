@@ -46,7 +46,7 @@ function HomePage() {
           explanation: explanation,
           copyright: copyright,
         }}
-        innerRef={ref}
+        ref={ref}
         alt={src ? title : 'Image could not load'}
         isLikedImage={likedImages.some((item) => item.date === date)}
         onLike={() => {

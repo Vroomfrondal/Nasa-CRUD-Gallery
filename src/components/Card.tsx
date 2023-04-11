@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef } from 'react'
 import CardModal from '../components/CardModal'
 import '../styles/Card.css'
 
@@ -6,20 +6,22 @@ type CardProps = {
   image: Image
   isLikedImage: boolean
   alt?: string
-  innerRef?: () => void
+  // ref?: () => void
   onLike?: () => void
 }
 
-function Card({ alt = '', image, isLikedImage, innerRef, onLike }: CardProps) {
+// Forward Ref hook to avoid naming ref property as "innerRef"
+const Card = forwardRef(function Card(props: CardProps, ref: any) {
   const [modalStatus, setModalStatus] = useState(false)
 
+  const { alt = '', image, isLikedImage, onLike } = props
   const { date, title, media_type, copyright, explanation, hdurl: highDefSrc, url: src } = image
   const dayInLetters = date ? `${new Date(date).toDateString().slice(0, 3)},` : 'No Date'
   const dayInNumbersAndYear = date ? new Date(date).toDateString().slice(7) : 'No Date'
 
   return (
     <>
-      <div ref={innerRef} className="card">
+      <div ref={ref} className="card">
         {media_type === 'video' ? (
           <iframe src={src} title={title || alt} onClick={() => setModalStatus(true)} />
         ) : (
@@ -54,6 +56,6 @@ function Card({ alt = '', image, isLikedImage, innerRef, onLike }: CardProps) {
       />
     </>
   )
-}
+})
 
 export default Card
