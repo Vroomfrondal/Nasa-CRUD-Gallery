@@ -1,5 +1,4 @@
 import React, { MouseEventHandler } from 'react'
-import { Image } from '../typings'
 import '../styles/CardModal.css'
 
 type CardModalData = {
@@ -17,7 +16,7 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
 
   return (
     <>
-      <div onClick={onClose} className="blackout_container"></div>
+      <div onClick={onClose} className="blackout_container" />
 
       <div className="modal_container">
         <div className="cm_content">
@@ -35,12 +34,12 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
               <img
                 className="noborder"
                 src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
-              ></img>
+              />
             </span>
           </div>
 
           <div className="cm_body">
-            <span className="cm_date">{new Date(date!).toDateString().slice(4)}</span>
+            <span className="cm_date">{new Date(date!).toDateString().slice(4)},</span>
 
             <span className="cm_salutations">A message from the astronomer,</span>
             <p className="cm_explanation">{explanation}</p>

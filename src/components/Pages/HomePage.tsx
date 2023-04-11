@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { Image } from '../../typings'
 import useFetchImages from '../../hooks/useFetchImages'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
@@ -18,7 +17,7 @@ function HomePage() {
       observer.current?.disconnect()
 
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) setNeedMoreImages(true)
+        if (!isLoading && entries[0].isIntersecting) setNeedMoreImages(true)
       })
 
       if (element) observer.current.observe(element)
@@ -37,7 +36,7 @@ function HomePage() {
 
     return (
       <Card
-        key={index}
+        key={src || index}
         image={{
           media_type: media_type,
           title: title,
@@ -47,7 +46,7 @@ function HomePage() {
           explanation: explanation,
           copyright: copyright,
         }}
-        innerRef={ref}
+        ref={ref}
         alt={src ? title : 'Image could not load'}
         isLikedImage={likedImages.some((item) => item.date === date)}
         onLike={() => {

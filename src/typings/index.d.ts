@@ -1,4 +1,4 @@
-type Image = {
+interface Image {
   copyright?: string
   date?: string
   explanation?: string
@@ -8,5 +8,3 @@ type Image = {
   title?: string
   url?: string
 }
-
-export { Image }
