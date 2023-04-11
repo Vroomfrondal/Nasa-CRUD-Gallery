@@ -7,20 +7,21 @@ A fully-responsive, infinite-scrolling NASA astronomy photo gallery complete wit
 Built with:
 
 - TypeScript
-- React
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
 
 ## Dev Notes
 
 - Create a '.env' file inside the root of the folder and paste your API key from [NASA's Website](https://api.nasa.gov/).
 
   ```
-  REACT_APP_NASA_API_KEY = "YOUR_SECRET_KEY_HERE"
+  VITE_NASA_API_KEY = "YOUR_SECRET_KEY_HERE"
   ```
 
 - Scripts:
 
   ```
-  npm run start // spins up project in a local development environment
+  npm run start // spins up project in a local development environment (Vite)
   ```
 
 ### NASA API Load Time Optimization

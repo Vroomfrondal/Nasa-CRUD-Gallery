@@ -34,7 +34,11 @@ const useFetchImages = (needMoreImages: boolean) => {
     const requestApiData = async () => {
       setIncrement((count) => (count += 1))
       setIsLoading(true)
-      const URL = `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&start_date=${startDate}&end_date=${endDate}`
+
+      const URL = `https://api.nasa.gov/planetary/apod?api_key=${
+        // @ts-expect-error
+        import.meta.env.VITE_NASA_API_KEY
+      }&start_date=${startDate}&end_date=${endDate}`
 
       const request = await fetch(URL)
       if (request.status === 200) {
