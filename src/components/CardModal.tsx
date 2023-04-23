@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/CardModal.css'
 
 type CardModalData = {
@@ -25,9 +26,9 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
           </span>
 
           <div className="cm_image_container">
-            <a href={highDefSrc} target="_blank" rel="noreferrer">
+            <Link to={highDefSrc || ''} target="_blank" rel="noreferrer">
               <img src={src} className="cm_img" />
-            </a>
+            </Link>
             <span className="cm_title">{title}</span>
             <span className="cm_author">{copyright}</span>
             <span className="like_button" onClick={onLike}>
