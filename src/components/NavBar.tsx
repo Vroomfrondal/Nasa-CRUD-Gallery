@@ -26,9 +26,9 @@ function NavBar({ setActivePage }: NavBarActions) {
       </button>
 
       <nav className={`nav_bar ${isShowingLinks ? 'active_nav_bar' : ''}`}>
-        <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
+        <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
           <img className={`emblem ${isShowingLinks ? 'hidden' : 'block'}`} src="media/TopherEmblem.png" />
-        </a>
+        </Link>
 
         <button
           className={`close_container ${isShowingLinks ? 'contents' : 'hidden'}`}
@@ -38,28 +38,22 @@ function NavBar({ setActivePage }: NavBarActions) {
         </button>
 
         <div className="links">
-          <button>
-            <Link to="/" onClick={() => setActivePage('Home')}>
-              Home
-            </Link>
-          </button>
+          <Link to="/" onClick={() => setActivePage('Home')}>
+            <button className="redirect_button">Home</button>
+          </Link>
 
-          <button className="favorites">
-            <Link to="/Favorites" onClick={() => setActivePage('Favorites')}>
-              Favorites
-            </Link>
-          </button>
+          <Link to="/Favorites" onClick={() => setActivePage('Favorites')} className="favorites">
+            <button className="redirect_button">Favorites</button>
+          </Link>
 
-          <button>
-            <Link
-              to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery"
-              target="_blank"
-              rel="noreferrer"
-              className="source"
-            >
-              Source
-            </Link>
-          </button>
+          <Link
+            to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery"
+            target="_blank"
+            rel="noreferrer"
+            className="source"
+          >
+            <button className="redirect_button">Source</button>
+          </Link>
 
           <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
             <img className={`mobile_emblem ${isShowingLinks ? 'block' : 'hidden'}`} src="media/TopherEmblem.png" />
