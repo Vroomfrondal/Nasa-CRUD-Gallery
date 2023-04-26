@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
@@ -43,7 +44,7 @@ function Favorites() {
       ) : (
         <div className="no_likes_message">
           <span>Browse the </span>
-          <a href="/">home page</a>
+          <Link to="/">home page</Link>
           <span> and like some images first!</span>
         </div>
       )}

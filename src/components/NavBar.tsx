@@ -1,7 +1,8 @@
 import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
-import '../styles/NavBar.css'
+import { Link } from 'react-router-dom'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
+import '../styles/NavBar.css'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
@@ -25,9 +26,9 @@ function NavBar({ setActivePage }: NavBarActions) {
       </button>
 
       <nav className={`nav_bar ${isShowingLinks ? 'active_nav_bar' : ''}`}>
-        <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
+        <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
           <img className={`emblem ${isShowingLinks ? 'hidden' : 'block'}`} src="media/TopherEmblem.png" />
-        </a>
+        </Link>
 
         <button
           className={`close_container ${isShowingLinks ? 'contents' : 'hidden'}`}
@@ -37,28 +38,26 @@ function NavBar({ setActivePage }: NavBarActions) {
         </button>
 
         <div className="links">
-          <button className="home" onClick={() => setActivePage('Home')}>
-            Home
-          </button>
+          <Link to="/" onClick={() => setActivePage('Home')}>
+            <button className="redirect_button">Home</button>
+          </Link>
 
-          <button className="favorites" onClick={() => setActivePage('Favorites')}>
-            Favorites
-          </button>
+          <Link to="/Favorites" onClick={() => setActivePage('Favorites')} className="favorites">
+            <button className="redirect_button">Favorites</button>
+          </Link>
 
-          <button>
-            <a
-              href="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery"
-              target="_blank"
-              rel="noreferrer"
-              className="source"
-            >
-              Source
-            </a>
-          </button>
+          <Link
+            to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery"
+            target="_blank"
+            rel="noreferrer"
+            className="source"
+          >
+            <button className="redirect_button">Source</button>
+          </Link>
 
-          <a href="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
+          <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
             <img className={`mobile_emblem ${isShowingLinks ? 'block' : 'hidden'}`} src="media/TopherEmblem.png" />
-          </a>
+          </Link>
         </div>
       </nav>
     </>

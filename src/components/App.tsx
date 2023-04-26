@@ -2,6 +2,7 @@ import React, { useState, createContext } from 'react'
 import NavBar from './NavBar'
 import HomePage from '../components/Pages/HomePage'
 import Favorites from '../components/Pages/Favorites'
+import { Route, Routes } from 'react-router-dom'
 
 export const activePageContext = createContext<'Home' | 'Favorites'>('Home')
 
@@ -16,8 +17,10 @@ function App() {
         <NavBar setActivePage={setActivePage} />
       </activePageContext.Provider>
 
-      {activePage === 'Home' ? <HomePage /> : null}
-      {activePage === 'Favorites' ? <Favorites /> : null}
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/Favorites" element={<Favorites />}></Route>
+      </Routes>
     </>
   )
 }
