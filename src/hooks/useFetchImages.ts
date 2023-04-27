@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import unixToDate from '../utilities/date-lib/unixToDate'
 import dateToUnix from '../utilities/date-lib/dateToUnix'
 import unixNow from '../utilities/date-lib/unixNow'
+import ky from 'ky'
 
 const useFetchImages = (needMoreImages: boolean) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -35,19 +36,30 @@ const useFetchImages = (needMoreImages: boolean) => {
       setIncrement((count) => (count += 1))
       setIsLoading(true)
 
-      const URL = `https://api.nasa.gov/planetary/apod?api_key=${
-        // @ts-expect-error
-        import.meta.env.VITE_NASA_API_KEY
-      }&start_date=${startDate}&end_date=${endDate}`
+      // @ts-expect-error
+      const env = import.meta.env.VITE_NASA_API_KEY
+      const URL = `https://api.nasa.gov/planetary/apod` // ?api_key=${env}&start_date=${startDate}&end_date=${endDate}
 
-      const request = await fetch(URL)
-      if (request.status === 200) {
-        // reversing so today's image shows first
-        const data = await request.json().then((data: Image[]) => data.reverse())
+      try {
+        const request = await ky.get(URL, {
+          retry: 3,
+          searchParams: {
+            api_key: env,
+            start_date: startDate,
+            end_date: endDate,
+          },
+        })
+        if (request.status === 200) {
+          // reversing so today's image shows first
+          const data: Image[] = await request.json()
+          data.reverse()
 
-        setImages((prevImages) => [...prevImages, ...data])
-        setIsLoading(false)
-      } else console.error('Failed with status code: ', request)
+          setImages((prevImages) => [...prevImages, ...data])
+          setIsLoading(false)
+        } else console.error('Failed with status code: ', request.status, request.statusText)
+      } catch (err) {
+        console.error(err)
+      }
     }
 
     requestApiData()
