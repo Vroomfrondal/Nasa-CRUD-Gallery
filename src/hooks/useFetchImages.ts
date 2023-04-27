@@ -38,10 +38,17 @@ const useFetchImages = (needMoreImages: boolean) => {
 
       // @ts-expect-error
       const env = import.meta.env.VITE_NASA_API_KEY
-      const URL = `https://api.nasa.gov/planetary/apod?api_key=${env}&start_date=${startDate}&end_date=${endDate}`
+      const URL = `https://api.nasa.gov/planetary/apod` // ?api_key=${env}&start_date=${startDate}&end_date=${endDate}
 
       try {
-        const request = await ky.get(URL, { retry: 3 })
+        const request = await ky.get(URL, {
+          retry: 3,
+          searchParams: {
+            api_key: env,
+            start_date: startDate,
+            end_date: endDate,
+          },
+        })
         if (request.status === 200) {
           // reversing so today's image shows first
           const data: Image[] = await request.json()
