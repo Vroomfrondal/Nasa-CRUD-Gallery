@@ -6,7 +6,6 @@ type CardProps = {
   image: Image
   isLikedImage: boolean
   alt?: string
-  // ref?: () => void
   onLike?: () => void
 }
 

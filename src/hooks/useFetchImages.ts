@@ -24,14 +24,12 @@ const useFetchImages = (needMoreImages: boolean): UseFetchImagesResult => {
     enabled: needMoreImages,
     queryKey: ['images'],
     queryFn: async () => {
-      if (!needMoreImages) return
-
       setIncrement((count) => (count += 1))
-      // @ts-expect-error
-      const ENV = import.meta.env.VITE_NASA_API_KEY
-      const URL = `https://api.nasa.gov/planetary/apod`
 
       try {
+        // @ts-expect-error
+        const ENV = import.meta.env.VITE_NASA_API_KEY
+        const URL = `https://api.nasa.gov/planetary/apod`
         const request = await ky.get(URL, {
           retry: 3,
           searchParams: {
@@ -42,11 +40,9 @@ const useFetchImages = (needMoreImages: boolean): UseFetchImagesResult => {
         })
 
         if (request.status === 200) {
-          // reversing so today's image shows first
           const nasaData: Image[] = await request.json()
-          nasaData.reverse()
 
-          return nasaData
+          return nasaData.reverse() // reversing so today's image shows first
         } else {
           console.error('Failed with status code: ', request.status, request.statusText)
         }
@@ -56,23 +52,25 @@ const useFetchImages = (needMoreImages: boolean): UseFetchImagesResult => {
     },
   })
 
-  // Updating time frames once week of images has been called
+  // Updating time frames once week's worth of images have been called
   useEffect(() => {
     setEndDate(() => {
       const startDateAsUnix = dateToUnix(startDate)
       const dayBeforePrevStart = unixToDate(startDateAsUnix - 43200)
+
       return dayBeforePrevStart
     })
 
     setStartDate((prevStart) => {
       const prevStartAsUnix = dateToUnix(prevStart)
       const sevenDaysFromStart = unixToDate(prevStartAsUnix - 518400)
+
       return sevenDaysFromStart
     })
   }, [increment, isLoading])
 
-  if (isLoading) return { isLoading: true, data: images || [] }
-  if (error) return { isLoading: false, data: images || [] }
+  isLoading ? { isLoading: true, data: images || [] } : null
+  error ? { isLoading: false, data: images || [] } : null
 
   return { isLoading, data: images || [] }
 }

@@ -11,7 +11,7 @@ function HomePage() {
   const [needMoreImages, setNeedMoreImages] = useState(true)
   const { data, isLoading } = useFetchImages(needMoreImages)
 
-  // Observing Last Element on Page to create infinite scroll
+  // Observing the last element on page to create infinite scroll by calling next set of images
   const observer = useRef<IntersectionObserver>()
   const lastImageElementRef = useCallback(
     (element: HTMLDivElement) => {
@@ -27,6 +27,7 @@ function HomePage() {
     [!isLoading]
   )
 
+  // Storing images returned from useFetchImages hook
   useEffect(() => {
     if (isLoading) return
     setImages((prevImages) => [...prevImages, ...data])
@@ -42,7 +43,7 @@ function HomePage() {
 
     return (
       <Card
-        key={index} // src ||
+        key={src || index}
         image={{
           media_type: media_type,
           title: title,
