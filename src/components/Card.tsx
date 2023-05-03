@@ -24,7 +24,7 @@ const Card = forwardRef(function Card(props: CardProps, ref: any) {
         {media_type === 'video' ? (
           <iframe src={src} title={title || alt} onClick={() => setModalStatus(true)} />
         ) : (
-          <img src={src} alt={alt} onClick={() => setModalStatus(true)} />
+          <img src={src || 'media/error-image.jpg'} alt={alt} onClick={() => setModalStatus(true)} />
         )}
 
         <section className="card_body">
