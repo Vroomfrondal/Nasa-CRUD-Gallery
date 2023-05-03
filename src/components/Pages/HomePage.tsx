@@ -6,9 +6,10 @@ import Loading from '../Loading'
 import Card from '../Card'
 
 function HomePage() {
+  const [images, setImages] = useState<Image[]>([])
   const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
   const [needMoreImages, setNeedMoreImages] = useState(true)
-  const { images, isLoading } = useFetchImages(needMoreImages)
+  const { data, isLoading } = useFetchImages(needMoreImages)
 
   // Observing Last Element on Page to create infinite scroll
   const observer = useRef<IntersectionObserver>()
@@ -26,6 +27,11 @@ function HomePage() {
     [!isLoading]
   )
 
+  useEffect(() => {
+    if (isLoading) return
+    setImages((prevImages) => [...prevImages, ...data])
+  }, [data, isLoading])
+
   // Updating db after liking/unliking an image
   useEffect(() => {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
@@ -36,7 +42,7 @@ function HomePage() {
 
     return (
       <Card
-        key={src || index}
+        key={index} // src ||
         image={{
           media_type: media_type,
           title: title,
