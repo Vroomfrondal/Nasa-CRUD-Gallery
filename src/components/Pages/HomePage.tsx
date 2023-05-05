@@ -10,6 +10,7 @@ function HomePage() {
   const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
   const [needMoreImages, setNeedMoreImages] = useState(true)
   const { data, isLoading } = useFetchImages(needMoreImages)
+  const [imagesLoading, setImagesLoading] = useState(isLoading)
 
   // Observing the last element on page to create infinite scroll by calling next set of images
   const observer = useRef<IntersectionObserver>()
@@ -29,7 +30,7 @@ function HomePage() {
 
   // Storing images returned from useFetchImages hook
   useEffect(() => {
-    if (isLoading) return
+    if (isLoading) return setImagesLoading(true)
     setImages((prevImages) => [...prevImages, ...data])
   }, [data, isLoading])
 
@@ -43,7 +44,7 @@ function HomePage() {
 
     return (
       <Card
-        key={src || index}
+        key={index} // src ||
         image={{
           media_type: media_type,
           title: title,
@@ -80,7 +81,7 @@ function HomePage() {
       </section>
 
       <ScrollToTopButton />
-      {isLoading ? <Loading /> : null}
+      {imagesLoading ? <Loading /> : null}
     </>
   )
 }
