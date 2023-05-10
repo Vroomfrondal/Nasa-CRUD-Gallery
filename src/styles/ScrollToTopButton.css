@@ -1,4 +1,4 @@
-.ScrollToTop {
+/* .ScrollToTop {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -11,22 +11,21 @@
   z-index: 10;
   color: var(--cream);
   background-color: transparent;
-}
+} */
 
-.ScrollToTop:hover {
+/* .ScrollToTop:hover {
   border: 1px solid lightblue;
-}
+} */
 
 /* Mobile / Small */
-@media (min-width: 320px) {
+/* @media (min-width: 320px) {
   .ScrollToTop {
     padding: 0.35rem;
   }
 }
 
-/* Tablet / Med */
 @media (min-width: 738px) {
   .ScrollToTop {
     padding: 0.5rem;
   }
-}
+} */

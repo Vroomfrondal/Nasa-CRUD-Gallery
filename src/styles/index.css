@@ -38,7 +38,7 @@
 
   /* Grid for infinite-scroll */
   .container {
-    @apply grid grid-rows-[20rem] gap-2 mr-auto ml-auto md:grid-cols-4;
+    @apply grid auto-rows-[20rem] gap-2 mr-auto ml-auto md:grid-cols-4;
     /*  is md:max-w-[738px], lg:max-w-[880px] needed?  */
   }
 }
