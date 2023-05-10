@@ -26,15 +26,19 @@ module.exports = {
         Raleway: ['Raleway', 'sans-serif'],
       },
       backgroundImage: {
-        banner: "url('../../public/media/earth-background.jpg')",
+        banner: "url('./media/earth-background.jpg')",
       },
       animation: {
         slideInLeft: 'slideInLeft 1s',
+        slideInNav: 'slideInNav 0.4s ease-out',
       },
       keyframes: () => ({
         slideInLeft: {
           '0%': { 'margin-right': '100%' },
           '100%': { 'margin-right': '0%' },
+        },
+        slideInNav: {
+          '0%': { transform: 'translate(100%, 0%)' },
         },
       }),
     },
