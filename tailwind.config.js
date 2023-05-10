@@ -28,6 +28,15 @@ module.exports = {
       backgroundImage: {
         banner: "url('../../public/media/earth-background.jpg')",
       },
+      animation: {
+        slideInLeft: 'slideInLeft 1s',
+      },
+      keyframes: () => ({
+        slideInLeft: {
+          '0%': { 'margin-right': '100%' },
+          '100%': { 'margin-right': '0%' },
+        },
+      }),
     },
   },
   plugins: [],
