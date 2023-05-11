@@ -130,10 +130,6 @@ iframe {
   transform: translate(50%, 50%);
 }
 
-[hidden],
-.hidden {
-  display: none !important;
-}
 
 .noborder {
   border: none;

@@ -2,7 +2,7 @@ import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
-import '../styles/NavBar.css'
+// import '../styles/NavBar.css'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
@@ -31,10 +31,9 @@ function NavBar({ setActivePage }: NavBarActions) {
       </button>
 
       <nav
-        // TODO THIS IS BROKEN STILL :L
-        className={`nav_bar top-0 h-full animate-slideInNav duration-150 text-cream sm:fixed sm:w-48 md:absolute md:flex md:justify-between md:w-full ${
+        className={`top-0 h-full animate-slideInNav duration-150 text-cream font-semibold fixed w-48 hidden md:absolute md:flex md:justify-between md:w-full ${
           isShowingLinks
-            ? 'right-0 top-0 bg-navy_blue z-50 sm:fixed sm:flex sm:flex-col md:absolute md:flex md:justify-between md:w-full md:animate-slideInNav md:duration-1000 lg:absolute lg:flex-row lg:h-fit lg:left-0 lg:right-0 lg:bg-transparent lg:z-50'
+            ? 'right-0 top-0 bg-navy_blue z-50 fixed flex flex-col md:absolute md:flex md:justify-between md:w-full md:animate-slideInNav md:duration-1000 lg:absolute lg:flex-row lg:h-fit lg:left-0 lg:right-0 lg:bg-transparent lg:z-50'
             : ''
         }`}
       >
@@ -56,11 +55,11 @@ function NavBar({ setActivePage }: NavBarActions) {
 
         <div className="flex h-fit sm:flex-col sm:border-t sm:border-cream md:flex-row md:border-none">
           <Link to="/" onClick={() => setActivePage('Home')}>
-            <button className="w-full font-[500] text-base">Home</button>
+            <button className="w-full md:w-32 font-[500] text-base">Home</button>
           </Link>
 
           <Link to="/Favorites" onClick={() => setActivePage('Favorites')} className="favorites">
-            <button className="w-full font-[500] text-base">Favorites</button>
+            <button className="w-full md:w-32 font-[500] text-base">Favorites</button>
           </Link>
 
           <Link
@@ -69,7 +68,7 @@ function NavBar({ setActivePage }: NavBarActions) {
             rel="noreferrer"
             className="text-center"
           >
-            <button className="w-full font-[500] text-base">Source</button>
+            <button className="w-full md:w-32 font-[500] text-base">Source</button>
           </Link>
 
           <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">

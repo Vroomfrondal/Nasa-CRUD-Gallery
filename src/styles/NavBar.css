@@ -1,6 +1,4 @@
-/* Nav Bar Starts */
-
-.nav_bar {
+/* .nav_bar {
   top: 0px;
   height: 100%;
   animation: slideInNav 0.4s ease-out;
@@ -9,31 +7,6 @@
   color: var(--cream);
 }
 
-.active_nav_bar {
-  right: 0px;
-  top: 0px;
-  background-color: var(--navy_blue);
-  z-index: 50;
-}
-
-nav button {
-  padding: 0.7rem;
-  height: fit-content;
-  cursor: pointer;
-  transition-duration: 700ms;
-  background-color: transparent;
-  color: var(--cream);
-  border: none;
-  font-size: medium;
-  font-weight: 400;
-}
-
-nav button:hover {
-  background-color: var(--hover_opaque);
-}
-
-/* Media Viewports & Animations */
-/* Mobile / Small */
 @media (min-width: 320px) {
   .nav_bar {
     position: fixed;
@@ -42,7 +15,6 @@ nav button:hover {
   }
 }
 
-/* Tablet / Medium */
 @media (min-width: 738px) {
   .nav_bar {
     position: absolute;
@@ -51,7 +23,4 @@ nav button:hover {
     width: 100%;
     animation: slideInNav 1s ease-out;
   }
-}
-
-@media (min-width: 1020px) {
-}
+} */

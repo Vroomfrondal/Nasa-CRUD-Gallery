@@ -29,6 +29,14 @@
     @apply h-auto w-full max-w-full object-cover rounded-sm border border-cream md:h-full;
     /* is md:h-full needed? */
   }
+
+  nav button {
+    @apply p-[0.7rem] h-fit cursor-pointer duration-700 bg-transparent text-cream border-none text-base font-[400];
+  }
+
+  nav button:hover {
+    @apply bg-hover_opaque;
+  }
 }
 
 @layer components {
@@ -39,7 +47,6 @@
   /* Grid for infinite-scroll */
   .container {
     @apply grid auto-rows-[20rem] gap-2 mr-auto ml-auto md:grid-cols-4;
-    /*  is md:max-w-[738px], lg:max-w-[880px] needed?  */
   }
 }
 
@@ -68,11 +75,6 @@
 
   .transform_center {
     transform: translate(50%, 50%);
-  }
-
-  [hidden],
-  .hidden {
-    display: none !important;
   }
 
   .noborder {
