@@ -40,22 +40,6 @@
   left: 0px;
 }
 
-.like_button {
-  position: absolute;
-  margin: 0.5rem;
-  right: 0px;
-  bottom: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  height: 1.3rem;
-  width: 1.3rem;
-  border: none;
-}
-
-.like_button:hover {
-  opacity: 0.75;
-}
-
 .card:hover {
   z-index: 10;
 }

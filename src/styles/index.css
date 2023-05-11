@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Doesn't exist on tailwind. Responsbile for creating gradiant in banner image */
 .banner {
   mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
@@ -99,5 +100,21 @@
 
   .w-3 {
     width: 1.5rem;
+  }
+
+  .like_button {
+    position: absolute;
+    margin: 0.5rem;
+    right: 0px;
+    bottom: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    height: 1.3rem;
+    width: 1.3rem;
+    border: none;
+  }
+
+  .like_button:hover {
+    opacity: 0.75;
   }
 }
