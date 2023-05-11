@@ -44,7 +44,7 @@ function Favorites() {
               )
             })}
           </section>
-          <h1 className="text-sm text-gray-500 flex justify-center pb-2 pt-2">End of history</h1>
+          <h1 className="text-sm text-gray-500 flex justify-center pt-10">End of history</h1>
         </>
       ) : (
         <div className="no_likes_message">

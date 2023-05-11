@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Responsbile for creating gradiant in banner image */
 .banner {
   mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
@@ -48,45 +49,42 @@
   .container {
     @apply grid auto-rows-[20rem] gap-2 mr-auto ml-auto md:grid-cols-4;
   }
+
+  /* Card */
+  .date {
+    @apply absolute left-0 m-2 text-4xl font-normal animate-dateBounce;
+  }
+
+  .card:hover .card_body {
+    @apply contents;
+  }
+
+  .card:nth-child(8n) {
+    @apply md:row-span-2; /* block causes squished elements */
+  }
+
+  /* Darken out background on card hover */
+  .card:hover img,
+  .card:hover iframe {
+    @apply block cursor-pointer opacity-60 duration-300 transition-opacity ease-in-out;
+  }
+
+  .like_button {
+    @apply absolute cursor-pointer font-medium h-[1.3rem] w-[1.3rem] m-2 border-none right-0 bottom-1 hover:opacity-75;
+  }
 }
 
 @layer utilities {
   ::-webkit-scrollbar {
-    background-color: #202324;
-    color: #aba499;
-    width: 0.6rem;
+    @apply bg-[#202324] text-[#aba499] w-[0.6rem];
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #454a4d;
+    @apply bg-[#454a4d];
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #575e62;
-  }
-
-  .bottom-8 {
-    bottom: 2rem;
-  }
-
-  .bottom-0 {
-    bottom: 0px;
-  }
-
-  .transform_center {
-    transform: translate(50%, 50%);
-  }
-
-  .noborder {
-    border: none;
-  }
-
-  .opacity-0 {
-    opacity: 0;
-  }
-
-  .block {
-    display: block;
+    @apply bg-[#575e62];
   }
 
   .w-1 {

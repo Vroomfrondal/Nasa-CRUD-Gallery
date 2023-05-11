@@ -31,6 +31,8 @@ module.exports = {
       animation: {
         slideInLeft: 'slideInLeft 1s',
         slideInNav: 'slideInNav 0.4s ease-out',
+        onLoadAppear: 'appear 3s ease-out',
+        dateBounce: 'dateBounce 1.5s ease 1',
       },
       keyframes: () => ({
         slideInLeft: {
@@ -39,6 +41,41 @@ module.exports = {
         },
         slideInNav: {
           '0%': { transform: 'translate(100%, 0%)' },
+        },
+        appear: {
+          '0%': { opacity: '0%' },
+          '100%': { opacity: '100%' },
+        },
+        dateBounce: {
+          // Scale adds distortion, percentages add delay,
+          '0%': {
+            transform: 'scale(1,1) translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+          '10%': {
+            transform: 'scale(1.1,.9) translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+          '30%': {
+            transform: 'scale(.9,1.1) translateY(-75px)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+          '50%': {
+            transform: 'scale(1.05,.95) translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+          '57%': {
+            transform: 'scale(1,1) translateY(-5px)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+          '64%': {
+            transform: 'scale(1,1) translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+          '100%': {
+            transform: 'scale(1,1) translateY(0)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
         },
       }),
     },
