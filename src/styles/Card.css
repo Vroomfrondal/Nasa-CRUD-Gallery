@@ -1,19 +1,23 @@
 /* <Card/> Styling */
-.card {
+/* .card {
   position: relative;
   display: flex;
   justify-content: flex-end;
   background-color: var(--bg_black);
   animation: appear 3s ease-out;
   transition-duration: 300ms;
-}
+} */
 
-.card:hover .card_body {
-  display: contents; /* block causes squished elements */
-}
+/* .card:hover {
+  z-index: 10;
+} */
+
+/* .card:hover .card_body {
+  display: contents; 
+} */
 
 /* Darken out background on card hover */
-.card:hover img,
+/* .card:hover img,
 .card:hover iframe {
   display: block;
   cursor: pointer;
@@ -22,15 +26,15 @@
   transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
+} */
 
-.card_body {
+/* .card_body {
   display: none;
   height: 100%;
   width: 100%;
-}
+} */
 
-.date {
+/* .date {
   position: absolute;
   margin: 0.5rem;
   font-size: 2.25rem;
@@ -38,39 +42,35 @@
   line-height: 2.5rem;
   animation: dateBounce 1.5s ease 1;
   left: 0px;
-}
-
-.card:hover {
-  z-index: 10;
-}
+} */
 
 /* Media Viewports & Animations */
 /* Tablet / Medium */
 @media (min-width: 738px) {
-  .card:first-child {
+  /* .card:first-child {
     grid-column: span 2 / span 2;
     grid-row: span 1 / span 1;
-  }
+  } */
 
-  .card:nth-child(8n) {
+  /* .card:nth-child(8n) {
     grid-row: span 2 / span 2;
-  }
+  } */
 
-  .card:hover {
+  /* .card:hover {
     transform: scale(1.1, 1.1);
-  }
+  } */
 }
 
-@keyframes appear {
+/* @keyframes appear {
   0% {
     opacity: 0%;
   }
   100% {
     opacity: 100%;
   }
-}
+} */
 
-@keyframes dateBounce {
+/* @keyframes dateBounce {
   0% {
     transform: scale(1, 1) translateY(0);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -99,4 +99,4 @@
     transform: scale(1, 1) translateY(0);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
-}
+} */

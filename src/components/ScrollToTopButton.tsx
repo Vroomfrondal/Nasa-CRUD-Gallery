@@ -19,8 +19,9 @@ function ScrollToTopButton() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
-      className="fixed flex justify-center items-center border border-cream rounded-[1000px] duration-300 bottom-[1rem] right-2 z-10 text-cream bg-transparent hover:border hover:border-blue-300 sm:p-[0.35rem] md:p-2"
-      hidden={!isVisible}
+      className={`fixed flex justify-center items-center border border-cream rounded-[1000px] duration-300 bottom-[1rem] right-2 z-10 text-cream bg-transparent hover:border hover:border-blue-300 sm:p-[0.35rem] md:p-2 ${
+        !isVisible ? 'hidden' : 'flex'
+      }`}
     >
       ^
     </button>

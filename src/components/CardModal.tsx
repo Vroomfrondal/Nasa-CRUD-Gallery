@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/CardModal.css'
+// import '../styles/CardModal.css'
 
 type CardModalData = {
   image: Image
@@ -41,7 +41,7 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
               onClick={onLike}
             >
               <img
-                className="noborder"
+                className="border-none"
                 src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
               />
             </span>
