@@ -1,6 +1,5 @@
 import React, { MouseEventHandler } from 'react'
 import { Link } from 'react-router-dom'
-// import '../styles/CardModal.css'
 
 type CardModalData = {
   image: Image

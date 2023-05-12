@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
-import '../../styles/Favorites.css'
 
 function Favorites() {
   const [likedImages, setLikedImages] = useState<Image[]>(
@@ -47,9 +46,11 @@ function Favorites() {
           <h1 className="text-sm text-gray-500 flex justify-center pt-10">End of history</h1>
         </>
       ) : (
-        <div className="no_likes_message">
+        <div className="text-center">
           <span>Browse the </span>
-          <Link to="/">home page</Link>
+          <Link to="/" className="relative text-[#bfdbfe] hover:text-[#2563eb]">
+            home page
+          </Link>
           <span> and like some images first!</span>
         </div>
       )}

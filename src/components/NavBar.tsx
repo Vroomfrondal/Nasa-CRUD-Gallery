@@ -2,7 +2,6 @@ import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
-// import '../styles/NavBar.css'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
@@ -24,9 +23,9 @@ function NavBar({ setActivePage }: NavBarActions) {
             isShowingLinks ? 'hidden opacity-0' : 'block'
           }`}
         >
-          <span className="block h-1 m-1 rounded-md bg-cream w-1"></span>
-          <span className="block h-1 m-1 rounded-md bg-cream w-2"></span>
-          <span className="block h-1 m-1 rounded-md bg-cream w-3"></span>
+          <span className="block h-1 m-1 rounded-md bg-cream w-4"></span>
+          <span className="block h-1 m-1 rounded-md bg-cream w-5"></span>
+          <span className="block h-1 m-1 rounded-md bg-cream w-6"></span>
         </div>
       </button>
 

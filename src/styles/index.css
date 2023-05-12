@@ -4,10 +4,11 @@
 
 /* Responsbile for creating gradiant in banner image */
 .banner {
-  mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, var(--bg_black) 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
 }
 
+/* Most compoents have inline styles. Styles used here are for HomePage  */
 @layer base {
   * {
     @apply font-Raleway box-border;
@@ -28,7 +29,6 @@
   img,
   iframe {
     @apply h-auto w-full max-w-full object-cover rounded-sm border border-cream md:h-full;
-    /* is md:h-full needed? */
   }
 
   nav button {
@@ -85,17 +85,5 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-[#575e62];
-  }
-
-  .w-1 {
-    width: 1rem;
-  }
-
-  .w-2 {
-    width: 1.25rem;
-  }
-
-  .w-3 {
-    width: 1.5rem;
   }
 }
