@@ -1,6 +1,5 @@
 import React, { useState, forwardRef } from 'react'
 import CardModal from '../components/CardModal'
-// import '../styles/Card.css'
 
 type CardProps = {
   image: Image
