@@ -8,7 +8,7 @@
   -webkit-mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
 }
 
-/* Most compoents have inline styles. Styles used here are for HomePage  */
+/* Most components have inline styles. Styles used here are for HomePage  */
 @layer base {
   * {
     @apply font-Raleway box-border;
@@ -56,11 +56,11 @@
   }
 
   .card:hover .card_body {
-    @apply contents;
+    @apply contents; /* block causes squished elements */
   }
 
   .card:nth-child(8n) {
-    @apply md:row-span-2; /* block causes squished elements */
+    @apply md:row-span-2;
   }
 
   /* Darken out background on card hover */
