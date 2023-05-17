@@ -1,6 +1,5 @@
 import React, { useState, forwardRef } from 'react'
 import CardModal from '../components/CardModal'
-import '../styles/Card.css'
 
 type CardProps = {
   image: Image
@@ -20,19 +19,22 @@ const Card = forwardRef(function Card(props: CardProps, ref: any) {
 
   return (
     <>
-      <div ref={ref} className="card">
+      <div
+        ref={ref}
+        className="card relative flex justify-end bg-bg_black animate-onLoadAppear duration-300 hover:z-10 md:hover:transform md:hover:scale-110 md:first:col-span-2 md:first:row-span-1"
+      >
         {media_type === 'video' ? (
           <iframe src={src} title={title || alt} onClick={() => setModalStatus(true)} />
         ) : (
           <img src={src || 'media/error-image.jpg'} alt={alt} onClick={() => setModalStatus(true)} />
         )}
 
-        <section className="card_body">
+        <section className="card_body hidden h-full w-full">
           <span className="date bottom-8">{dayInLetters}</span>
           <span className="date bottom-0">{dayInNumbersAndYear}</span>
           <span className="like_button" onClick={onLike}>
             <img
-              className="noborder"
+              className="border-none"
               src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
             ></img>
           </span>
