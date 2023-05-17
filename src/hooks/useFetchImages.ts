@@ -1,29 +1,18 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import unixToDate from '../utilities/date-lib/unixToDate'
 import dateToUnix from '../utilities/date-lib/dateToUnix'
 import unixNow from '../utilities/date-lib/unixNow'
 import ky from 'ky'
 
-type UseFetchImagesResult = {
-  isLoading: boolean
-  error?: Error
-  data: Image[]
-}
-
-const useFetchImages = (needMoreImages: boolean): UseFetchImagesResult => {
+const useFetchImages = (needMoreImages: boolean): UseQueryResult<Image[]> => {
   const [increment, setIncrement] = useState(1)
   const [startDate, setStartDate] = useState(unixToDate(unixNow - 518400)) // start w/ last 7 days of data
   const [endDate, setEndDate] = useState(unixToDate(unixNow))
 
-  const {
-    isLoading,
-    error,
-    data: images,
-  } = useQuery({
-    enabled: needMoreImages,
-    queryKey: ['images'],
-    queryFn: async () => {
+  const nasaImagesQuery = useQuery(
+    ['images'],
+    async () => {
       setIncrement((count) => (count += 1))
 
       try {
@@ -45,12 +34,15 @@ const useFetchImages = (needMoreImages: boolean): UseFetchImagesResult => {
           return nasaData.reverse() // reversing so today's image shows first
         } else {
           console.error('Failed with status code: ', request.status, request.statusText)
+          return []
         }
       } catch (err) {
         console.error(err)
+        return []
       }
     },
-  })
+    { enabled: needMoreImages }
+  )
 
   // Updating time frames once week's worth of images have been called
   useEffect(() => {
@@ -67,12 +59,9 @@ const useFetchImages = (needMoreImages: boolean): UseFetchImagesResult => {
 
       return sevenDaysFromStart
     })
-  }, [increment, isLoading])
+  }, [increment, nasaImagesQuery.isFetching])
 
-  isLoading ? { isLoading: true, data: images || [] } : null
-  error ? { isLoading: false, data: images || [] } : null
-
-  return { isLoading, data: images || [] }
+  return nasaImagesQuery
 }
 
 export default useFetchImages
