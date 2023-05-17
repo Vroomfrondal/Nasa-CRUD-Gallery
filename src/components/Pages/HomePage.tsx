@@ -6,25 +6,32 @@ import Loading from '../Loading'
 import Card from '../Card'
 
 function HomePage() {
+  const [images, setImages] = useState<Image[]>([])
   const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
   const [needMoreImages, setNeedMoreImages] = useState(true)
-  const { images, isLoading } = useFetchImages(needMoreImages)
+  const { data, isFetching } = useFetchImages(needMoreImages)
 
-  // Observing Last Element on Page to create infinite scroll
+  // Observing the last element on page to create infinite scroll by calling next set of images
   const observer = useRef<IntersectionObserver>()
   const lastImageElementRef = useCallback(
     (element: HTMLDivElement) => {
       observer.current?.disconnect()
 
       observer.current = new IntersectionObserver((entries) => {
-        if (!isLoading && entries[0].isIntersecting) setNeedMoreImages(true)
+        if (!isFetching && entries[0].isIntersecting) setNeedMoreImages(true)
       })
 
       if (element) observer.current.observe(element)
       setNeedMoreImages(false)
     },
-    [!isLoading]
+    [!isFetching]
   )
+
+  // Storing images returned from useFetchImages hook
+  useEffect(() => {
+    if (isFetching) return
+    setImages((prevImages) => [...prevImages, ...(data as Image[])])
+  }, [data, isFetching])
 
   // Updating db after liking/unliking an image
   useEffect(() => {
@@ -36,7 +43,7 @@ function HomePage() {
 
     return (
       <Card
-        key={src || index}
+        key={index} // src ||
         image={{
           media_type: media_type,
           title: title,
@@ -73,7 +80,7 @@ function HomePage() {
       </section>
 
       <ScrollToTopButton />
-      {isLoading ? <Loading /> : null}
+      {isFetching ? <Loading /> : null}
     </>
   )
 }

@@ -1,17 +1,50 @@
 import { useEffect, useState } from 'react'
+import { useQuery, UseQueryResult } from '@tanstack/react-query'
 import unixToDate from '../utilities/date-lib/unixToDate'
 import dateToUnix from '../utilities/date-lib/dateToUnix'
 import unixNow from '../utilities/date-lib/unixNow'
 import ky from 'ky'
 
-const useFetchImages = (needMoreImages: boolean) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [images, setImages] = useState<Image[]>([])
+const useFetchImages = (needMoreImages: boolean): UseQueryResult<Image[]> => {
   const [increment, setIncrement] = useState(1)
   const [startDate, setStartDate] = useState(unixToDate(unixNow - 518400)) // start w/ last 7 days of data
   const [endDate, setEndDate] = useState(unixToDate(unixNow))
 
-  // Updating time frames once week of images has been called
+  const nasaImagesQuery = useQuery(
+    ['images'],
+    async () => {
+      setIncrement((count) => (count += 1))
+
+      try {
+        // @ts-expect-error
+        const ENV = import.meta.env.VITE_NASA_API_KEY
+        const URL = `https://api.nasa.gov/planetary/apod`
+        const request = await ky.get(URL, {
+          retry: 3,
+          searchParams: {
+            api_key: ENV,
+            start_date: startDate,
+            end_date: endDate,
+          },
+        })
+
+        if (request.status === 200) {
+          const nasaData: Image[] = await request.json()
+
+          return nasaData.reverse() // reversing so today's image shows first
+        } else {
+          console.error('Failed with status code: ', request.status, request.statusText)
+          return []
+        }
+      } catch (err) {
+        console.error(err)
+        return []
+      }
+    },
+    { enabled: needMoreImages }
+  )
+
+  // Updating time frames once week's worth of images have been called
   useEffect(() => {
     setEndDate(() => {
       const startDateAsUnix = dateToUnix(startDate)
@@ -26,46 +59,9 @@ const useFetchImages = (needMoreImages: boolean) => {
 
       return sevenDaysFromStart
     })
-  }, [increment, isLoading])
+  }, [increment, nasaImagesQuery.isFetching])
 
-  // Api Call
-  useEffect(() => {
-    if (!needMoreImages) return
-
-    const requestApiData = async () => {
-      setIncrement((count) => (count += 1))
-      setIsLoading(true)
-
-      // @ts-expect-error
-      const env = import.meta.env.VITE_NASA_API_KEY
-      const URL = `https://api.nasa.gov/planetary/apod` // ?api_key=${env}&start_date=${startDate}&end_date=${endDate}
-
-      try {
-        const request = await ky.get(URL, {
-          retry: 3,
-          searchParams: {
-            api_key: env,
-            start_date: startDate,
-            end_date: endDate,
-          },
-        })
-        if (request.status === 200) {
-          // reversing so today's image shows first
-          const data: Image[] = await request.json()
-          data.reverse()
-
-          setImages((prevImages) => [...prevImages, ...data])
-          setIsLoading(false)
-        } else console.error('Failed with status code: ', request.status, request.statusText)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    requestApiData()
-  }, [needMoreImages])
-
-  return { images, isLoading }
+  return nasaImagesQuery
 }
 
 export default useFetchImages

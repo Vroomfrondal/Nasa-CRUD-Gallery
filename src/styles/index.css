@@ -58,7 +58,7 @@ iframe {
 /* Header Image */
 .banner {
   position: absolute;
-  background-image: url('../../public/media/earth-background.jpg');
+  background-image: url('media/earth-background.jpg');
   background-position: bottom;
   background-size: cover;
   top: 0px;
