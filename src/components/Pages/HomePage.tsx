@@ -9,8 +9,7 @@ function HomePage() {
   const [images, setImages] = useState<Image[]>([])
   const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
   const [needMoreImages, setNeedMoreImages] = useState(true)
-  const { data, isLoading } = useFetchImages(needMoreImages)
-  const [imagesLoading, setImagesLoading] = useState(isLoading)
+  const { data, isFetching } = useFetchImages(needMoreImages)
 
   // Observing the last element on page to create infinite scroll by calling next set of images
   const observer = useRef<IntersectionObserver>()
@@ -19,20 +18,20 @@ function HomePage() {
       observer.current?.disconnect()
 
       observer.current = new IntersectionObserver((entries) => {
-        if (!isLoading && entries[0].isIntersecting) setNeedMoreImages(true)
+        if (!isFetching && entries[0].isIntersecting) setNeedMoreImages(true)
       })
 
       if (element) observer.current.observe(element)
       setNeedMoreImages(false)
     },
-    [!isLoading]
+    [!isFetching]
   )
 
   // Storing images returned from useFetchImages hook
   useEffect(() => {
-    if (isLoading) return setImagesLoading(true)
-    setImages((prevImages) => [...prevImages, ...data])
-  }, [data, isLoading])
+    if (isFetching) return
+    setImages((prevImages) => [...prevImages, ...(data as Image[])])
+  }, [data, isFetching])
 
   // Updating db after liking/unliking an image
   useEffect(() => {
@@ -81,7 +80,7 @@ function HomePage() {
       </section>
 
       <ScrollToTopButton />
-      {imagesLoading ? <Loading /> : null}
+      {isFetching ? <Loading /> : null}
     </>
   )
 }
