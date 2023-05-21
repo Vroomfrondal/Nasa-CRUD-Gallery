@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <div className="banner" />
+      <div className="mask-gradient-banner absolute bg-[url('../media/earth-background.jpg')] bg-bottom bg-cover top-0 left-0 right-0 h-44 w-auto" />
 
       <activePageContext.Provider value={activePage}>
         <NavBar setActivePage={setActivePage} />

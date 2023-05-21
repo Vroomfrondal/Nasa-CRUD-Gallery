@@ -30,10 +30,10 @@ function NavBar({ setActivePage }: NavBarActions) {
       </button>
 
       <nav
-        className={`top-0 h-full animate-slideInNav duration-150 text-cream font-semibold fixed w-48 hidden md:absolute md:flex md:justify-between md:w-full ${
+        className={`top-0 h-full animate-slideInNav duration-150 text-cream font-semibold fixed w-48  md:absolute md:flex md:justify-between md:w-full ${
           isShowingLinks
             ? 'right-0 top-0 bg-navy_blue z-50 fixed flex flex-col md:absolute md:flex md:justify-between md:w-full md:animate-slideInNav md:duration-1000 lg:absolute lg:flex-row lg:h-fit lg:left-0 lg:right-0 lg:bg-transparent lg:z-50'
-            : ''
+            : 'hidden'
         }`}
       >
         <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">

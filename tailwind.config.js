@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import plugin from 'tailwindcss/plugin'
+
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   mode: 'jit',
@@ -18,6 +20,8 @@ module.exports = {
         cream: '#ffffff',
         bg_black: '#121212',
         pure_black: '#000000',
+        light_blue: '#bfdbfe',
+        normal_blue: '#2563eb',
         navy_blue: '#141721',
         hover_opaque: 'rgba(255, 255, 255, 0.3)',
         modal_blackout: 'rgba(0, 0, 0, 0.7)',
@@ -80,5 +84,14 @@ module.exports = {
       }),
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.mask-gradient-banner': {
+          'mask-image': 'linear-gradient(to bottom, #121212 40%, transparent 100%)',
+          '-webkit-mask-image': 'linear-gradient(to bottom, #121212 40%, transparent 100%)',
+        },
+      })
+    }),
+  ],
 }

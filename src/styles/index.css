@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Responsbile for creating gradiant in banner image */
-.banner {
-  mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #121212 40%, transparent 100%);
-}
-
-/* Most components have inline styles. Styles used here are for HomePage  */
 @layer base {
   * {
     @apply font-Raleway box-border;
@@ -41,10 +34,6 @@
 }
 
 @layer components {
-  .banner {
-    @apply absolute bg-banner bg-bottom bg-cover top-0 left-0 right-0 h-44 w-auto;
-  }
-
   /* Grid for infinite-scroll */
   .container {
     @apply grid auto-rows-[20rem] gap-2 mr-auto ml-auto md:grid-cols-4;
@@ -67,10 +56,6 @@
   .card:hover img,
   .card:hover iframe {
     @apply block cursor-pointer opacity-60 duration-300 transition-opacity ease-in-out;
-  }
-
-  .like_button {
-    @apply absolute cursor-pointer font-medium h-[1.3rem] w-[1.3rem] m-2 border-none right-0 bottom-1 hover:opacity-75;
   }
 }
 
