@@ -50,7 +50,9 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
             <span className="text-lg text-left">{new Date(date!).toDateString().slice(4)},</span>
 
             <span className="text-left pb-1 text-lg">A message from the astronomer,</span>
-            <p className="m-5 h-40 flex-grow overflow-auto text-center indent-5 leading-[1.5rem]">{explanation}</p>
+            <p className="m-5 h-40 flex-grow overflow-auto text-justify pr-2 indent-5 leading-[1.75rem]">
+              {explanation}
+            </p>
           </div>
         </div>
       </div>

@@ -32,7 +32,10 @@ const Card = forwardRef(function Card(props: CardProps, ref: any) {
         <section className="card_body hidden h-full w-full">
           <span className="date bottom-8">{dayInLetters}</span>
           <span className="date bottom-0">{dayInNumbersAndYear}</span>
-          <span className="like_button" onClick={onLike}>
+          <span
+            className="absolute cursor-pointer font-medium h-[1.3rem] w-[1.3rem] m-2 border-none right-0 bottom-1 hover:opacity-75"
+            onClick={onLike}
+          >
             <img
               className="border-none"
               src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}

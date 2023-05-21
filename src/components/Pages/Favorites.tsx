@@ -48,7 +48,7 @@ function Favorites() {
       ) : (
         <div className="text-center">
           <span>Browse the </span>
-          <Link to="/" className="relative text-[#bfdbfe] hover:text-[#2563eb]">
+          <Link to="/" className="relative text-light_blue hover:text-normal_blue">
             home page
           </Link>
           <span> and like some images first!</span>
