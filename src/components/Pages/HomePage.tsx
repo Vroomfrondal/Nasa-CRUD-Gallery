@@ -43,7 +43,7 @@ function HomePage() {
 
     return (
       <Card
-        key={index} // src ||
+        key={src || index}
         image={{
           media_type: media_type,
           title: title,
