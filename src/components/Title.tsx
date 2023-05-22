@@ -7,6 +7,6 @@ function Title({ title }: Title) {
   return <TitleHeader>{title}</TitleHeader>
 }
 
-const TitleHeader = tw.h1`flex justify-center text-4xl pt-32 pb-5 font-light animate-slideInLeft`
-
 export default Title
+
+const TitleHeader = tw.h1`flex justify-center text-4xl pt-32 pb-5 font-light animate-slideInLeft`
