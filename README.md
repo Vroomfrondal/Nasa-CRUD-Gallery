@@ -7,6 +7,7 @@ A fully-responsive, infinite-scrolling NASA astronomy photo gallery complete wit
 Built with:
 
 - TypeScript
+- [Tailwind](https://tailwindcss.com/)
 - [React](https://react.dev/)
 - [Vite](https://vitejs.dev/)
 
