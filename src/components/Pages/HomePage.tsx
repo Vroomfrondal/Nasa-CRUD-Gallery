@@ -4,12 +4,13 @@ import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
 import Loading from '../Loading'
 import Card from '../Card'
+import Error from './Error'
 
 function HomePage() {
   const [images, setImages] = useState<Image[]>([])
   const [likedImages, setLikedImages] = useState<Image[]>(JSON.parse(localStorage.getItem('nasa-liked-images') || '[]'))
   const [needMoreImages, setNeedMoreImages] = useState(true)
-  const { data, isFetching } = useFetchImages(needMoreImages)
+  const { data, isFetching, error } = useFetchImages(needMoreImages)
 
   // Observing the last element on page to create infinite scroll by calling next set of images
   const observer = useRef<IntersectionObserver>()
@@ -30,7 +31,7 @@ function HomePage() {
   // Storing images returned from useFetchImages hook
   useEffect(() => {
     if (isFetching) return
-    setImages((prevImages) => [...prevImages, ...(data as Image[])])
+    data ? setImages((prevImages) => [...prevImages, ...(data as Image[])]) : null
   }, [data, isFetching])
 
   // Updating db after liking/unliking an image
@@ -43,7 +44,7 @@ function HomePage() {
 
     return (
       <Card
-        key={index} // src ||
+        key={src || index}
         image={{
           media_type: media_type,
           title: title,
@@ -69,18 +70,24 @@ function HomePage() {
 
   return (
     <>
-      <Title title="Beyond Our Earth" />
+      {!error ? (
+        <>
+          <Title title="Beyond Our Earth" />
 
-      <section className="container">
-        {images.map((image, index) => {
-          return images.length === index + 3
-            ? generateCard(image, index, lastImageElementRef)
-            : generateCard(image, index)
-        })}
-      </section>
+          <section className="container">
+            {images.map((image, index) => {
+              return images.length === index + 3
+                ? generateCard(image, index, lastImageElementRef)
+                : generateCard(image, index)
+            })}
+          </section>
 
-      <ScrollToTopButton />
-      {isFetching ? <Loading /> : null}
+          <ScrollToTopButton />
+          {isFetching ? <Loading /> : null}
+        </>
+      ) : (
+        <Error />
+      )}
     </>
   )
 }
