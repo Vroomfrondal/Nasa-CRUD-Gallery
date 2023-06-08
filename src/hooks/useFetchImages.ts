@@ -20,7 +20,7 @@ const useFetchImages = (needMoreImages: boolean): UseQueryResult<Image[]> => {
         const ENV = import.meta.env.VITE_NASA_API_KEY
         const URL = `https://api.nasa.gov/planetary/apod`
         const request = await ky.get(URL, {
-          retry: 3,
+          retry: 1,
           searchParams: {
             api_key: ENV,
             start_date: startDate,
@@ -30,18 +30,17 @@ const useFetchImages = (needMoreImages: boolean): UseQueryResult<Image[]> => {
 
         if (request.status === 200) {
           const nasaData: Image[] = await request.json()
-
           return nasaData.reverse() // reversing so today's image shows first
         } else {
-          console.error('Failed with status code: ', request.status, request.statusText)
-          return []
+          throw new Error(`Failed with status code: ${request.status}, Text: ${request.statusText}`)
         }
-      } catch (err) {
-        console.error(err)
-        return []
+      } catch (err: any) {
+        throw new Error(err)
       }
     },
-    { enabled: needMoreImages }
+    {
+      enabled: needMoreImages,
+    }
   )
 
   // Updating time frames once week's worth of images have been called

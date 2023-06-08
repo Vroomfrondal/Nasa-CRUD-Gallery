@@ -1,7 +1,8 @@
 import React, { useState, createContext } from 'react'
 import NavBar from './NavBar'
-import HomePage from '../components/Pages/HomePage'
-import Favorites from '../components/Pages/Favorites'
+import HomePage from './Pages/HomePage'
+import Favorites from './Pages/Favorites'
+import Error from './Pages/Error'
 import tw from 'twin.macro'
 import { Route, Routes } from 'react-router-dom'
 
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/Favorites" element={<Favorites />}></Route>
+        <Route path="/*" element={<Error />}></Route>
       </Routes>
     </>
   )

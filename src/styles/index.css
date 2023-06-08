@@ -40,7 +40,6 @@
   }
 
   /* Card */
-
   .card:hover .card_body {
     @apply contents; /* block causes squished elements */
   }

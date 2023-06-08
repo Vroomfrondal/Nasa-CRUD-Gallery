@@ -1,6 +1,7 @@
 import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
+import tw, { styled } from 'twin.macro'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
 
 type NavBarActions = {
@@ -13,75 +14,81 @@ function NavBar({ setActivePage }: NavBarActions) {
 
   return (
     <>
-      <button
-        className="fixed flex flex-col justify-center items-center top-0 w-full font-semibold bg-transparent border-0"
-        onClick={() => (isShowingLinks ? setIsShowingLinks(false) : null)}
-      >
-        <div
-          onClick={() => setIsShowingLinks((status) => !status)}
-          className={`absolute right-0 top-0 p-2 cursor-pointer duration-500 transform rotate-180 hover:bg-hover_opaque md:opacity-0 md:hidden ${
-            isShowingLinks ? 'hidden opacity-0' : 'block'
-          }`}
-        >
-          <span className="block h-1 m-1 rounded-md bg-cream w-4"></span>
-          <span className="block h-1 m-1 rounded-md bg-cream w-5"></span>
-          <span className="block h-1 m-1 rounded-md bg-cream w-6"></span>
-        </div>
-      </button>
+      <HamburgerContainer onClick={() => (isShowingLinks ? setIsShowingLinks(false) : null)}>
+        <Hamburger isShowingLinks={isShowingLinks} onClick={() => setIsShowingLinks((status) => !status)}>
+          <TempHamburgerIcon className="w-4" />
+          <TempHamburgerIcon className="w-5" />
+          <TempHamburgerIcon className="w-6" />
+        </Hamburger>
+      </HamburgerContainer>
 
-      <nav
-        className={`top-0 h-full animate-slideInNav duration-150 text-cream font-semibold fixed w-48  md:absolute md:flex md:justify-between md:w-full ${
-          isShowingLinks
-            ? 'right-0 top-0 bg-navy_blue z-50 fixed flex flex-col md:absolute md:flex md:justify-between md:w-full md:animate-slideInNav md:duration-1000 lg:absolute lg:flex-row lg:h-fit lg:left-0 lg:right-0 lg:bg-transparent lg:z-50'
-            : 'hidden'
-        }`}
-      >
+      <NavigationBar isShowingLinks={isShowingLinks}>
         <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
-          <img
-            className={`h-7 w-7 pl-1 pt-1 border-none ${isShowingLinks ? 'hidden' : 'block'}`}
-            src="media/TopherEmblem.png"
-          />
+          <Emblem src="media/TopherEmblem.png" isShowingLinks={isShowingLinks} />
         </Link>
 
-        <button
-          className={`flex justify-center items-center p-2 cursor-pointer duration-500 h-8 hover:bg-hover_opaque md:opacity-0 md:hidden ${
-            isShowingLinks ? 'contents' : 'hidden'
-          }`}
-          onClick={() => setIsShowingLinks((status) => !status)}
-        >
-          <span className="font-bold text-lg py-2 text-center rounded-sm w-full">X</span>
-        </button>
+        <CloseContainer onClick={() => setIsShowingLinks((status) => !status)} isShowingLinks={isShowingLinks}>
+          <TempXButton>X</TempXButton>
+        </CloseContainer>
 
-        <div className="flex h-fit sm:flex-col sm:border-t sm:border-cream md:flex-row md:border-none">
+        <Links>
           <Link to="/" onClick={() => setActivePage('Home')}>
-            <button className="w-full md:w-32 font-[500] text-base">Home</button>
+            <PageButton>Home</PageButton>
           </Link>
 
-          <Link to="/Favorites" onClick={() => setActivePage('Favorites')} className="favorites">
-            <button className="w-full md:w-32 font-[500] text-base">Favorites</button>
+          <Link to="/Favorites" onClick={() => setActivePage('Favorites')}>
+            <PageButton>Favorites</PageButton>
           </Link>
 
-          <Link
-            to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery"
-            target="_blank"
-            rel="noreferrer"
-            className="text-center"
-          >
-            <button className="w-full md:w-32 font-[500] text-base">Source</button>
+          <Link to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery" target="_blank" rel="noreferrer">
+            <PageButton>Source</PageButton>
           </Link>
 
           <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
-            <img
-              className={`absolute w-6 h-6 border-none sm:bottom-2 sm:right-2 md:top-0 md:left-0 ${
-                isShowingLinks ? 'block' : 'hidden'
-              }`}
-              src="media/TopherEmblem.png"
-            />
+            <MobileWebsiteEmblem src="media/TopherEmblem.png" isShowingLinks={isShowingLinks} />
           </Link>
-        </div>
-      </nav>
+        </Links>
+      </NavigationBar>
     </>
   )
 }
 
 export default NavBar
+
+// Containers
+const NavigationBar = styled.nav<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
+  tw`top-0 h-full animate-slideInNav duration-150 text-cream font-semibold fixed w-48 md:(absolute flex justify-between w-full)`,
+  isShowingLinks
+    ? tw`right-0 top-0 bg-navy_blue z-50 fixed flex flex-col md:(absolute flex justify-between w-full animate-slideInNav duration-1000) lg:(absolute flex-row h-fit left-0 right-0 bg-transparent z-50)`
+    : tw`hidden`,
+])
+
+const CloseContainer = styled.button<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
+  tw`flex justify-center items-center p-2 cursor-pointer duration-500 h-8 hover:(bg-hover_opaque) md:(opacity-0 hidden)`,
+  isShowingLinks ? tw`contents` : tw`hidden`,
+])
+
+const HamburgerContainer = tw.button`fixed h-full flex flex-col justify-center items-center top-0 w-full font-semibold bg-transparent border-0` //
+const Links = tw.div`flex h-fit sm:(flex-col border-t border-cream) md:(flex-row border-none)`
+
+// Elements
+const Hamburger = styled.div<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
+  tw`absolute right-0 top-0 p-2 cursor-pointer duration-500 transform rotate-180 hover:(bg-hover_opaque) md:(hidden opacity-0)`,
+  isShowingLinks ? tw`hidden opacity-0` : tw`block`,
+])
+
+const Emblem = styled.img<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
+  tw`h-7 w-7 pl-1 pt-1 border-none`,
+  isShowingLinks ? tw`hidden` : tw`block`,
+])
+
+const MobileWebsiteEmblem = styled.img<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
+  tw`absolute w-6 h-6 border-none sm:(bottom-2 right-2) md:(top-0 left-0)`,
+  isShowingLinks ? tw`block` : tw`hidden`,
+])
+
+const TempHamburgerIcon = tw.span`block h-1 m-1 rounded-md bg-cream`
+
+const PageButton = tw.button`w-full font-[500] text-base md:(w-32)`
+
+const TempXButton = tw.span`font-bold text-lg py-2 text-center rounded-sm`
