@@ -1,5 +1,6 @@
 import React, { MouseEventHandler } from 'react'
 import { Link } from 'react-router-dom'
+import tw from 'twin.macro'
 
 type CardModalData = {
   image: Image
@@ -16,48 +17,70 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
 
   return (
     <>
-      <div onClick={onClose} className="fixed inset-0 z-20 bg-modal_blackout" />
+      <BlackoutContainer onClick={onClose} />
 
-      <div className="fixed z-30 h-auto bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2 bg-navy_blue border border-cream max-w-[56rem] rounded-md w-[83.333333%] overflow-hidden">
-        <div className="h-full flex flex-col">
-          <span onClick={onClose} className="absolute z-10 right-3 font-[500] text-lg cursor-pointer">
-            X
-          </span>
+      <ModalContainer>
+        <ModalContent>
+          <CloseModalButton onClick={onClose}>X</CloseModalButton>
 
-          <div className="relative h-36 flex-grow hover:overflow-hidden">
+          <ImageContainer>
             <Link to={highDefSrc || ''} target="_blank" rel="noreferrer">
-              <img
-                src={src}
-                className="h-full opacity-70 rounded-bl-md rounded-br-md transition-all ease-in-out duration-700 border-none hover:transform hover:scale-110"
-              />
+              <ModalImage src={src} />
             </Link>
-            <span className="absolute top-[6.5rem] bottom-0 left-0 right-0 w-full font-normal text-lg text-center flex justify-center items-center md:text-xl">
-              {title}
-            </span>
-            <span className="absolute top-1 left-1 text-xs opacity-70">{copyright}</span>
-            <span
-              className="absolute m-2 right-0 bottom-1 cursor-pointer font-[500] h-[1.3rem] w-[1.3rem] border-none hover:opacity-75"
-              onClick={onLike}
-            >
+
+            <Title>{title}</Title>
+            <Author>{copyright}</Author>
+
+            <LikeButton onClick={onLike}>
               <img
                 className="border-none"
                 src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
+                alt="like"
               />
-            </span>
-          </div>
+            </LikeButton>
+          </ImageContainer>
 
-          <div className="flex flex-col flex-grow justify-start pt-4 border-t indent-5">
-            <span className="text-lg text-left">{new Date(date!).toDateString().slice(4)},</span>
+          <BodyContainer>
+            <DateEl>{new Date(date!).toDateString().slice(4)},</DateEl>
 
-            <span className="text-left pb-1 text-lg">A message from the astronomer,</span>
-            <p className="m-5 h-40 flex-grow overflow-auto text-justify pr-2 indent-5 leading-[1.75rem]">
-              {explanation}
-            </p>
-          </div>
-        </div>
-      </div>
+            <Salutations>A message from the astronomer,</Salutations>
+
+            <Explanation>{explanation}</Explanation>
+          </BodyContainer>
+        </ModalContent>
+      </ModalContainer>
     </>
   )
 }
 
 export default CardModal
+
+// Modal Containers
+const BlackoutContainer = tw.div`fixed inset-0 z-20 bg-modal_blackout`
+
+const ModalContainer = tw.div`fixed z-30 h-[30rem] bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2 bg-navy_blue border border-cream max-w-[56rem] rounded-md w-[83.333333%] overflow-hidden`
+
+const ModalContent = tw.div`h-full flex flex-col`
+
+const ImageContainer = tw.div`relative h-36 grow hover:(overflow-hidden) `
+
+// Modal Elements
+const CloseModalButton = tw.span`absolute z-10 right-3 font-[500] text-lg cursor-pointer`
+
+const BodyContainer = tw.div`flex flex-col grow justify-start pt-4 border-t indent-5`
+
+// Image Container Elements
+const ModalImage = tw.img`h-full opacity-70 rounded-bl-md rounded-br-md transition-all ease-in-out duration-700 border-none hover:(transform scale-110)`
+
+const Title = tw.span`absolute top-[8.5rem] bottom-0 left-0 right-0 w-full font-normal text-lg text-center flex justify-center items-center md:(text-xl)`
+
+const Author = tw.span`absolute top-1 left-1 text-xs opacity-70`
+
+const LikeButton = tw.span`absolute m-2 right-0 bottom-1 cursor-pointer font-[500] h-[1.3rem] w-[1.3rem] border-none hover:(opacity-75)`
+
+// Body Container Elements
+const CardPreText = tw.span`text-left text-lg`
+const DateEl = tw(CardPreText)``
+const Salutations = tw(CardPreText)`pb-1`
+
+const Explanation = tw.p`m-5 h-40 grow overflow-auto text-justify pr-2 indent-5 leading-[1.75rem]`

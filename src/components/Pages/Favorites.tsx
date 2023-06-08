@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import tw from 'twin.macro'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
@@ -43,16 +44,17 @@ function Favorites() {
               )
             })}
           </section>
-          <h1 className="text-sm text-gray-500 flex justify-center pt-10">End of history</h1>
+
+          <FooterMessage>End of History</FooterMessage>
         </>
       ) : (
-        <div className="text-center">
+        <EmptyFavoritesMessage>
           <span>Browse the </span>
           <Link to="/" className="relative text-light_blue hover:text-normal_blue">
             home page
           </Link>
           <span> and like some images first!</span>
-        </div>
+        </EmptyFavoritesMessage>
       )}
 
       <ScrollToTopButton />
@@ -61,3 +63,6 @@ function Favorites() {
 }
 
 export default Favorites
+
+const FooterMessage = tw.h1`text-sm text-gray-500 flex justify-center pt-10`
+const EmptyFavoritesMessage = tw.div`text-center`

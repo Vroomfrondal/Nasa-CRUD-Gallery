@@ -40,10 +40,6 @@
   }
 
   /* Card */
-  .date {
-    @apply absolute left-0 m-2 text-4xl font-normal animate-dateBounce;
-  }
-
   .card:hover .card_body {
     @apply contents; /* block causes squished elements */
   }
