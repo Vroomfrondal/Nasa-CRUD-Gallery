@@ -79,8 +79,8 @@ const Author = tw.span`absolute top-1 left-1 text-xs opacity-70`
 const LikeButton = tw.span`absolute m-2 right-0 bottom-1 cursor-pointer font-[500] h-[1.3rem] w-[1.3rem] border-none hover:(opacity-75)`
 
 // Body Container Elements
-const DateEl = tw.span`text-lg text-left`
-
-const Salutations = tw.span`text-left pb-1 text-lg`
+const CardPreText = tw.span`text-left text-lg`
+const DateEl = tw(CardPreText)``
+const Salutations = tw(CardPreText)`pb-1`
 
 const Explanation = tw.p`m-5 h-40 grow overflow-auto text-justify pr-2 indent-5 leading-[1.75rem]`

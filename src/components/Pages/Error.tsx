@@ -6,8 +6,8 @@ function Error() {
   return (
     <>
       <ErrorContainer>
-        <h1 className="text-2xl">Oops! Nasa is having a rare issue with their server.</h1>
-        <p className="text-xl">Please come back later to try again.</p>
+        <h1 className="text-2xl text-center">Oops! Nasa is having a rare issue with their server.</h1>
+        <p className="text-xl text-center">Please come back later to try again.</p>
 
         <LinkContainer>
           <p>Some entertainment in the meantime: </p>
@@ -32,8 +32,9 @@ function Error() {
 export default Error
 
 // Containers
-const ErrorContainer = tw.div`flex flex-col justify-center items-center h-[50rem] text-cream`
-const LinkContainer = tw.div`pt-10 flex flex-col justify-center items-center`
+const Container = tw.div`flex flex-col justify-center items-center`
+const ErrorContainer = tw(Container)`h-[50rem] text-cream`
+const LinkContainer = tw(Container)`items-center pt-10`
 
 // Elements
 const FormattedLink = tw.div`relative text-light_blue hover:text-normal_blue`
