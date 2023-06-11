@@ -1,26 +1,34 @@
 import React from 'react'
 import tw from 'twin.macro'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 function Error() {
+  const { t } = useTranslation()
+
   return (
     <>
       <ErrorContainer>
-        <h1 className="text-2xl text-center">Oops! Nasa is having a rare issue with their server.</h1>
-        <p className="text-xl text-center">Please come back later to try again.</p>
-
+        <h1 className="text-2xl text-center">{t('Oops! Nasa is having a rare issue with their server.')}</h1>
+        <p className="text-xl text-center">{t('Please come back later to try again.')}</p>
         <LinkContainer>
-          <p>Some entertainment in the meantime: </p>
+          <p>{t('Some entertainment in the meantime:')}</p>
 
           <FormattedLink>
-            <Link to="https://www.youtube.com/watch?v=GDrBIKOR01c&t=435s" target="_blank" rel="noreferrer">
-              VSauce Space Video
+            <Link to="https://youtu.be/ryg077wBvsM" target="_blank" rel="noreferrer">
+              {t('The Great Silence (LEMMiNO)')}
             </Link>
           </FormattedLink>
 
           <FormattedLink>
             <Link to="/Favorites" rel="noreferrer">
-              Your Favorites
+              {t('Your Favorites')}
+            </Link>
+          </FormattedLink>
+
+          <FormattedLink>
+            <Link className="z-50" to="https://github.com/nasa/apod-api/issues" target="_blank" rel="noreferrer">
+              {t('Latest API issues')}
             </Link>
           </FormattedLink>
         </LinkContainer>

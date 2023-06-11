@@ -2,7 +2,9 @@ import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+import { changeLanguage } from 'i18next'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
+import { useTranslation } from 'react-i18next'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
@@ -11,6 +13,8 @@ type NavBarActions = {
 function NavBar({ setActivePage }: NavBarActions) {
   const activePage = useContext(activePageContext)
   const [isShowingLinks, setIsShowingLinks] = useIsNavBarOpenState(activePage)
+
+  const { t } = useTranslation()
 
   return (
     <>
@@ -33,20 +37,29 @@ function NavBar({ setActivePage }: NavBarActions) {
 
         <Links>
           <Link to="/" onClick={() => setActivePage('Home')}>
-            <PageButton>Home</PageButton>
+            <PageButton>{t('Home')}</PageButton>
           </Link>
 
           <Link to="/Favorites" onClick={() => setActivePage('Favorites')}>
-            <PageButton>Favorites</PageButton>
+            <PageButton>{t('Favorites')}</PageButton>
           </Link>
 
           <Link to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery" target="_blank" rel="noreferrer">
-            <PageButton>Source</PageButton>
+            <PageButton>{t('Source')}</PageButton>
           </Link>
 
           <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
             <MobileWebsiteEmblem src="media/TopherEmblem.png" isShowingLinks={isShowingLinks} />
           </Link>
+
+          <PageButton
+            onClick={() => {
+              // changeLanguage(window.navigator.language === 'en-US' ? 'es' : 'en')
+              changeLanguage('es')
+            }}
+          >
+            {t('Language')}
+          </PageButton>
         </Links>
       </NavigationBar>
     </>
