@@ -5,19 +5,23 @@ import HomePage from './Pages/HomePage'
 import Favorites from './Pages/Favorites'
 import Error from './Pages/Error'
 import tw from 'twin.macro'
-import '../locales/i18n'
+import '../../i18n'
 
-export const activePageContext = createContext<'Home' | 'Favorites'>('Home')
+export const activePageContext = createContext<{ activePage: 'Home' | 'Favorites'; language: 'en' | 'es' }>({
+  activePage: 'Home',
+  language: 'en',
+})
 
 function App() {
   const [activePage, setActivePage] = useState<'Home' | 'Favorites'>('Home')
+  const [language, setLanguage] = useState<'en' | 'es'>('en')
 
   return (
     <>
       <BannerImage />
 
-      <activePageContext.Provider value={activePage}>
-        <NavBar setActivePage={setActivePage} />
+      <activePageContext.Provider value={{ activePage: activePage, language: language }}>
+        <NavBar setActivePage={setActivePage} setLanguage={setLanguage} />
       </activePageContext.Provider>
 
       <Routes>

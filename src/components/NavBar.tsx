@@ -3,15 +3,16 @@ import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 import { changeLanguage } from 'i18next'
-import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
 import { useTranslation } from 'react-i18next'
+import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
+  setLanguage: Dispatch<SetStateAction<'en' | 'es'>>
 }
 
-function NavBar({ setActivePage }: NavBarActions) {
-  const activePage = useContext(activePageContext)
+function NavBar({ setActivePage, setLanguage }: NavBarActions) {
+  const { activePage, language } = useContext(activePageContext)
   const [isShowingLinks, setIsShowingLinks] = useIsNavBarOpenState(activePage)
 
   const { t } = useTranslation()
@@ -54,11 +55,11 @@ function NavBar({ setActivePage }: NavBarActions) {
 
           <PageButton
             onClick={() => {
-              // changeLanguage(window.navigator.language === 'en-US' ? 'es' : 'en')
-              changeLanguage('es')
+              changeLanguage(language !== 'en' ? 'en' : 'es')
+              setLanguage(language === 'en' ? 'es' : 'en')
             }}
           >
-            {t('Language')}
+            {language === 'en' ? t('Espanol') : t('English')}
           </PageButton>
         </Links>
       </NavigationBar>

@@ -13,6 +13,13 @@ const translation = {
   'The Great Silence (LEMMiNO)': 'El Gran Silencio (LEMMiNO)',
   'Your Favorites': 'Tus favoritos',
   'Latest API issues': 'Últimos problemas de la API',
+
+  // Favorites Page
+  'Liked Media': 'Medios que le gustan',
+  'End of History': 'fin de la historia',
+  'Browse the ': '¡Navega por la ',
+  'home page': 'página de inicio',
+  ' and like some images first!': ' y dale me gusta a algunas imágenes primero!',
 }
 
 export default translation

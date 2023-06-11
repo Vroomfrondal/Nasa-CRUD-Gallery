@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "types"]
+  "include": ["src", "types", "i18n.ts", "public/locales"]
 }
