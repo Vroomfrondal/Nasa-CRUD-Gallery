@@ -20,6 +20,9 @@ const translation = {
   'Browse the ': '¡Navega por la ',
   'home page': 'página de inicio',
   ' and like some images first!': ' y dale me gusta a algunas imágenes primero!',
+
+  // Home Page
+  'Beyond Our Earth': 'Más allá de nuestra tierra',
 }
 
 export default translation

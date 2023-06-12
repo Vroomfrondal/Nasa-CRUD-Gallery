@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import tw from 'twin.macro'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
 import Title from '../Title'
-import { useTranslation } from 'react-i18next'
 
 function Favorites() {
   const [likedImages, setLikedImages] = useState<Image[]>(

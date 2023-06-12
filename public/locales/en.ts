@@ -19,6 +19,9 @@ const translation = {
   'Browse the ': 'Browse the ',
   'home page': 'home page',
   ' and like some images first!': ' and like some images first!',
+
+  // Home Page
+  'Beyond Our Earth': 'Home Page',
 }
 
 export default translation
