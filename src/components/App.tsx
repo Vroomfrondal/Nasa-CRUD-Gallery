@@ -22,13 +22,13 @@ function App() {
 
       <activePageContext.Provider value={{ activePage: activePage, language: language }}>
         <NavBar setActivePage={setActivePage} setLanguage={setLanguage} />
-      </activePageContext.Provider>
 
-      <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/Favorites" element={<Favorites />}></Route>
-        <Route path="/*" element={<Error />}></Route>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/Favorites" element={<Favorites />}></Route>
+          <Route path="/*" element={<Error />}></Route>
+        </Routes>
+      </activePageContext.Provider>
     </>
   )
 }

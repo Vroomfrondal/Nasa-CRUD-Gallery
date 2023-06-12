@@ -1,5 +1,7 @@
-import React, { MouseEventHandler } from 'react'
+import React, { useContext, MouseEventHandler } from 'react'
+import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import tw from 'twin.macro'
 
 type CardModalData = {
@@ -11,9 +13,15 @@ type CardModalData = {
 }
 
 function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalData) {
+  const { language } = useContext(activePageContext)
+  const { t } = useTranslation()
+
   if (!isOpen) return null
 
   const { date, title, copyright, explanation, hdurl: highDefSrc, url: src } = image
+  const month = t(new Date(date!).toDateString().split(' ')[1] + ' ')
+  const day = t(new Date(date!).toDateString().split(' ')[2])
+  const year = t(new Date(date!).toDateString().split(' ')[3])
 
   return (
     <>
@@ -41,9 +49,21 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
           </ImageContainer>
 
           <BodyContainer>
-            <DateEl>{new Date(date!).toDateString().slice(4)},</DateEl>
+            {language === 'en' ? (
+              <DateEl>
+                <span>{month}</span>
+                <span>{day}, </span>
+                <span>{year}</span>
+              </DateEl>
+            ) : (
+              <DateEl>
+                <span>{`${day} de `}</span>
+                <span>{`${month} de `}</span>
+                <span>{year}</span>
+              </DateEl>
+            )}
 
-            <Salutations>A message from the astronomer,</Salutations>
+            <Salutations>{t('A message from the astronomer,')}</Salutations>
 
             <Explanation>{explanation}</Explanation>
           </BodyContainer>

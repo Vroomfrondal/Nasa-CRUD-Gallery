@@ -3,7 +3,6 @@ const translation = {
   Home: 'Home',
   Favorites: 'Favorites',
   Source: 'Source',
-  Language: 'Language',
 
   // Error Page
   'Oops! Nasa is having a rare issue with their server.': 'Oops! Nasa is having a rare issue with their server',
@@ -21,7 +20,7 @@ const translation = {
   ' and like some images first!': ' and like some images first!',
 
   // Home Page
-  'Beyond Our Earth': 'Home Page',
+  'Beyond Our Earth': 'Beyond Our Earth',
 
   // Card
   'Mon,': 'Mon,',
@@ -31,6 +30,21 @@ const translation = {
   'Fri,': 'Fri,',
   'Sat,': 'Sat,',
   'Sun,': 'Sun,',
+
+  // Card Modal
+  'A message from the astronomer,': 'A message from the astronomer,',
+  'Jan ': 'Jan ',
+  'Feb ': 'Feb ',
+  'Mar ': 'Mar ',
+  'Apr ': 'Apr ',
+  'May ': 'May ',
+  'Jun ': 'Jun ',
+  'Jul ': 'Jul ',
+  'Aug ': 'Aug ',
+  'Sep ': 'Sep ',
+  'Oct ': 'Oct ',
+  'Nov ': 'Nov ',
+  'Dec ': 'Dec ',
 }
 
 export default translation
