@@ -16,13 +16,22 @@ const translation = {
 
   // Favorites Page
   'Liked Media': 'Medios que le gustan',
-  'End of History': 'fin de la historia',
+  'End of History': 'Fin de la historia',
   'Browse the ': '¡Navega por la ',
   'home page': 'página de inicio',
   ' and like some images first!': ' y dale me gusta a algunas imágenes primero!',
 
   // Home Page
   'Beyond Our Earth': 'Más allá de nuestra tierra',
+
+  // Card
+  'Mon,': 'Lunes,',
+  'Tue,': 'Martes,',
+  'Wed,': 'Miércoles,',
+  'Thu,': 'Jueves,',
+  'Fri,': 'Viernes,',
+  'Sat,': 'Sábado,',
+  'Sun,': 'Domingo,',
 }
 
 export default translation

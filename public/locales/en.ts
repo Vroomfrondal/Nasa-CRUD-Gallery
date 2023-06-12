@@ -22,6 +22,15 @@ const translation = {
 
   // Home Page
   'Beyond Our Earth': 'Home Page',
+
+  // Card
+  'Mon,': 'Mon,',
+  'Tue,': 'Tue,',
+  'Wed,': 'Wed,',
+  'Thu,': 'Thu,',
+  'Fri,': 'Fri,',
+  'Sat,': 'Sat,',
+  'Sun,': 'Sun,',
 }
 
 export default translation

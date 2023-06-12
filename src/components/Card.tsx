@@ -1,6 +1,7 @@
 import React, { useState, forwardRef } from 'react'
 import CardModal from '../components/CardModal'
 import tw from 'twin.macro'
+import { useTranslation } from 'react-i18next'
 
 type CardProps = {
   image: Image
@@ -12,6 +13,8 @@ type CardProps = {
 // Forward Ref hook to avoid naming ref property as "innerRef"
 const Card = forwardRef(function Card(props: CardProps, ref: any) {
   const [modalStatus, setModalStatus] = useState(false)
+
+  const { t } = useTranslation()
 
   const { alt = '', image, isLikedImage, onLike } = props
   const { date, title, media_type, copyright, explanation, hdurl: highDefSrc, url: src } = image
@@ -28,7 +31,7 @@ const Card = forwardRef(function Card(props: CardProps, ref: any) {
         )}
 
         <CardBody className="card_body">
-          <DateTitle className="bottom-8">{dayInLetters}</DateTitle>
+          <DateTitle className="bottom-8">{t(`${dayInLetters}`)}</DateTitle>
           <DateTitle className="bottom-0">{dayInNumbersAndYear}</DateTitle>
 
           <LikeButton onClick={onLike}>
