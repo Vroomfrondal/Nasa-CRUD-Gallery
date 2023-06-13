@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import tw from 'twin.macro'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Card from '../Card'
@@ -15,9 +16,11 @@ function Favorites() {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
   }, [likedImages])
 
+  const { t } = useTranslation()
+
   return (
     <>
-      <Title title="Liked Media" />
+      <Title title={t('Liked Media')} />
 
       {likedImages.length ? (
         <>
@@ -45,15 +48,15 @@ function Favorites() {
             })}
           </section>
 
-          <FooterMessage>End of History</FooterMessage>
+          <FooterMessage>{t('End of History')}</FooterMessage>
         </>
       ) : (
         <EmptyFavoritesMessage>
-          <span>Browse the </span>
+          <span>{t('Browse the ')}</span>
           <Link to="/" className="relative text-light_blue hover:text-normal_blue">
-            home page
+            {t('home page')}
           </Link>
-          <span> and like some images first!</span>
+          <span>{t(' and like some images first!')}</span>
         </EmptyFavoritesMessage>
       )}
 

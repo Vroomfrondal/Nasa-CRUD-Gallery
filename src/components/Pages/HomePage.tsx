@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import useFetchImages from '../../hooks/useFetchImages'
 import ScrollToTopButton from '../ScrollToTopButton'
 import Title from '../Title'
@@ -39,6 +40,8 @@ function HomePage() {
     localStorage.setItem('nasa-liked-images', JSON.stringify(likedImages))
   }, [likedImages])
 
+  const { t } = useTranslation()
+
   const generateCard = (image: Image, index: number, ref?: any) => {
     const { media_type, title, date, url: src, hdurl: highDefSrc, explanation, copyright } = image
 
@@ -72,7 +75,7 @@ function HomePage() {
     <>
       {!error ? (
         <>
-          <Title title="Beyond Our Earth" />
+          <Title title={t('Beyond Our Earth')} />
 
           <section className="container">
             {images.map((image, index) => {

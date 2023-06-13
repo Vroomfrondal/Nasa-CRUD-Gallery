@@ -2,15 +2,20 @@ import React, { useContext, SetStateAction, Dispatch } from 'react'
 import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
+import { changeLanguage } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
 
 type NavBarActions = {
   setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
+  setLanguage: Dispatch<SetStateAction<'en' | 'es'>>
 }
 
-function NavBar({ setActivePage }: NavBarActions) {
-  const activePage = useContext(activePageContext)
+function NavBar({ setActivePage, setLanguage }: NavBarActions) {
+  const { activePage, language } = useContext(activePageContext)
   const [isShowingLinks, setIsShowingLinks] = useIsNavBarOpenState(activePage)
+
+  const { t } = useTranslation()
 
   return (
     <>
@@ -33,20 +38,29 @@ function NavBar({ setActivePage }: NavBarActions) {
 
         <Links>
           <Link to="/" onClick={() => setActivePage('Home')}>
-            <PageButton>Home</PageButton>
+            <PageButton>{t('Home')}</PageButton>
           </Link>
 
           <Link to="/Favorites" onClick={() => setActivePage('Favorites')}>
-            <PageButton>Favorites</PageButton>
+            <PageButton>{t('Favorites')}</PageButton>
           </Link>
 
           <Link to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery" target="_blank" rel="noreferrer">
-            <PageButton>Source</PageButton>
+            <PageButton>{t('Source')}</PageButton>
           </Link>
 
           <Link to="https://www.topherdeleon.com/" target="_blank" rel="noreferrer">
             <MobileWebsiteEmblem src="media/TopherEmblem.png" isShowingLinks={isShowingLinks} />
           </Link>
+
+          <PageButton
+            onClick={() => {
+              changeLanguage(language !== 'en' ? 'en' : 'es')
+              setLanguage(language === 'en' ? 'es' : 'en')
+            }}
+          >
+            {language === 'en' ? t('ES') : t('EN')}
+          </PageButton>
         </Links>
       </NavigationBar>
     </>
@@ -57,9 +71,9 @@ export default NavBar
 
 // Containers
 const NavigationBar = styled.nav<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
-  tw`top-0 h-full animate-slideInNav duration-150 text-cream font-semibold fixed w-48 md:(absolute flex justify-between w-full)`,
+  tw`top-0 h-full animate-slideInNav duration-150 text-cream font-semibold fixed w-48 md:(absolute flex justify-between w-full h-fit)`,
   isShowingLinks
-    ? tw`right-0 top-0 bg-navy_blue z-50 fixed flex flex-col md:(absolute flex justify-between w-full animate-slideInNav duration-1000) lg:(absolute flex-row h-fit left-0 right-0 bg-transparent z-50)`
+    ? tw`right-0 top-0 bg-navy_blue z-50 fixed flex flex-col md:(absolute flex justify-between w-full animate-slideInNav duration-1000 h-fit) lg:(absolute flex-row h-fit left-0 right-0 bg-transparent z-50)`
     : tw`hidden`,
 ])
 
@@ -68,7 +82,7 @@ const CloseContainer = styled.button<{ isShowingLinks: boolean }>(({ isShowingLi
   isShowingLinks ? tw`contents` : tw`hidden`,
 ])
 
-const HamburgerContainer = tw.button`fixed h-full flex flex-col justify-center items-center top-0 w-full font-semibold bg-transparent border-0` //
+const HamburgerContainer = tw.button`fixed h-fit flex flex-col justify-center items-center top-0 w-full font-semibold bg-transparent border-0` //
 const Links = tw.div`flex h-fit sm:(flex-col border-t border-cream) md:(flex-row border-none)`
 
 // Elements

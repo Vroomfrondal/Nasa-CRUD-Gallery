@@ -1,29 +1,34 @@
 import React, { useState, createContext } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import NavBar from './NavBar'
 import HomePage from './Pages/HomePage'
 import Favorites from './Pages/Favorites'
 import Error from './Pages/Error'
 import tw from 'twin.macro'
-import { Route, Routes } from 'react-router-dom'
+import '../../i18n'
 
-export const activePageContext = createContext<'Home' | 'Favorites'>('Home')
+export const activePageContext = createContext<{ activePage: 'Home' | 'Favorites'; language: 'en' | 'es' }>({
+  activePage: 'Home',
+  language: 'en',
+})
 
 function App() {
   const [activePage, setActivePage] = useState<'Home' | 'Favorites'>('Home')
+  const [language, setLanguage] = useState<'en' | 'es'>('en')
 
   return (
     <>
       <BannerImage />
 
-      <activePageContext.Provider value={activePage}>
-        <NavBar setActivePage={setActivePage} />
-      </activePageContext.Provider>
+      <activePageContext.Provider value={{ activePage: activePage, language: language }}>
+        <NavBar setActivePage={setActivePage} setLanguage={setLanguage} />
 
-      <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/Favorites" element={<Favorites />}></Route>
-        <Route path="/*" element={<Error />}></Route>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/Favorites" element={<Favorites />}></Route>
+          <Route path="/*" element={<Error />}></Route>
+        </Routes>
+      </activePageContext.Provider>
     </>
   )
 }
