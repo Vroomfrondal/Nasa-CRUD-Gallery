@@ -50,6 +50,7 @@ const Card = forwardRef(function Card(props: CardProps, ref: any) {
           title: title || 'NASA',
           explanation: explanation || 'No description provided',
         }}
+        isLikedImage={isLikedImage}
         isOpen={modalStatus}
         onLike={onLike}
         onClose={() => setModalStatus(false)}
