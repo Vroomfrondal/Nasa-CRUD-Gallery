@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import tw, { styled } from 'twin.macro'
 import { changeLanguage } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { IoMdClose } from 'react-icons/io'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
 
 type NavBarActions = {
@@ -33,7 +34,9 @@ function NavBar({ setActivePage, setLanguage }: NavBarActions) {
         </Link>
 
         <CloseContainer onClick={() => setIsShowingLinks((status) => !status)} isShowingLinks={isShowingLinks}>
-          <TempXButton>X</TempXButton>
+          <CloseNavButton>
+            <IoMdClose size={30} />
+          </CloseNavButton>
         </CloseContainer>
 
         <Links>
@@ -77,8 +80,8 @@ const NavigationBar = styled.nav<{ isShowingLinks: boolean }>(({ isShowingLinks 
     : tw`hidden`,
 ])
 
-const CloseContainer = styled.button<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
-  tw`flex justify-center items-center p-2 cursor-pointer duration-500 h-8 hover:(bg-hover_opaque) md:(opacity-0 hidden)`,
+const CloseContainer = styled.div<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
+  tw`flex justify-center items-center border border-red-500 p-2 cursor-pointer duration-500 h-8 hover:(bg-hover_opaque) md:(opacity-0 hidden)`,
   isShowingLinks ? tw`contents` : tw`hidden`,
 ])
 
@@ -105,4 +108,4 @@ const TempHamburgerIcon = tw.span`block h-1 m-1 rounded-md bg-cream`
 
 const PageButton = tw.button`w-full font-[500] text-base md:(w-32)`
 
-const TempXButton = tw.span`font-bold text-lg py-2 text-center rounded-sm`
+const CloseNavButton = tw.div`flex justify-center items-center h-9`

@@ -2,6 +2,7 @@ import React, { useState, forwardRef } from 'react'
 import CardModal from '../components/CardModal'
 import tw from 'twin.macro'
 import { useTranslation } from 'react-i18next'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
 type CardProps = {
   image: Image
@@ -35,10 +36,7 @@ const Card = forwardRef(function Card(props: CardProps, ref: any) {
           <DateTitle className="bottom-0">{dayInNumbersAndYear}</DateTitle>
 
           <LikeButton onClick={onLike}>
-            <img
-              className="border-none"
-              src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
-            ></img>
+            {isLikedImage ? <AiFillHeart color="red" size={23} /> : <AiOutlineHeart color="white" size={23} />}
           </LikeButton>
         </CardBody>
       </StyledCard>
