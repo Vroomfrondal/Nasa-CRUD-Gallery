@@ -2,17 +2,18 @@ import React, { useContext, MouseEventHandler } from 'react'
 import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { AiFillHeart } from 'react-icons/ai'
 import tw from 'twin.macro'
 
 type CardModalData = {
   image: Image
-  isLikedImage: boolean
+  // isLikedImage: boolean
   isOpen: boolean
   onClose: MouseEventHandler<HTMLElement>
   onLike?: () => void
 }
 
-function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalData) {
+function CardModal({ image, isOpen, onLike, onClose }: CardModalData) {
   const { language } = useContext(activePageContext)
   const { t } = useTranslation()
 
@@ -40,11 +41,7 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
             <Author>{copyright}</Author>
 
             <LikeButton onClick={onLike}>
-              <img
-                className="border-none"
-                src={`${isLikedImage ? 'media/liked-heart-icon.png' : 'media/unliked-heart-icon.png'}`}
-                alt="like"
-              />
+              <AiFillHeart color="red" size={23} />
             </LikeButton>
           </ImageContainer>
 
