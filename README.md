@@ -25,6 +25,7 @@ Built with:
 
   ```
   npm run start // spins up project in a local development environment (Vite)
+  npm cypress   // spins up crypress e2e testing environment
   ```
 
 ### NASA API Load Time Optimization
@@ -40,7 +41,7 @@ The UI utilizes a custom date-pagination-hook implemented to optimize the API ca
   - [TailwindCSS](https://tailwindcss.com/) for sanity.
   - [Twin.Macro](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md) & [Styled Components](https://github.com/ben-rogerson/twin.macro) for HTML cleanup and CSS-in-JS with Tailwind.
   - [React Icons](https://react-icons.github.io/react-icons/)
-  - [Cypress](https://www.cypress.io/) for CRUD operation testing (with [MSW](https://www.npmjs.com/package/msw) to mock API calls) & automation.
+  - [Cypress](https://www.cypress.io/) for CRUD operation e2e testing (with [MSW](https://www.npmjs.com/package/msw) to mock API calls) & automation.
   - [react-i18next](https://react.i18next.com/) - multi-language support (English, Spanish currently).
   - [Framer Motion](https://www.framer.com/motion/) - animation.
   - Github actions, [LogRocket](https://ecg.atlassian.net/wiki/spaces/ECGFE/pages/1033207980/Project+2+Simple+CRUD+App#:~:text=PR%20approved%20with-,LogRocket,-integration), and [Vercel](Vercel) - CI, analysis, web-hosting & more.
