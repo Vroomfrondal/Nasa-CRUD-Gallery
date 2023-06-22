@@ -37,14 +37,12 @@ describe('CRUD test suite', () => {
 
   it('(Create) likes an image from inside the cards modal', () => {
     // Click on the first <Card /> on HomePage
-    cy.findAllByRole('img', { timeout: 30000 })
-    cy.findAllByRole('img', { timeout: 30000 }).eq(2).should('exist').click()
+    cy.findAllByRole('img').eq(2, { timeout: 30000 }).should('exist').click()
 
-    // Assert that heart button exists in Modal
-    cy.findByTestId('like-button-modal').should('exist')
+    // Assert like button exists & like image
+    cy.findByTestId('like-button-modal').should('exist').click()
 
-    // like the heart icon & close modal
-    cy.findByTestId('like-button-modal').click()
+    // close modal
     cy.findByTestId('close-modal').click()
 
     // assert that our local storage is now populated
@@ -67,7 +65,44 @@ describe('CRUD test suite', () => {
     })
   })
 
-  // it('(Delete) Unlikes an image from the Favorites Page, HomePage, or Card Modal', () => {
+  it('(Delete) Unlikes an image from inside the cards modal', () => {
+    // Select first card
+    cy.findAllByRole('img').eq(2, { timeout: 30000 }).should('exist').click()
 
-  // })
+    // like image, then unlike it
+    cy.findByTestId('like-button-modal').should('exist').click().click()
+
+    // Assert that DB has no images inside it
+    cy.getAllLocalStorage().then((res) => {
+      expect(res['http://127.0.0.1:5173']['nasa-liked-images']).to.equal('[]')
+    })
+  })
+
+  it('(Delete) Unlikes an image by hovering on the Favorites Page', () => {
+    // First like an image
+    cy.findAllByTestId('card', { timeout: 30000 })
+      .should('exist')
+      .each((card, index) => {
+        if (index === 0) {
+          cy.wrap(card).findByTestId('like-button').click({ force: true })
+        }
+      })
+
+    // Visit Favorites page
+    cy.visit('http://127.0.0.1:5173/Favorites')
+
+    // Unlike first card by hovering
+    cy.findAllByTestId('card', { timeout: 30000 })
+      .should('exist')
+      .each((card, index) => {
+        if (index === 0) {
+          cy.wrap(card).findByTestId('like-button').click({ force: true })
+        }
+      })
+
+    // Verify its gone in local storage
+    cy.getAllLocalStorage().then((res) => {
+      expect(res['http://127.0.0.1:5173']['nasa-liked-images']).to.equal('[]')
+    })
+  })
 })
