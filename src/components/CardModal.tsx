@@ -42,7 +42,7 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
             <Title>{title}</Title>
             <Author>{copyright}</Author>
 
-            <LikeButton onClick={onLike} data-testid="like-button">
+            <LikeButton onClick={onLike} data-testid="like-button-modal">
               {isLikedImage ? <AiFillHeart color="red" size={23} /> : <AiOutlineHeart color="white" size={23} />}
             </LikeButton>
           </ImageContainer>

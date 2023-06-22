@@ -31,11 +31,11 @@ const Card = forwardRef(function Card(props: CardProps, ref: any) {
           <img src={src || 'media/error-image.jpg'} alt={alt} onClick={() => setModalStatus(true)} />
         )}
 
-        <CardBody className="card_body">
+        <CardBody className="card_body" data-testid="card">
           <DateTitle className="bottom-8">{t(`${dayInLetters}`)}</DateTitle>
           <DateTitle className="bottom-0">{dayInNumbersAndYear}</DateTitle>
 
-          <LikeButton onClick={onLike}>
+          <LikeButton onClick={onLike} data-testid="like-button">
             {isLikedImage ? <AiFillHeart color="red" size={23} /> : <AiOutlineHeart color="white" size={23} />}
           </LikeButton>
         </CardBody>
