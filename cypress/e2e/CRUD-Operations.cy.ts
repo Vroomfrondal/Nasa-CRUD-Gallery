@@ -4,32 +4,6 @@ before(() => {
   cy.clearAllLocalStorage()
 })
 
-describe('Navigation Tests', () => {
-  beforeEach(() => {
-    cy.visit('http://127.0.0.1:5173/') // https://nasa-photo-gallery.vercel.app/
-  })
-
-  it('Visits the Home Page', () => {
-    cy.url().should('deep.equal', 'http://127.0.0.1:5173/')
-  })
-
-  it('Visits the Favorites Page', () => {
-    // Go to favorites page
-    cy.findByRole('link', { name: 'Favorites' }).click()
-
-    // assertion
-    cy.url().should('include', '/Favorites')
-
-    // Go back home via home page via unliked photos link
-    cy.findByText('home page').click()
-  })
-
-  it('Tests Language Switcher', () => {
-    cy.findByRole('button', { name: 'ES' }).click()
-    cy.findByRole('button', { name: 'EN' }).click()
-  })
-})
-
 describe('CRUD test suite', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5173/') // https://nasa-photo-gallery.vercel.app/
@@ -104,5 +78,39 @@ describe('CRUD test suite', () => {
     cy.getAllLocalStorage().then((res) => {
       expect(res['http://127.0.0.1:5173']['nasa-liked-images']).to.equal('[]')
     })
+  })
+})
+
+describe('Navigation Test Suite', () => {
+  beforeEach(() => {
+    cy.visit('http://127.0.0.1:5173/') // https://nasa-photo-gallery.vercel.app/
+  })
+
+  it('Visits the Home Page', () => {
+    cy.url().should('deep.equal', 'http://127.0.0.1:5173/')
+  })
+
+  it('Visits the Favorites Page', () => {
+    // Go to favorites page
+    cy.findByRole('link', { name: 'Favorites' }).click()
+
+    // assertion
+    cy.url().should('include', '/Favorites')
+
+    // Go back home via home page via unliked photos link
+    cy.findByText('home page').click()
+  })
+
+  it('Tests Language Switcher', () => {
+    cy.findByRole('button', { name: 'ES' }).click()
+    cy.findByRole('button', { name: 'EN' }).click()
+  })
+})
+
+// Simulating an error suite
+describe('Fails gracefully by simulating error and routes to error page', () => {
+  it('Fails gracefully when user visits unknown page', () => {
+    cy.visit('http://127.0.0.1:5173/Error') // https://nasa-photo-gallery.vercel.app/
+    cy.url().should('not.equal', 'http://127.0.0.1:5173/', 'http://127.0.0.1:5173/Favorites')
   })
 })
