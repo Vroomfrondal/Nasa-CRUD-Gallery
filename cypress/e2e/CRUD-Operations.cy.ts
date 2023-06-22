@@ -5,6 +5,7 @@ describe('Navigation Tests', () => {
     cy.clearAllLocalStorage()
   })
 
+  // Navigate between Home and Favorites page using various methods
   it('Navigates between pages', () => {
     cy.visit('https://nasa-photo-gallery.vercel.app/')
 
@@ -23,8 +24,25 @@ describe('Navigation Tests', () => {
   })
 })
 
-// describe('CRUD test suite', () => {
-//   beforeEach(() => {
-//     cy.visit('https://nasa-photo-gallery.vercel.app/')
-//   })
-// })
+describe('CRUD test suite', () => {
+  beforeEach(() => {
+    // cy.visit('https://nasa-photo-gallery.vercel.app/')
+    cy.visit('http://127.0.0.1:5173/')
+  })
+
+  it('likes an image from inside the modal and creates an item in DB', () => {
+    // Click on the first <Card />
+    cy.findAllByRole('img', { timeout: 60 })
+    cy.findAllByRole('img').eq(2).click()
+
+    // Find the heart icon
+    cy.findByTestId('like-button').should('exist')
+
+    // like the heart icon
+    cy.findByTestId('like-button').click()
+    cy.findByTestId('close-modal').click()
+
+    // is our local storage now populated?
+    cy.getAllLocalStorage().then((res) => expect(res).exist)
+  })
+})

@@ -30,7 +30,9 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
 
       <ModalContainer>
         <ModalContent>
-          <CloseModalButton onClick={onClose}>X</CloseModalButton>
+          <CloseModalButton onClick={onClose} data-testid="close-modal">
+            X
+          </CloseModalButton>
 
           <ImageContainer>
             <Link to={highDefSrc || ''} target="_blank" rel="noreferrer">
@@ -40,7 +42,7 @@ function CardModal({ image, isLikedImage, isOpen, onLike, onClose }: CardModalDa
             <Title>{title}</Title>
             <Author>{copyright}</Author>
 
-            <LikeButton onClick={onLike}>
+            <LikeButton onClick={onLike} data-testid="like-button">
               {isLikedImage ? <AiFillHeart color="red" size={23} /> : <AiOutlineHeart color="white" size={23} />}
             </LikeButton>
           </ImageContainer>
