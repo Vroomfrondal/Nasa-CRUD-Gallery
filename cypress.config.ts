@@ -7,4 +7,12 @@ export default defineConfig({
       // implement node event listeners here
     },
   },
+
+  component: {
+    watchForFileChanges: false,
+    devServer: {
+      framework: 'react',
+      bundler: 'vite',
+    },
+  },
 })
