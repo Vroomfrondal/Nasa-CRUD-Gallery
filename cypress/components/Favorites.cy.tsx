@@ -29,7 +29,6 @@ describe('<Favorites /> Page Component Tests', () => {
     )
   })
 
-  // Set Local Storage for first test
   before(() => {
     localStorage.setItem('nasa-liked-images', JSON.stringify([MOCK_CARD]))
   })
@@ -42,5 +41,10 @@ describe('<Favorites /> Page Component Tests', () => {
     cy.getAllLocalStorage().then((result) => {
       expect(JSON.stringify(result)).to.deep.equal(JSON.stringify(MOCK_LOCAL_STORAGE))
     })
+  })
+
+  it("Display's an empty page when user has unliked all photos", () => {
+    // Assert home page link exists since if photos were populated it would show them
+    cy.findByTestId('home-page-route').should('exist')
   })
 })

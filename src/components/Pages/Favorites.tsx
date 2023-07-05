@@ -53,7 +53,7 @@ function Favorites() {
       ) : (
         <EmptyFavoritesMessage>
           <span>{t('Browse the ')}</span>
-          <Link to="/" className="relative text-light_blue hover:text-normal_blue">
+          <Link to="/" className="relative text-light_blue hover:text-normal_blue" data-testid="home-page-route">
             {t('home page')}
           </Link>
           <span>{t(' and like some images first!')}</span>
