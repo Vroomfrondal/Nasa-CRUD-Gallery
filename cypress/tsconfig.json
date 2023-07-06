@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["cypress", "@testing-library/cypress"],
+    "lib": ["ES2015", "dom", "dom.iterable", "esnext"],
+    "types": ["cypress", "node", "@testing-library/cypress"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -15,8 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "http://localhost:5173"
+    "jsx": "react-jsx"
   },
-  "include": ["src", "types", "i18n.ts", "public/locales"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }
