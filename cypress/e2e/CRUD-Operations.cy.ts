@@ -6,7 +6,7 @@ before(() => {
 
 describe('CRUD test suite', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:5173/') // https://nasa-photo-gallery.vercel.app/
+    cy.visit('/')
   })
 
   it('(Create) likes an image from inside the cards modal', () => {
@@ -19,8 +19,10 @@ describe('CRUD test suite', () => {
     // close modal
     cy.findByTestId('close-modal').click()
 
+    console.log(cy.getAllLocalStorage().then((res) => console.log(res)))
+
     // assert that our local storage is now populated
-    cy.getAllLocalStorage().then((res) => expect(res['http://127.0.0.1:5173']['nasa-liked-images']).exist)
+    cy.getAllLocalStorage().then((res) => expect(res['http://localhost:5173']['nasa-liked-images']).exist)
   })
 
   it('(Create) likes an image by hovering a card on the HomePage', () => {
@@ -35,7 +37,7 @@ describe('CRUD test suite', () => {
 
     // Assert that local storage contains an item
     cy.getAllLocalStorage().then((res) => {
-      expect(res['http://127.0.0.1:5173']['nasa-liked-images']).to.not.deep.equal([])
+      expect(res['http://localhost:5173']['nasa-liked-images']).to.not.deep.equal([])
     })
   })
 
@@ -48,7 +50,7 @@ describe('CRUD test suite', () => {
 
     // Assert that DB has no images inside it
     cy.getAllLocalStorage().then((res) => {
-      expect(res['http://127.0.0.1:5173']['nasa-liked-images']).to.equal('[]')
+      expect(res['http://localhost:5173']['nasa-liked-images']).to.equal('[]')
     })
   })
 
@@ -63,7 +65,7 @@ describe('CRUD test suite', () => {
       })
 
     // Visit Favorites page
-    cy.visit('http://127.0.0.1:5173/Favorites')
+    cy.visit('/Favorites')
 
     // Unlike first card by hovering
     cy.findAllByTestId('card', { timeout: 30000 })
@@ -76,18 +78,18 @@ describe('CRUD test suite', () => {
 
     // Verify its gone in local storage
     cy.getAllLocalStorage().then((res) => {
-      expect(res['http://127.0.0.1:5173']['nasa-liked-images']).to.equal('[]')
+      expect(res['http://localhost:5173']['nasa-liked-images']).to.equal('[]')
     })
   })
 })
 
 describe('Navigation Test Suite', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:5173/') // https://nasa-photo-gallery.vercel.app/
+    cy.visit('/')
   })
 
   it('Visits the Home Page', () => {
-    cy.url().should('deep.equal', 'http://127.0.0.1:5173/')
+    cy.url().should('deep.equal', 'http://localhost:5173/')
   })
 
   it('Visits the Favorites Page', () => {
@@ -110,7 +112,7 @@ describe('Navigation Test Suite', () => {
 // Simulating an error suite
 describe('Fails gracefully by simulating error and routes to error page', () => {
   it('Fails gracefully when user visits unknown page', () => {
-    cy.visit('http://127.0.0.1:5173/Error') // https://nasa-photo-gallery.vercel.app/
-    cy.url().should('not.equal', 'http://127.0.0.1:5173/', 'http://127.0.0.1:5173/Favorites')
+    cy.visit('/Error')
+    cy.url().should('not.equal', 'http://localhost:5173/', 'http://localhost:5173/Favorites')
   })
 })

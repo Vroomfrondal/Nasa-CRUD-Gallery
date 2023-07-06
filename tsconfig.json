@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "http://localhost:5173"
   },
   "include": ["src", "types", "i18n.ts", "public/locales"]
 }

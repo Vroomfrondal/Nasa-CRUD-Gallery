@@ -39,6 +39,7 @@ Built with:
 
   ```
   npm run start // spins up project in a local development environment (Vite)
+  npm run all   // run local server and start cypress app
   npm cypress   // spins up crypress e2e testing environment
   ```
 
