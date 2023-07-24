@@ -1,7 +1,13 @@
-// clear liked images on local storage
+import worker from '../fixtures/mocks/browser'
+
 before(() => {
   cy.clearAllCookies()
   cy.clearAllLocalStorage()
+
+  // Start MSW Mock Worker Handlers
+  worker.start({
+    onUnhandledRequest: 'bypass',
+  })
 })
 
 describe('CRUD test suite', () => {
