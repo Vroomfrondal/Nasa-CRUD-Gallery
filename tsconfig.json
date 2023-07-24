@@ -18,5 +18,5 @@
     "jsx": "react-jsx",
     "baseUrl": "http://localhost:5173"
   },
-  "include": ["src", "types", "i18n.ts", "public/locales"]
+  "include": ["src", "types", "i18n.ts", "public/locales", "cypress/fixtures/mocks"]
 }

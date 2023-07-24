@@ -1,4 +1,4 @@
-import worker from '../../src/mocks/browser'
+import worker from '../fixtures/mocks/browser'
 
 before(() => {
   cy.clearAllCookies()
