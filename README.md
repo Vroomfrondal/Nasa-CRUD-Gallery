@@ -1,6 +1,6 @@
 # Nasa-CRUD-Gallery
 
-A fully-responsive, infinite-scrolling NASA astronomy photo gallery complete with all CRUD operations.
+A fully-responsive, infinitely scrolling NASA photo gallery complete with all CRUD operations.
 
 ## Technologies
 
@@ -16,11 +16,11 @@ Built with:
 - First PR was the base project complete with all vanilla react and typescript code. Each PR thereafter contains production library integrations by using:
   - [React Router v7](https://reacttraining.com/blog/react-router-v6-pre) for all client-side routing (navigating pages).
   - [Ky](https://github.com/sindresorhus/ky) for the API call's fetch.
-  - [React-Query](https://tanstack.com/query/v3/) for all server-state management.
+  - [React-Query](https://tanstack.com/query/v3/) for all server-state management (useFetchImages custom hook).
   - [TailwindCSS](https://tailwindcss.com/) for sanity.
   - [Twin.Macro](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md) & [Styled Components](https://github.com/ben-rogerson/twin.macro) for HTML cleanup and CSS-in-JS with Tailwind.
   - [React Icons](https://react-icons.github.io/react-icons/)
-  - [Cypress](https://www.cypress.io/) for CRUD operation e2e testing (with [MSW](https://www.npmjs.com/package/msw) to mock API calls) & automation.
+  - [Cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/) for CRUD operation e2e testing (with [MSW](https://www.npmjs.com/package/msw) to mock API calls).
   - [react-i18next](https://react.i18next.com/) - multi-language support (English, Spanish currently).
   - [Framer Motion](https://www.framer.com/motion/) - animation.
   - Github actions, [LogRocket](https://ecg.atlassian.net/wiki/spaces/ECGFE/pages/1033207980/Project+2+Simple+CRUD+App#:~:text=PR%20approved%20with-,LogRocket,-integration), and [Vercel](Vercel) - CI, analysis, web-hosting & more.
@@ -38,10 +38,14 @@ Built with:
 - Scripts:
 
   ```
-  npm run start // spins up project in a local development environment (Vite)
-  npm run all   // run local server and start cypress app
-  npm cypress   // spins up crypress e2e testing environment
+  npm run start                   // spins up project in a local development environment (Vite)
+  npm run cypress:dev             // starts cypress GUI w/ local server for testing-development
+  npm run cypress:e2e-ci          // used in github action CI or terminal for running cypress tests with headless UI
   ```
+
+### Testing
+
+- Continious integration E2E & Component tests utilizing [Cypress](https://www.cypress.io/), [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/), and a Github Actions pipeline. See above scripts.
 
 ### NASA API Load Time Optimization
 
