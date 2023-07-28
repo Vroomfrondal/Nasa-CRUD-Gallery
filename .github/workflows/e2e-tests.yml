@@ -50,4 +50,4 @@ jobs:
           wait-on: 'http://localhost:5173'
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm test-start
+      - run: npm run test-start
