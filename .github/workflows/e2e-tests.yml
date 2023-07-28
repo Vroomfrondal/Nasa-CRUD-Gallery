@@ -2,9 +2,9 @@ name: Cypress E2E Tests (Chrome)
 
 on:
   push:
-    branches: ['main', 'dev', 'actions']
+    branches: ['main', 'dev']
   pull_request:
-    branches: ['main', 'dev', 'actions']
+    branches: ['main', 'dev']
 
 jobs:
   build:
