@@ -46,8 +46,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+          browser: 'chrome'
           #project: ./cypress
           wait-on: 'http://localhost:5173'
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm run test-start
+      - run: npm run cypress:e2e-ci
