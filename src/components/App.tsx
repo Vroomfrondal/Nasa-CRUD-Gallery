@@ -4,16 +4,20 @@ import NavBar from './NavBar'
 import HomePage from './Pages/HomePage'
 import Favorites from './Pages/Favorites'
 import Error from './Pages/Error'
+import Newsletter from './Pages/Newsletter'
 import tw from 'twin.macro'
 import '../../i18n'
 
-export const activePageContext = createContext<{ activePage: 'Home' | 'Favorites'; language: 'en' | 'es' }>({
+export const activePageContext = createContext<{
+  activePage: 'Home' | 'Favorites' | 'Newsletter'
+  language: 'en' | 'es'
+}>({
   activePage: 'Home',
   language: 'en',
 })
 
 function App() {
-  const [activePage, setActivePage] = useState<'Home' | 'Favorites'>('Home')
+  const [activePage, setActivePage] = useState<'Home' | 'Favorites' | 'Newsletter'>('Home')
   const [language, setLanguage] = useState<'en' | 'es'>('en')
 
   return (
@@ -24,9 +28,10 @@ function App() {
         <NavBar setActivePage={setActivePage} setLanguage={setLanguage} />
 
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/Favorites" element={<Favorites />}></Route>
-          <Route path="/*" element={<Error />}></Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Favorites" element={<Favorites />} />
+          <Route path="/Newsletter" element={<Newsletter />} />
+          <Route path="/*" element={<Error />} />
         </Routes>
       </activePageContext.Provider>
     </>
