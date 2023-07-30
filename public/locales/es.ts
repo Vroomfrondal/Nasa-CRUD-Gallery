@@ -3,6 +3,7 @@ const translation = {
   Home: 'Hogar',
   Favorites: 'Favoritos',
   Source: 'Fuente',
+  Newsletter: 'Boletin',
 
   // Error Page
   'Oops! Nasa is having a rare issue with their server.':
