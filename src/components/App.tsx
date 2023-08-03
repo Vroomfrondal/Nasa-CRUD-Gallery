@@ -40,4 +40,4 @@ function App() {
 
 export default App
 
-const BannerImage = tw.div`mask-gradient-banner absolute bg-[url('../media/earth-background.jpg')] bg-bottom bg-cover top-0 left-0 right-0 h-44 w-auto`
+const BannerImage = tw.div`mask-gradient-banner absolute bg-[url('../media/earth-background.jpg')] bg-bottom bg-cover top-0 left-0 right-0 h-44 w-auto -z-10`
