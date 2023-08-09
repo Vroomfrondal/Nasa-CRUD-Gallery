@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import tw, { styled } from 'twin.macro'
 import useSendEmail from '../../hooks/useSendEmail'
-import tw from 'twin.macro'
 import Title from '../Title'
 
 // Convert into custom hook
@@ -13,16 +13,18 @@ function Newsletter() {
   const { data } = useSendEmail(email, isUserNeedingToSendEmail)
   const { t } = useTranslation()
 
-  //* test if backend is working
+  //* Fronted: test if live backend URL is working
   //* Frontend: reset state after its turned to true
   //* Frontend: Email input sanitation / clear input after clicking (will happen when you develop modal)
   //* Frontend: local storage to prevent repeat emails
-  // TODO Frontend: Anti-spam captcha
   // TODO Frontend: Create email success/error transition screen
+  // TODO Frontend: Anti-spam captcha on submit button press
+  // TODO Frontend: Translation text (pass in context hook)!
   // TODO Backend: Rate Limiting
-  // TODO Backend: add PDF functionality!
+  // TODO Backend: add PDF attachment w/ base64 encoding!
   // TODO DevOps: Remove all o-auth integrations unused on github
   // TODO DevOps: Verify heroku payments!
+  // TODO DevOps: Merge PR & Rebase
   useEffect(() => {
     if (data) {
       console.log('Response data from email query: ', data)
@@ -38,15 +40,13 @@ function Newsletter() {
     if (usedEmails.length) localStorage.setItem('used-emails', JSON.stringify(usedEmails))
   }, [usedEmails])
 
-  const sanitizeAndValidate = (email: string) => {
+  const isSanitzedAndValidated = (email: string) => {
     const isReusedEmail = usedEmails.some((usedEmail) => {
       if (usedEmail === email) return true
       else return false
     })
 
-    if (!email || !email.includes('@')) alert('Please enter a valid email.')
-    else if (isReusedEmail) alert(`A copy has already been sent to "${email}"`)
-    else setIsUserNeedingToSendEmail(true)
+    return isReusedEmail
   }
 
   return (
@@ -54,7 +54,7 @@ function Newsletter() {
       <Title title={t('Newsletter')} />
 
       <ParentContainer>
-        <FormBox>
+        <FormBox onSubmit={(e) => e.preventDefault()}>
           <FormHeader>
             <p className="text-2xl font-medium">Enter your email!</p>
             <p className="text-xs p-2">
@@ -65,14 +65,27 @@ function Newsletter() {
 
           <Inputs>
             <EmailInput
+              invalidInput={isSanitzedAndValidated(email)}
               type="input"
               placeholder="example@something.com"
               required={true}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Submit type="button" onClick={() => sanitizeAndValidate(email)}>
-              Submit
-            </Submit>
+
+            {!isSanitzedAndValidated(email) ? (
+              <Submit
+                type="button"
+                onClick={() => {
+                  if (!email || !email.includes('@') || isSanitzedAndValidated(email)) alert('Invalid input.')
+                  else setIsUserNeedingToSendEmail(true)
+                }}
+              >
+                Submit
+              </Submit>
+            ) : (
+              <Submitted>Email sent!</Submitted>
+            )}
+
             <Tip className="block md:hidden absolute bottom-1">Your email is not stored or used to subscribe.</Tip>
           </Inputs>
         </FormBox>
@@ -92,6 +105,11 @@ const FormHeader = tw.section`text-center w-72 md:(relative)`
 const Inputs = tw.section`flex flex-col items-center`
 
 // Form Elements
-const EmailInput = tw.input`text-black text-center text-sm my-1 py-[0.15rem] w-[13rem] bg-neutral-300 caret-black`
 const Submit = tw.button`border border-cream px-2 mt-1`
+const Submitted = tw.span`text-sm`
 const Tip = tw.p`text-xs`
+
+const EmailInput = styled.input<{ invalidInput?: boolean }>(({ invalidInput }) => [
+  tw`text-black text-center text-sm my-1 py-[0.15rem] w-[13rem] bg-neutral-300 caret-black focus:(outline-none)`,
+  invalidInput ? tw`border-2 border-red-500 animate-shake` : tw`border-none`,
+])

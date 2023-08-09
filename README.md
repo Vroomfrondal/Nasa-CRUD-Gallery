@@ -55,6 +55,8 @@ Backend built with:
 
 I wrote a small express backend for handling HTTP requests for the <NewsLetter/> functionality and hiding keys. You can view that code [here](https://github.com/Vroomfrondal/NASA-CRUD-PROXY).
 
+Sanitized via front-end input validation as well as rate limiting on backend.
+
 ### NASA API Load Time Optimization
 
 The UI utilizes a custom date-pagination-hook implemented to optimize the API call - because NASA's API takes 4 seconds for 7 days of images; you can't just pass in a huge date range to the API. Each time the last element on page is detected, we update the start and end date, and recall the API.
