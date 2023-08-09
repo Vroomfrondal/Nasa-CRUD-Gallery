@@ -1,13 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import generateEmail from '../../utilities/email/generateEmail'
+import useSendEmail from '../../hooks/useSendEmail'
 import tw from 'twin.macro'
 import Title from '../Title'
 
 // Convert into custom hook
 function Newsletter() {
   const [email, setEmail] = useState<string>('')
+  const [usedEmails, setUsedEmails] = useState<string[]>(JSON.parse(localStorage.getItem('used-emails') || '[]'))
+  const [isUserNeedingToSendEmail, setIsUserNeedingToSendEmail] = useState(false)
+
+  const { data } = useSendEmail(email, isUserNeedingToSendEmail)
   const { t } = useTranslation()
+
+  //* test if backend is working
+  //* Frontend: reset state after its turned to true
+  //* Frontend: Email input sanitation / clear input after clicking (will happen when you develop modal)
+  //* Frontend: local storage to prevent repeat emails
+  // TODO Frontend: Anti-spam captcha
+  // TODO Frontend: Create email success/error transition screen
+  // TODO Backend: Rate Limiting
+  // TODO Backend: add PDF functionality!
+  // TODO DevOps: Remove all o-auth integrations unused on github
+  // TODO DevOps: Verify heroku payments!
+  useEffect(() => {
+    if (data) {
+      console.log('Response data from email query: ', data)
+      setIsUserNeedingToSendEmail(false)
+
+      // Anti-spam: add used emails to state array
+      if (email) setUsedEmails((prev) => [...prev, email])
+    }
+  }, [data])
+
+  // Anti-Spam: store used emails in local storage
+  useEffect(() => {
+    if (usedEmails.length) localStorage.setItem('used-emails', JSON.stringify(usedEmails))
+  }, [usedEmails])
+
+  const sanitizeAndValidate = (email: string) => {
+    const isReusedEmail = usedEmails.some((usedEmail) => {
+      if (usedEmail === email) return true
+      else return false
+    })
+
+    if (!email || !email.includes('@')) alert('Please enter a valid email.')
+    else if (isReusedEmail) alert(`A copy has already been sent to "${email}"`)
+    else setIsUserNeedingToSendEmail(true)
+  }
 
   return (
     <>
@@ -30,7 +70,7 @@ function Newsletter() {
               required={true}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Submit type="button" onClick={async () => await generateEmail(email)}>
+            <Submit type="button" onClick={() => sanitizeAndValidate(email)}>
               Submit
             </Submit>
             <Tip className="block md:hidden absolute bottom-1">Your email is not stored or used to subscribe.</Tip>
