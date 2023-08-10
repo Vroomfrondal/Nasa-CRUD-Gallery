@@ -17,8 +17,8 @@ function Newsletter() {
   //* Frontend: reset state after its turned to true
   //* Frontend: Email input sanitation / clear input after clicking (will happen when you develop modal)
   //* Frontend: local storage to prevent repeat emails
-  // TODO Frontend: Create email success/error transition screen
-  // TODO Frontend: Anti-spam captcha on submit button press
+  //* Frontend: Create email success/error transition screen
+  // TODO Frontend: Anti-spam captcha on submit button press?
   // TODO Frontend: Translation text (pass in context hook)!
   // TODO Backend: Rate Limiting
   // TODO Backend: add PDF attachment w/ base64 encoding!
@@ -40,7 +40,7 @@ function Newsletter() {
     if (usedEmails.length) localStorage.setItem('used-emails', JSON.stringify(usedEmails))
   }, [usedEmails])
 
-  const isSanitzedAndValidated = (email: string) => {
+  const isReusedEmail = (email: string) => {
     const isReusedEmail = usedEmails.some((usedEmail) => {
       if (usedEmail === email) return true
       else return false
@@ -56,37 +56,40 @@ function Newsletter() {
       <ParentContainer>
         <FormBox onSubmit={(e) => e.preventDefault()}>
           <FormHeader>
-            <p className="text-2xl font-medium">Enter your email!</p>
+            <p className="text-2xl font-medium">{t('Enter your email!')}</p>
             <p className="text-xs p-2">
-              Get a PDF pamphlet sent from NASA about 60 years of human spaceflight and their achievements.
+              {t('Get a PDF pamphlet sent from NASA about 60 years of human spaceflight and their achievements.')}
             </p>
-            <Tip className="hidden md:block">Your email is not stored or used to subscribe.</Tip>
+            <Tip className="hidden md:block">{t('Your email is not stored or used to subscribe.')}</Tip>
           </FormHeader>
 
           <Inputs>
             <EmailInput
-              invalidInput={isSanitzedAndValidated(email)}
+              isInvalidInput={isReusedEmail(email)}
               type="input"
               placeholder="example@something.com"
               required={true}
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            {!isSanitzedAndValidated(email) ? (
+            {!isReusedEmail(email) ? (
               <Submit
                 type="button"
                 onClick={() => {
-                  if (!email || !email.includes('@') || isSanitzedAndValidated(email)) alert('Invalid input.')
+                  // Form Validation
+                  if (!email || !email.includes('@') || isReusedEmail(email)) alert('Invalid input.')
                   else setIsUserNeedingToSendEmail(true)
                 }}
               >
-                Submit
+                {t('Submit')}
               </Submit>
             ) : (
-              <Submitted>Email sent!</Submitted>
+              <Submitted>{t('Email sent!')}</Submitted>
             )}
 
-            <Tip className="block md:hidden absolute bottom-1">Your email is not stored or used to subscribe.</Tip>
+            <Tip className="block md:hidden absolute bottom-1">
+              {t('Your email is not stored or used to subscribe.')}
+            </Tip>
           </Inputs>
         </FormBox>
       </ParentContainer>
@@ -109,7 +112,7 @@ const Submit = tw.button`border border-cream px-2 mt-1`
 const Submitted = tw.span`text-sm`
 const Tip = tw.p`text-xs`
 
-const EmailInput = styled.input<{ invalidInput?: boolean }>(({ invalidInput }) => [
+const EmailInput = styled.input<{ isInvalidInput?: boolean }>(({ isInvalidInput }) => [
   tw`text-black text-center text-sm my-1 py-[0.15rem] w-[13rem] bg-neutral-300 caret-black focus:(outline-none)`,
-  invalidInput ? tw`border-2 border-red-500 animate-shake` : tw`border-none`,
+  isInvalidInput ? tw`border-2 border-red-500 animate-shake` : tw`border-none`,
 ])

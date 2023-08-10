@@ -37,7 +37,7 @@ module.exports = {
         slideInNav: 'slideInNav 0.4s ease-out',
         onLoadAppear: 'appear 3s ease-out',
         dateBounce: 'dateBounce 1.5s ease 1',
-        shake: 'shake .8s ease 1',
+        shake: 'shake 1s ease 1',
       },
       keyframes: () => ({
         slideInLeft: {
