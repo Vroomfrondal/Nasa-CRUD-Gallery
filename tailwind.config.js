@@ -37,6 +37,7 @@ module.exports = {
         slideInNav: 'slideInNav 0.4s ease-out',
         onLoadAppear: 'appear 3s ease-out',
         dateBounce: 'dateBounce 1.5s ease 1',
+        shake: 'shake 1s ease 1',
       },
       keyframes: () => ({
         slideInLeft: {
@@ -49,6 +50,13 @@ module.exports = {
         appear: {
           '0%': { opacity: '0%' },
           '100%': { opacity: '100%' },
+        },
+        shake: {
+          '0%': { transform: 'skewY(-15deg)' },
+          '5%': { transform: 'skewY(15deg)' },
+          '10%': { transform: 'skewY(-15deg)' },
+          '15%': { transform: 'skewY(15deg)' },
+          '20%, 100%': { transform: 'skewY(0deg)' },
         },
         dateBounce: {
           // Scale adds distortion, percentages add delay,
