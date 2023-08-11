@@ -31,7 +31,7 @@ const translation = {
   'Your email is not stored or used to subscribe.':
     'Su correo electrónico no se almacena ni se utiliza para suscribirse.',
   Submit: 'Entregar',
-  'Email sent!': '¡Email enviado!',
+  'Email already sent!': '¡Email ya enviado!',
 
   // Card
   'Mon,': 'Lunes,',

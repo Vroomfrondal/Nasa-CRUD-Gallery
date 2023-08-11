@@ -29,7 +29,7 @@ const translation = {
     'Get a PDF pamphlet sent from NASA about 60 years of human spaceflight and their achievements.',
   'Your email is not stored or used to subscribe.': 'Your email is not stored or used to subscribe.',
   Submit: 'Submit',
-  'Email sent!': 'Email sent!',
+  'Email already sent!': 'Email already sent!',
 
   // Card
   'Mon,': 'Mon,',
