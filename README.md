@@ -19,7 +19,7 @@ Backend built with:
 
 - First PR was the base project complete with all vanilla react and typescript code. Each PR thereafter contains production library integrations by using:
   - [React Router v7](https://reacttraining.com/blog/react-router-v6-pre) for all client-side routing (navigating pages).
-  - [Axios](https://axios-http.com/) for API calls to the [express back-end](https://github.com/Vroomfrondal/NASA-CRUD-PROXY)
+  - [Ky](https://github.com/sindresorhus/ky) for the API call's fetch.
   - [React-Query](https://tanstack.com/query/v3/) for all server-state management (useFetchImages custom hook).
   - [TailwindCSS](https://tailwindcss.com/) for sanity.
   - [Twin.Macro](https://github.com/ben-rogerson/twin.macro/blob/master/docs/index.md) & [Styled Components](https://github.com/ben-rogerson/twin.macro) for HTML cleanup and CSS-in-JS with Tailwind.
