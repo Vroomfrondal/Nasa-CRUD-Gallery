@@ -1,0 +1,28 @@
+name: Cypress E2E Tests (Chrome)
+
+on:
+  pull_request:
+    branches: ['main', 'dev']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          browser: 'chrome'
+          #project: ./cypress
+          wait-on: 'http://localhost:5173'
+      - run: npm install
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm run cypress:e2e-ci
