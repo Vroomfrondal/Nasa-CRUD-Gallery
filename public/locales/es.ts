@@ -3,6 +3,7 @@ const translation = {
   Home: 'Hogar',
   Favorites: 'Favoritos',
   Source: 'Fuente',
+  Newsletter: 'Boletin',
 
   // Error Page
   'Oops! Nasa is having a rare issue with their server.':
@@ -22,6 +23,15 @@ const translation = {
 
   // Home Page
   'Beyond Our Earth': 'Más allá de nuestra tierra',
+
+  // Newsletter Page
+  'Enter your email!': 'Introduce tu correo electrónico',
+  'Get a PDF pamphlet sent from NASA about 60 years of human spaceflight and their achievements.':
+    'Obtenga un folleto en PDF enviado por la NASA sobre los 60 años de vuelos espaciales tripulados y sus logros.',
+  'Your email is not stored or used to subscribe.':
+    'Su correo electrónico no se almacena ni se utiliza para suscribirse.',
+  Submit: 'Entregar',
+  'Email already sent!': '¡Email ya enviado!',
 
   // Card
   'Mon,': 'Lunes,',

@@ -7,33 +7,31 @@ function Error() {
   const { t } = useTranslation()
 
   return (
-    <>
-      <ErrorContainer>
-        <h1 className="text-2xl text-center">{t('Oops! Nasa is having a rare issue with their server.')}</h1>
-        <p className="text-xl text-center">{t('Please come back later to try again.')}</p>
-        <LinkContainer>
-          <p>{t('Some entertainment in the meantime:')}</p>
+    <ErrorContainer>
+      <h1 className="text-2xl text-center">{t('Oops! Nasa is having a rare issue with their server.')}</h1>
+      <p className="text-xl text-center">{t('Please come back later to try again.')}</p>
+      <LinkContainer>
+        <p>{t('Some entertainment in the meantime:')}</p>
 
-          <FormattedLink>
-            <Link to="https://youtu.be/ryg077wBvsM" target="_blank" rel="noreferrer">
-              {t('The Great Silence (LEMMiNO)')}
-            </Link>
-          </FormattedLink>
+        <FormattedLink>
+          <Link to="https://youtu.be/ryg077wBvsM" target="_blank" rel="noreferrer">
+            {t('The Great Silence (LEMMiNO)')}
+          </Link>
+        </FormattedLink>
 
-          <FormattedLink>
-            <Link to="/Favorites" rel="noreferrer">
-              {t('Your Favorites')}
-            </Link>
-          </FormattedLink>
+        <FormattedLink>
+          <Link to="/Favorites" rel="noreferrer">
+            {t('Your Favorites')}
+          </Link>
+        </FormattedLink>
 
-          <FormattedLink>
-            <Link className="z-50" to="https://github.com/nasa/apod-api/issues" target="_blank" rel="noreferrer">
-              {t('Latest API issues')}
-            </Link>
-          </FormattedLink>
-        </LinkContainer>
-      </ErrorContainer>
-    </>
+        <FormattedLink>
+          <Link className="z-50" to="https://github.com/nasa/apod-api/issues" target="_blank" rel="noreferrer">
+            {t('Latest API issues')}
+          </Link>
+        </FormattedLink>
+      </LinkContainer>
+    </ErrorContainer>
   )
 }
 

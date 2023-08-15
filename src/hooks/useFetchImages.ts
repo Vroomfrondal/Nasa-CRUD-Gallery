@@ -16,9 +16,11 @@ const useFetchImages = (needMoreImages: boolean): UseQueryResult<Image[]> => {
       setIncrement((count) => (count += 1))
 
       try {
-        // @ts-expect-error
+        //@ts-expect-error
         const ENV = import.meta.env.VITE_NASA_API_KEY
         const URL = `https://api.nasa.gov/planetary/apod`
+        // const BACKEND_SERVERSIDE_URL = `https://fancy-trifle-e26996.netlify.app/nasa`
+
         const request = await ky.get(URL, {
           retry: 1,
           searchParams: {

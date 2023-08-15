@@ -34,7 +34,7 @@
 }
 
 @layer components {
-  /* Grid for infinite-scroll */
+  /* infinite-scroll grid - for components that use infinite scrolls */
   .container {
     @apply grid auto-rows-[20rem] gap-2 mr-auto ml-auto md:grid-cols-4;
   }

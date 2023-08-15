@@ -1,14 +1,14 @@
 import React, { useContext, SetStateAction, Dispatch } from 'react'
+import tw, { styled } from 'twin.macro'
 import { activePageContext } from './App'
 import { Link } from 'react-router-dom'
-import tw, { styled } from 'twin.macro'
 import { changeLanguage } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { IoMdClose } from 'react-icons/io'
 import useIsNavBarOpenState from '../hooks/useIsNavBarOpenState'
 
 type NavBarActions = {
-  setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites'>>
+  setActivePage: Dispatch<SetStateAction<'Home' | 'Favorites' | 'Newsletter'>>
   setLanguage: Dispatch<SetStateAction<'en' | 'es'>>
 }
 
@@ -48,6 +48,10 @@ function NavBar({ setActivePage, setLanguage }: NavBarActions) {
             <PageButton>{t('Favorites')}</PageButton>
           </Link>
 
+          <Link to="/Newsletter" onClick={() => setActivePage('Newsletter')}>
+            <PageButton>{t('Newsletter')}</PageButton>
+          </Link>
+
           <Link to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery" target="_blank" rel="noreferrer">
             <PageButton>{t('Source')}</PageButton>
           </Link>
@@ -81,11 +85,11 @@ const NavigationBar = styled.nav<{ isShowingLinks: boolean }>(({ isShowingLinks 
 ])
 
 const CloseContainer = styled.div<{ isShowingLinks: boolean }>(({ isShowingLinks }) => [
-  tw`flex justify-center items-center border border-red-500 p-2 cursor-pointer duration-500 h-8 hover:(bg-hover_opaque) md:(opacity-0 hidden)`,
+  tw`flex justify-center items-center p-2 cursor-pointer duration-500 h-8 hover:(bg-hover_opaque) md:(opacity-0 hidden)`,
   isShowingLinks ? tw`contents` : tw`hidden`,
 ])
 
-const HamburgerContainer = tw.button`fixed h-fit flex flex-col justify-center items-center top-0 w-full font-semibold bg-transparent border-0` //
+const HamburgerContainer = tw.button`fixed h-fit flex flex-col justify-center items-center top-0 w-full font-semibold bg-transparent border-0`
 const Links = tw.div`flex h-fit sm:(flex-col border-t border-cream) md:(flex-row border-none)`
 
 // Elements
