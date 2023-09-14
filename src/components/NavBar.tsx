@@ -48,9 +48,9 @@ function NavBar({ setActivePage, setLanguage }: NavBarActions) {
             <PageButton>{t('Favorites')}</PageButton>
           </Link>
 
-          <Link to="/Newsletter" onClick={() => setActivePage('Newsletter')}>
+          {/* <Link to="/Newsletter" onClick={() => setActivePage('Newsletter')}>
             <PageButton>{t('Newsletter')}</PageButton>
-          </Link>
+          </Link> */}
 
           <Link to="https://github.com/Vroomfrondal/Nasa-CRUD-Gallery" target="_blank" rel="noreferrer">
             <PageButton>{t('Source')}</PageButton>
